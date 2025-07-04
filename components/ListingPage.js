@@ -4,7 +4,7 @@ import Button from './Button';
 export default function ListingPage() {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-8">
-      {/* Hero-bilde med tekst */}
+      {/* Hero-bilde og tekst */}
       <section className="relative w-full h-64 md:h-96 overflow-hidden rounded-2xl shadow">
         <img
           src="/hero.jpg"
@@ -18,7 +18,7 @@ export default function ListingPage() {
         </div>
       </section>
 
-      {/* Overskrift og knapp */}
+      {/* Toppseksjon */}
       <section className="space-y-2 text-center">
         <h1 className="text-3xl font-bold">Bright and modern apartment in Oslo</h1>
         <p className="text-gray-600">
@@ -43,11 +43,11 @@ export default function ListingPage() {
         ></iframe>
       </section>
 
-      {/* Kortgalleri */}
+      {/* Galleri */}
       <section className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <Card key={i}>
-            <CardContent>Card {i}</CardContent>
+            <CardContent className="p-4">Card {i}</CardContent>
           </Card>
         ))}
       </section>
