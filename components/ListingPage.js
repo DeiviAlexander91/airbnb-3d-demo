@@ -1,84 +1,102 @@
-import Image from "next/image";
-import Link from "next/link";
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stort hus i Sandnes</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #fffaf7;
+        margin: 0;
+        padding: 0;
+        color: #1a1a1a;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+      p {
+        font-size: 1rem;
+        color: #444;
+        margin-bottom: 1.5rem;
+      }
+      .cta-button {
+        background-color: #ff4081;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .hero-image {
+        width: 100%;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+      .amenities {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        text-align: left;
+        margin-top: 30px;
+        font-size: 1.1rem;
+      }
+      .amenities i {
+        margin-right: 10px;
+      }
+      .gallery {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+      .gallery img {
+        width: 32%;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Stort hus i ypperlig beliggenhet</h1>
+      <h2>Bright and modern house in Sandnes</h2>
+      <p>
+        God plass, moderne båt basse og nydelig utsikt. Perfekt for familier, par og mindre grupper — strid pass typ..
+      </p>
+      <button class="cta-button">Ve søg aupris</button>
+      <img src="/public/bil-rom.jpg" alt="Hjemmekino bilrom" class="hero-image" />
 
-export default function ListingPage() {
-  return (
-    <div className="bg-[#fffaf3] text-black min-h-screen">
-      {/* Hero Section */}
-      <div className="text-center py-12 px-4">
-        <h1 className="text-4xl font-extrabold">Stort hus i ypperlig beliggenhet</h1>
-        <h2 className="text-xl text-gray-600 mt-2">Bright and modern house in <span className="line-through">Oslo</span> Sandnes</h2>
-        <p className="mt-4 max-w-xl mx-auto">
-          Centrally located with ample space, comfort, and modern amenities. Ideal for families,
-          couples, and small groups. Everything from a home theater to a lovely outdoor area.
-        </p>
-        <Link href="https://www.airbnb.no/rooms/12345678" target="_blank">
-          <button className="mt-6 bg-pink-500 hover:bg-pink-600 text-white py-2 px-6 rounded-full shadow">
-            View on Airbnb
-          </button>
-        </Link>
+      <div class="amenities">
+        <div><i>💬</i> Hjemmekino</div>
+        <div><i>📶</i> Hiu speed internet</div>
+        <div><i>⛰️</i> Utsabt</div>
+        <div><i>🎛️</i> Hurrig Wifi</div>
+        <div><i>🍴</i> Fulti kjøkken</div>
+        <div><i>❌</i> Fultii kjøkken</div>
       </div>
 
-      {/* Hero Image */}
-      <div className="w-full relative h-[400px]">
-        <Image
-          src="/hero.jpg"
-          alt="Hero image of the house"
-          layout="fill"
-          objectFit="cover"
-          className="rounded"
-          priority
-        />
-      </div>
-
-      {/* Amenities Section */}
-      <div className="px-6 py-10">
-        <h2 className="text-2xl font-bold mb-6">Fasiliteter</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-lg">
-          <div>🎬 Hjemmekino</div>
-          <div>📶 Høyhastighetsinternett</div>
-          <div>🧖‍♂️ Privat badstue</div>
-          <div>🌄 Fantastisk utsikt</div>
-          <div>🍽️ Fullt utstyrt kjøkken</div>
-          <div>🌞 Utemøbler og grillplass</div>
-        </div>
-      </div>
-
-      {/* Gallery */}
-      <div className="px-6 pb-12">
-        <h2 className="text-2xl font-bold mb-6">Galleri</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Image
-            src="/barneseng.jpg"
-            alt="Barneseng bil"
-            width={400}
-            height={300}
-            className="rounded"
-          />
-          <Image
-            src="/gallery1.jpg"
-            alt="Gallery 1"
-            width={400}
-            height={300}
-            className="rounded"
-          />
-          <Image
-            src="/gallery2.jpg"
-            alt="Gallery 2"
-            width={400}
-            height={300}
-            className="rounded"
-          />
-          <Image
-            src="/gallery3.jpg"
-            alt="Gallery 3"
-            width={400}
-            height={300}
-            className="rounded"
-          />
-        </div>
+      <h2>Galleri</h2>
+      <div class="gallery">
+        <img src="/public/1.avif" alt="Galleri bilde 1" />
+        <img src="/public/2.avif" alt="Galleri bilde 2" />
+        <img src="/public/3.avif" alt="Galleri bilde 3" />
       </div>
     </div>
-  );
-}
-
+  </body>
+</html>
