@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="no">
 <head>
@@ -9,109 +8,96 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #fffaf7;
-      color: #111;
       margin: 0;
-      padding: 0;
+      color: #111;
     }
     header {
       text-align: center;
-      padding: 40px 20px 20px 20px;
+      padding: 40px 20px 10px;
     }
     h1 {
       font-size: 32px;
-      font-weight: bold;
     }
     h2 {
       font-size: 22px;
-      font-weight: normal;
-      color: #333;
+      margin-top: 40px;
+      text-align: center;
     }
     p {
       font-size: 16px;
-      color: #444;
+      text-align: center;
+      margin: 10px auto;
       max-width: 600px;
-      margin: 10px auto 30px;
     }
     .cta-button {
-      background-color: #ff4d9d;
+      display: inline-block;
+      background-color: #ff4081;
       color: white;
-      padding: 12px 30px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+      padding: 12px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 16px auto;
     }
-    .hero {
+    .main-image {
       width: 100%;
-      max-width: 100%;
+      max-width: 900px;
       height: auto;
       display: block;
-    }
-    .section {
-      padding: 30px 20px;
-      max-width: 1000px;
-      margin: 0 auto;
+      margin: 0 auto 30px;
+      border-radius: 12px;
     }
     .amenities {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
     }
     .amenity {
-      width: 30%;
-      margin-bottom: 20px;
+      text-align: center;
       font-size: 16px;
     }
     .gallery {
       display: flex;
       justify-content: center;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 10px;
+      padding: 20px;
     }
     .gallery img {
       width: 30%;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    @media screen and (max-width: 768px) {
-      .amenity, .gallery img {
-        width: 80%;
-      }
+      min-width: 200px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>Stort hus i ypperlig beliggenhet</h1>
-    <h2>Bright and modern house in Sandnes</h2>
-    <p>God plass, moderne fasiliteter og nydelig utsikt. Perfekt for familier, par og mindre grupper – med både hjemmekino og utsikt.</p>
-    <button class="cta-button">Ve spø aupris</button>
+    <h2><strong>Bright and modern house</strong> in Sandnes</h2>
+    <p>God plass, moderne basseng og nydelig utsikt! Perfekt for familier, par og mindre grupper – med både hjemmekino og treningsrom.</p>
+    <a href="https://www.airbnb.no/rooms/XXXX" class="cta-button">Se på Airbnb</a>
   </header>
 
-  <img src="bil-rom.jpg" alt="Barnerom bilseng" class="hero" />
+  <img src="bil-rom.jpg" alt="Barnerom med bilseng" class="main-image" />
 
-  <section class="section">
-    <h2>Amenities</h2>
-    <div class="amenities">
-      <div class="amenity">📺 Hjemmekino</div>
-      <div class="amenity">📶 Hiu speed internet</div>
-      <div class="amenity">⛰️ Utsabt</div>
-      <div class="amenity">⚡ Hurrig Wifi</div>
-      <div class="amenity">🍴 Fulti kjøkken</div>
-      <div class="amenity">🛋️ Fultii kjøkken</div>
-    </div>
-  </section>
+  <h2>Fasiliteter</h2>
+  <div class="amenities">
+    <div class="amenity">📺 Hjemmekino</div>
+    <div class="amenity">💪 Treningsrom</div>
+    <div class="amenity">🌅 Utsikt</div>
+    <div class="amenity">📶 Hurtig WiFi</div>
+    <div class="amenity">🧖 Badstue</div>
+    <div class="amenity">🍴 Fullt kjøkken</div>
+  </div>
 
-  <section class="section">
-    <h2>Galleri</h2>
-    <div class="gallery">
-      <img src="1.avif.jpg" alt="Utsikt 1" />
-      <img src="2.avif.jpg" alt="Utsikt 2" />
-      <img src="3.avif.jpg" alt="Utsikt 3" />
-    </div>
-  </section>
-
+  <h2>Galleri</h2>
+  <div class="gallery">
+    <img src="1.avif.jpg" alt="Utsikt 1" />
+    <img src="2.avif.jpg" alt="Utsikt 2" />
+    <img src="3.avif.jpg" alt="Utsikt 3" />
+  </div>
 </body>
 </html>
