@@ -1,3 +1,4 @@
+// components/Card.js
 export function Card({ children }) {
   return (
     <div className="bg-white p-4 rounded shadow hover:shadow-md transition">
