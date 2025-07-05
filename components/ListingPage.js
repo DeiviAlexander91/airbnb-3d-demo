@@ -3,100 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stort hus i Sandnes</title>
+    <title>Stort hus i ypperlig beliggenhet</title>
     <style>
       body {
-        font-family: 'Arial', sans-serif;
-        background-color: #fffaf7;
         margin: 0;
-        padding: 0;
-        color: #1a1a1a;
+        font-family: Arial, sans-serif;
+        background-color: #fff9f7;
+        color: #111;
       }
       .container {
-        max-width: 800px;
-        margin: 0 auto;
+        max-width: 900px;
+        margin: auto;
         padding: 20px;
-        text-align: center;
       }
       h1 {
-        font-size: 2.5rem;
+        font-size: 2em;
         font-weight: bold;
-        margin-bottom: 0.5rem;
+        text-align: center;
       }
       h2 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        color: #333;
+        font-size: 1.4em;
+        text-align: center;
+        margin-top: 0.2em;
       }
-      p {
-        font-size: 1rem;
-        color: #444;
-        margin-bottom: 1.5rem;
+      p.description {
+        text-align: center;
+        font-size: 0.95em;
+        margin: 0.5em auto 1.5em;
+        max-width: 700px;
       }
       .cta-button {
-        background-color: #ff4081;
+        display: block;
+        margin: 0 auto 1.5em;
+        padding: 10px 25px;
+        font-size: 1em;
+        background-color: #ff4f9b;
         color: white;
         border: none;
-        padding: 12px 24px;
-        font-size: 1rem;
-        border-radius: 10px;
+        border-radius: 8px;
         cursor: pointer;
       }
-      .hero-image {
+      .hero img {
         width: 100%;
+        height: auto;
         border-radius: 10px;
-        margin: 20px 0;
+        margin-bottom: 20px;
       }
       .amenities {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        text-align: left;
-        margin-top: 30px;
-        font-size: 1.1rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        text-align: center;
+        margin-bottom: 30px;
       }
-      .amenities i {
-        margin-right: 10px;
+      .amenity {
+        font-size: 0.95em;
       }
       .gallery {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        margin-top: 30px;
+        gap: 10px;
       }
       .gallery img {
-        width: 32%;
-        border-radius: 10px;
+        width: calc(33% - 10px);
+        height: auto;
+        border-radius: 8px;
         object-fit: cover;
+      }
+      @media (max-width: 768px) {
+        .gallery img {
+          width: 100%;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>Stort hus i ypperlig beliggenhet</h1>
-      <h2>Bright and modern house in Sandnes</h2>
-      <p>
-        God plass, moderne båt basse og nydelig utsikt. Perfekt for familier, par og mindre grupper — strid pass typ..
+      <h2><strong>Bright and modern house</strong> in Sandnes</h2>
+      <p class="description">
+        God plass, moderne båt-basse og nydelig utsikt! Perfekt for familier,
+        par og mindre grupper – med badehygge, hjemmekino og moderne fasiliteter.
       </p>
-      <button class="cta-button">Ve søg aupris</button>
-      <img src="/public/bil-rom.jpg" alt="Hjemmekino bilrom" class="hero-image" />
+      <button class="cta-button">Ve spø aupris</button>
+
+      <div class="hero">
+        <img src="/public/bil-rom.jpg" alt="Bilrom" />
+      </div>
 
       <div class="amenities">
-        <div><i>💬</i> Hjemmekino</div>
-        <div><i>📶</i> Hiu speed internet</div>
-        <div><i>⛰️</i> Utsabt</div>
-        <div><i>🎛️</i> Hurrig Wifi</div>
-        <div><i>🍴</i> Fulti kjøkken</div>
-        <div><i>❌</i> Fultii kjøkken</div>
+        <div class="amenity">💬 Hemmekino</div>
+        <div class="amenity">📶 Hiu speed internet</div>
+        <div class="amenity">⚡️ Utsabt</div>
+        <div class="amenity">💪 Hurrig Wifi</div>
+        <div class="amenity">🍽 Fulti kjøkken</div>
+        <div class="amenity">❌ Fultii kjøkken</div>
       </div>
 
       <h2>Galleri</h2>
       <div class="gallery">
-        <img src="/public/1.avif" alt="Galleri bilde 1" />
-        <img src="/public/2.avif" alt="Galleri bilde 2" />
-        <img src="/public/3.avif" alt="Galleri bilde 3" />
+        <img src="/public/1.avif.jpg" alt="Galleri 1" />
+        <img src="/public/2.avif.jpg" alt="Galleri 2" />
+        <img src="/public/3.avif.jpg" alt="Galleri 3" />
       </div>
     </div>
   </body>
 </html>
+
