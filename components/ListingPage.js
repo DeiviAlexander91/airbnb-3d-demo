@@ -1,6 +1,6 @@
-import Button from "./Button";
+import { Button } from "./Button";
 import Image from "next/image";
-import Card from "./Cards";
+import { Card, CardContent } from "./Cards";
 
 const highlights = [
   {
@@ -38,7 +38,9 @@ export default function ListingPage() {
           </p>
           <Button
             className="mt-4 px-6 py-3 text-lg"
-            onClick={() => window.open("https://matterport-link-her", "_blank")}
+            onClick={() =>
+              window.open("https://matterport-link-her", "_blank")
+            }
           >
             Se i 3D
           </Button>
@@ -57,8 +59,8 @@ export default function ListingPage() {
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
           Velkommen til et moderne hjem med god plass, komfort og stil. Perfekt
-          for familier, par og små grupper. Her finner du alt fra moderne kjøkken
-          til hjemmekino og nydelig uteplass.
+          for familier, par og små grupper. Her finner du alt fra moderne
+          kjøkken til hjemmekino og nydelig uteplass.
         </p>
         <Button asChild>
           <a
