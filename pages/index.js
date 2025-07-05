@@ -1,18 +1,19 @@
+// pages/index.js
+
+import Head from 'next/head';
 import ListingPage from '../components/ListingPage';
-import Image from "next/image";
 
 export default function Home() {
-  return <ListingPage />;
-}
-    <div className="bg-gray-900 min-h-screen text-white">
-      <div className="max-w-6xl mx-auto px-4 py-10">
-        <Hero />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
-          <Image src="/img1.jpg" width={600} height={400} alt="bilde1" className="rounded-lg" />
-          <Image src="/img2.jpg" width={600} height={400} alt="bilde2" className="rounded-lg" />
-          <Image src="/img3.jpg" width={600} height={400} alt="bilde3" className="rounded-lg" />
-        </div>
-      </div>
-    </div>
+  return (
+    <>
+      <Head>
+        <title>Airbnb 3D Demo</title>
+        <meta name="description" content="Virtuell visning av Airbnb-eiendom" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <main>
+        <ListingPage />
+      </main>
+    </>
   );
 }
