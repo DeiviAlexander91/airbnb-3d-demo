@@ -55,7 +55,7 @@ export default function ListingPage() {
             </CardContent>
           </Card>
         ))}
-      </section>
+      </section.>
     </div>
   );
 }
