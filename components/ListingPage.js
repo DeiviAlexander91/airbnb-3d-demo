@@ -1,6 +1,6 @@
 import { Button } from "./Button";
 import Image from "next/image";
-import { Card, CardContent } from "./Cards";
+import { Card, CardContent } from "./Card";
 
 const highlights = [
   {
