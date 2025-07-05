@@ -1,6 +1,8 @@
 export function Card({ children }) {
   return (
-    <div className="bg-white p-4 rounded shadow hover:shadow-md transition">{children}</div>
+    <div className="bg-white p-4 rounded shadow hover:shadow-md transition">
+      {children}
+    </div>
   );
 }
 
