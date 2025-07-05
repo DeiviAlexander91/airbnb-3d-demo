@@ -1,8 +1,9 @@
-import Hero from "../components/Hero";
+import ListingPage from '../components/ListingPage';
 import Image from "next/image";
 
 export default function Home() {
-  return (
+  return <ListingPage />;
+}
     <div className="bg-gray-900 min-h-screen text-white">
       <div className="max-w-6xl mx-auto px-4 py-10">
         <Hero />
