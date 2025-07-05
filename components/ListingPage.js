@@ -1,29 +1,29 @@
-import { Card, CardContent } from './Card';
-import Button from './Button';
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
-export default function ListingPage() {
-  const highlights = [
-    { title: 'Stor terrasse', desc: 'Utsikt og morgensol i solen' },
-    { title: 'Hjemmekino', desc: 'Koselige kvelder med film' },
-    { title: 'Moderne kjøkken', desc: 'Fullt utstyrt for alle behov' },
-    { title: 'Herlige senger', desc: 'Komfort og rolig søvn' },
-    { title: 'Verksted til oss gjester', desc: 'Kort vei til alt' },
-    { title: 'Gratis parkering', desc: 'Privat plass inkludert' }
-  ];
-
+export default function HeroSection() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 space-y-10">
-      {/* Hero-bilde og overskrift */}
-      <section className="relative w-full h-64 md:h-96 overflow-hidden rounded-2xl shadow-lg">
-        <img
-          src="/hero.jpg"
-          alt="Airbnb highlight room"
-          className="absolute inset-0 object-cover w-full h-full"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-white text-3xl md:text-5xl font-bold">
-            Magisk familieopplevelse i stor enebolig
-          </h1>
+    <div className="relative w-full h-[90vh] overflow-hidden">
+      <Image
+        src="/hero-car.jpg"
+        alt="Høydepunkt fra huset"
+        layout="fill"
+        objectFit="cover"
+        className="brightness-75"
+        priority
+      />
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">
+          Utforsk boligen i 3D
+        </h1>
+        <p className="text-xl md:text-2xl mb-6 drop-shadow-sm">
+          Gå en virtuell visning – akkurat som om du var der!
+        </p>
+        <Button className="text-lg px-6 py-3" onClick={() => window.open("https://matterport-link-her", "_blank")}>Se i 3D</Button>
+      </div>
+    </div>
+  );
+}
           <p className="text-white text-lg mt-2">
             Med utsikt, hjemmekino og perfekt beliggenhet!
           </p>
