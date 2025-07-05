@@ -23,7 +23,6 @@ export default function HeroSection() {
       </div>
     </div>
   );
-}
           <p className="text-white text-lg mt-2">
             Med utsikt, hjemmekino og perfekt beliggenhet!
           </p>
@@ -60,4 +59,3 @@ export default function HeroSection() {
       </section>
     </div>
   );
-}
