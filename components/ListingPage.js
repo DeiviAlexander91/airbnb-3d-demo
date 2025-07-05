@@ -16,7 +16,7 @@ export default function ListingPage() {
             Magisk familieopplevelse i stor enebolig
           </h1>
           <p className="text-white text-lg mt-2">
-            Med utsikt, hjemmekino og perfekt beliggenhet
+            Med utsikt, hjemmekino og perfekt beliggenhet!
           </p>
         </div>
       </section>
