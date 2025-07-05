@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
+import Button from "./Button";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
+import Card from "./Cards";
 
 const highlights = [
   {
