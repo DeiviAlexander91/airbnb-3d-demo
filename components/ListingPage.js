@@ -1,89 +1,84 @@
-import Button from "./Button";
 import Image from "next/image";
-import { Card, CardContent } from "./Card";
-
-const highlights = [
-  {
-    title: "Moderne stue med hjemmekino",
-    desc: "Stor TV, gode sitteplasser og kino-opplevelse hjemme.",
-  },
-  {
-    title: "Fullt utstyrt treningsrom",
-    desc: "Hold deg i form med kvalitetsutstyr – helt gratis!",
-  },
-  {
-    title: "Utsikt og solrik uteplass",
-    desc: "Nyt sommeren ute med fantastisk utsikt og grillmuligheter.",
-  },
-];
+import Link from "next/link";
 
 export default function ListingPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
-      {/* Hero-bilde og toppbanner */}
-      <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-2xl shadow-lg">
+    <div className="bg-[#fffaf3] text-black min-h-screen">
+      {/* Hero Section */}
+      <div className="text-center py-12 px-4">
+        <h1 className="text-4xl font-extrabold">Stort hus i ypperlig beliggenhet</h1>
+        <h2 className="text-xl text-gray-600 mt-2">Bright and modern house in <span className="line-through">Oslo</span> Sandnes</h2>
+        <p className="mt-4 max-w-xl mx-auto">
+          Centrally located with ample space, comfort, and modern amenities. Ideal for families,
+          couples, and small groups. Everything from a home theater to a lovely outdoor area.
+        </p>
+        <Link href="https://www.airbnb.no/rooms/12345678" target="_blank">
+          <button className="mt-6 bg-pink-500 hover:bg-pink-600 text-white py-2 px-6 rounded-full shadow">
+            View on Airbnb
+          </button>
+        </Link>
+      </div>
+
+      {/* Hero Image */}
+      <div className="w-full relative h-[400px]">
         <Image
-          src="/hero-car.jpg"
-          alt="Airbnb highlight house"
-          fill
-          className="absolute inset-0 object-cover w-full h-full"
+          src="/hero.jpg"
+          alt="Hero image of the house"
+          layout="fill"
+          objectFit="cover"
+          className="rounded"
           priority
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-white text-center px-4">
-          <h1 className="text-3xl md:text-5xl font-bold drop-shadow-xl">
-            Utforsk boligen i 3D
-          </h1>
-          <p className="text-xl mt-2 drop-shadow-md">
-            Gå en virtuell visning – akkurat som om du var der!
-          </p>
-          <Button
-            className="mt-4 px-6 py-3 text-lg"
-            onClick={() =>
-              window.open("https://matterport-link-her", "_blank")
-            }
-          >
-            Se i 3D
-          </Button>
+      </div>
+
+      {/* Amenities Section */}
+      <div className="px-6 py-10">
+        <h2 className="text-2xl font-bold mb-6">Fasiliteter</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-lg">
+          <div>🎬 Hjemmekino</div>
+          <div>📶 Høyhastighetsinternett</div>
+          <div>🧖‍♂️ Privat badstue</div>
+          <div>🌄 Fantastisk utsikt</div>
+          <div>🍽️ Fullt utstyrt kjøkken</div>
+          <div>🌞 Utemøbler og grillplass</div>
         </div>
       </div>
 
-      {/* Kort tekstbeskrivelse */}
-      <div className="text-white text-lg mt-2">
-        Med utsikt, hjemmekino og perfekt beliggenhet!
+      {/* Gallery */}
+      <div className="px-6 pb-12">
+        <h2 className="text-2xl font-bold mb-6">Galleri</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Image
+            src="/barneseng.jpg"
+            alt="Barneseng bil"
+            width={400}
+            height={300}
+            className="rounded"
+          />
+          <Image
+            src="/gallery1.jpg"
+            alt="Gallery 1"
+            width={400}
+            height={300}
+            className="rounded"
+          />
+          <Image
+            src="/gallery2.jpg"
+            alt="Gallery 2"
+            width={400}
+            height={300}
+            className="rounded"
+          />
+          <Image
+            src="/gallery3.jpg"
+            alt="Gallery 3"
+            width={400}
+            height={300}
+            className="rounded"
+          />
+        </div>
       </div>
-
-      {/* Om leiligheten */}
-      <section className="space-y-2 text-center">
-        <h2 className="text-2xl font-semibold">
-          Bright and modern apartment in Oslo
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Velkommen til et moderne hjem med god plass, komfort og stil. Perfekt
-          for familier, par og små grupper. Her finner du alt fra moderne
-          kjøkken til hjemmekino og nydelig uteplass.
-        </p>
-        <Button asChild>
-          <a
-            href="https://airbnb.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Se på Airbnb
-          </a>
-        </Button>
-      </section>
-
-      {/* Høydepunkter */}
-      <section className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {highlights.map((item) => (
-          <Card key={item.title}>
-            <CardContent className="p-4">
-              <h3 className="text-lg font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-600">{item.desc}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </section>
     </div>
   );
 }
+
