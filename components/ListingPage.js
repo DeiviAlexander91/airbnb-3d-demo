@@ -3,51 +3,56 @@ import Button from './Button';
 
 export default function ListingPage() {
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-8">
-      {/* Hero-bilde og tekst */}
-      <section className="relative w-full h-64 md:h-96 overflow-hidden rounded-2xl shadow">
+    <div className="max-w-4xl mx-auto px-4 py-8 space-y-10">
+      {/* Hero-bilde og overskrift */}
+      <section className="relative w-full h-64 md:h-96 overflow-hidden rounded-2xl shadow-lg">
         <img
           src="/hero.jpg"
           alt="Airbnb highlight room"
           className="absolute inset-0 object-cover w-full h-full"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <h1 className="text-white text-3xl md:text-5xl font-bold text-center px-4">
-            Magisk familieopplevelse i stor enebolig – med utsikt, kino og 3D-visning
+        <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-center px-4">
+          <h1 className="text-white text-3xl md:text-5xl font-bold">
+            Magisk familieopplevelse i stor enebolig
           </h1>
+          <p className="text-white text-lg mt-2">
+            Med utsikt, hjemmekino og perfekt beliggenhet
+          </p>
         </div>
       </section>
 
-      {/* Toppseksjon */}
+      {/* Om leiligheten */}
       <section className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold">Bright and modern apartment in Oslo</h1>
-        <p className="text-gray-600">
-          Centrally located with a view, modern facilities, and 3D viewing right from your sofa.
+        <h2 className="text-2xl font-semibold">Bright and modern apartment in Oslo</h2>
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          Velkommen til et moderne hjem med god plass, komfort og stil. Perfekt for familier, par og små grupper. Her finner du alt fra moderne kjøkken til hjemmekino og nydelig uteplass.
         </p>
         <Button asChild>
-          <a href="https://airbnb.com" target="_blank" rel="noopener noreferrer">
-            View on Airbnb
+          <a
+            href="https://airbnb.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Se på Airbnb
           </a>
         </Button>
       </section>
 
-      {/* 3D-visning */}
-      <section className="aspect-video w-full rounded-2xl overflow-hidden shadow">
-        <iframe
-          src="https://my.matterport.com/show/?m=XXXXXXX"
-          width="100%"
-          height="100%"
-          allowFullScreen
-          loading="lazy"
-          className="w-full h-full"
-        ></iframe>
-      </section>
-
-      {/* Galleri */}
+      {/* Høydepunkter (galleri) */}
       <section className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {[1, 2, 3, 4, 5, 6].map((i) => (
+        {[
+          { title: 'Stor terrasse', desc: 'Utsikt og morgenkaffe i solen' },
+          { title: 'Hjemmekino', desc: 'Koselige kvelder med film' },
+          { title: 'Moderne kjøkken', desc: 'Fullt utstyrt for alle behov' },
+          { title: 'Romslige soverom', desc: 'Komfort og rolig søvn' },
+          { title: 'Nærhet til Oslo sentrum', desc: 'Kort vei til alt' },
+          { title: 'Gratis parkering', desc: 'Privat plass inkludert' },
+        ].map((item, i) => (
           <Card key={i}>
-            <CardContent className="p-4">Card {i}</CardContent>
+            <CardContent>
+              <h3 className="text-lg font-semibold">{item.title}</h3>
+              <p className="text-sm text-gray-600">{item.desc}</p>
+            </CardContent>
           </Card>
         ))}
       </section>
