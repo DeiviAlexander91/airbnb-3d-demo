@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stort hus i ypperlig beliggenhet</title>
+    <title>Stor enebolig i Sandnes</title>
     <style>
       body {
         margin: 0;
@@ -12,30 +12,30 @@
         color: #111;
       }
       .container {
-        max-width: 900px;
+        max-width: 1000px;
         margin: auto;
         padding: 20px;
       }
       h1 {
-        font-size: 2em;
+        font-size: 2.5em;
         font-weight: bold;
         text-align: center;
       }
       h2 {
-        font-size: 1.4em;
+        font-size: 1.6em;
         text-align: center;
         margin-top: 0.2em;
       }
       p.description {
         text-align: center;
-        font-size: 0.95em;
-        margin: 0.5em auto 1.5em;
+        font-size: 1em;
+        margin: 0.5em auto 2em;
         max-width: 700px;
       }
       .cta-button {
         display: block;
-        margin: 0 auto 1.5em;
-        padding: 10px 25px;
+        margin: 0 auto 2em;
+        padding: 12px 30px;
         font-size: 1em;
         background-color: #ff4f9b;
         color: white;
@@ -49,17 +49,17 @@
         width: 100%;
         height: auto;
         border-radius: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
       }
       .amenities {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 15px;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
       }
       .amenity {
-        font-size: 0.95em;
+        font-size: 1em;
       }
       .gallery {
         display: flex;
@@ -68,7 +68,7 @@
         gap: 10px;
       }
       .gallery img {
-        width: calc(33% - 10px);
+        width: calc(33.33% - 10px);
         height: auto;
         border-radius: 8px;
         object-fit: cover;
@@ -82,38 +82,36 @@
   </head>
   <body>
     <div class="container">
-      <h1>Stort hus i ypperlig beliggenhet</h1>
-      <h2><strong>Bright and modern house</strong> in Sandnes</h2>
+      <h1>Stor enebolig i Sandnes</h1>
+      <h2>Utforsk boligen i 3D!</h2>
       <p class="description">
-        God plass, moderne bad og nydelig utsikt! Perfekt for familier,
-        par og mindre grupper – med badehygge, hjemmekino og moderne fasiliteter.
+        Opplev komfort og moderne fasiliteter – med hjemmekino, treningsrom og solrik uteplass. Perfekt for familier, par og små grupper!
       </p>
       <a class="cta-button" href="https://matterport-link-her" target="_blank">
-        Se 3D-visning
+        Gå til 3D-visning
       </a>
 
       <div class="hero">
-        <img src="bil-rom.jpg" alt="Bilrom" />
+        <img src="/bil-rom.jpg" alt="Bilrom" />
       </div>
 
       <div class="amenities">
         <div class="amenity">🎬 Hjemmekino</div>
-        <div class="amenity">📶 Raskt internett</div>
-        <div class="amenity">🌅 Utsikt og uteplass</div>
-        <div class="amenity">💪 Treningstudio</div>
-        <div class="amenity">🍽 Fullt utstyrt kjøkken</div>
-        <div class="amenity">🛏 Komfortable rom</div>
+        <div class="amenity">💪 Fullt utstyrt treningsrom</div>
+        <div class="amenity">🌞 Utsikt og solrik uteplass</div>
+        <div class="amenity">🍽 Moderne kjøkken</div>
+        <div class="amenity">📶 Høyhastighetsinternett</div>
+        <div class="amenity">🛏 Komfortable sengeplasser</div>
       </div>
 
       <h2>Galleri</h2>
       <div class="gallery">
-        <img src="1.avif" alt="Galleri 1" />
-        <img src="2.avif" alt="Galleri 2" />
-        <img src="3.avif" alt="Galleri 3" />
+        <img src="/1.avif" alt="Galleri 1" />
+        <img src="/2.avif" alt="Galleri 2" />
+        <img src="/3.avif" alt="Galleri 3" />
       </div>
     </div>
   </body>
 </html>
-
 
 
