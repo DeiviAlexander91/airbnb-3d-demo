@@ -42,6 +42,8 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
+        text-decoration: none;
+        text-align: center;
       }
       .hero img {
         width: 100%;
@@ -83,32 +85,35 @@
       <h1>Stort hus i ypperlig beliggenhet</h1>
       <h2><strong>Bright and modern house</strong> in Sandnes</h2>
       <p class="description">
-        God plass, moderne båt-basse og nydelig utsikt! Perfekt for familier,
+        God plass, moderne bad og nydelig utsikt! Perfekt for familier,
         par og mindre grupper – med badehygge, hjemmekino og moderne fasiliteter.
       </p>
-      <button class="cta-button">Ve spø aupris</button>
+      <a class="cta-button" href="https://matterport-link-her" target="_blank">
+        Se 3D-visning
+      </a>
 
       <div class="hero">
-        <img src="/public/bil-rom.jpg" alt="Bilrom" />
+        <img src="bil-rom.jpg" alt="Bilrom" />
       </div>
 
       <div class="amenities">
-        <div class="amenity">💬 Hemmekino</div>
-        <div class="amenity">📶 Hiu speed internet</div>
-        <div class="amenity">⚡️ Utsabt</div>
-        <div class="amenity">💪 Hurrig Wifi</div>
-        <div class="amenity">🍽 Fulti kjøkken</div>
-        <div class="amenity">❌ Fultii kjøkken</div>
+        <div class="amenity">🎬 Hjemmekino</div>
+        <div class="amenity">📶 Raskt internett</div>
+        <div class="amenity">🌅 Utsikt og uteplass</div>
+        <div class="amenity">💪 Treningstudio</div>
+        <div class="amenity">🍽 Fullt utstyrt kjøkken</div>
+        <div class="amenity">🛏 Komfortable rom</div>
       </div>
 
       <h2>Galleri</h2>
       <div class="gallery">
-        <img src="/public/1.avif.jpg" alt="Galleri 1" />
-        <img src="/public/2.avif.jpg" alt="Galleri 2" />
-        <img src="/public/3.avif.jpg" alt="Galleri 3" />
+        <img src="1.avif" alt="Galleri 1" />
+        <img src="2.avif" alt="Galleri 2" />
+        <img src="3.avif" alt="Galleri 3" />
       </div>
     </div>
   </body>
 </html>
+
 
 
