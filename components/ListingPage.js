@@ -80,12 +80,20 @@
   </head>
   <body>
     <div class="container">-
- <h1 className="text-4xl font-extrabold tracking-tight text-center">
- <h1>Velkommen til ditt drømmehjem i Sandnes</h1>
-<h2>Grill nights, firelight and views – make yourself at home</h2>
-<p class="description">
+<h1 className="text-4xl font-bold text-center">
+  Velkommen til ditt drømmehjem i Sandnes
+</h1>
+<h2 className="text-xl font-medium text-center text-gray-700 mt-2">
+  Grill nights, firelight and views – make yourself at home
+</h2>
+
+{/* Norsk avsnitt */}
+<p className="text-center text-gray-800 mt-4 text-base">
   Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for familier, par og venner.
-  <br />
+</p>
+
+{/* Engelsk avsnitt */}
+<p className="text-center text-gray-600 mt-2 text-sm italic">
   Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
 </p>
       <button class="cta-button">Ve spø aupris</button>
