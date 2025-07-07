@@ -1,17 +1,46 @@
 // pages/index.js
-
 export default function Home() {
   return (
-    <div className="min-h-screen bg-rose-50 flex items-center justify-center p-6">
-      <div className="max-w-xl text-center">
-        <h1 className="text-3xl font-bold text-green-700 mb-4">
-          ✅ Tailwind + Next.js er klart!
+    <main className="bg-rose-50 min-h-screen text-gray-800">
+      <section className="text-center py-16">
+        <h1 className="text-4xl font-extrabold tracking-tight">
+          Stort hus i ypperlig beliggenhet
         </h1>
-        <p className="text-gray-700">
-          Du har nå satt opp Next.js-prosjektet ditt med Tailwind CSS og PostCSS riktig via GitHub og Vercel.
-          Nå kan vi begynne å bygge nettsiden steg for steg 🚀
+        <h2 className="text-2xl font-semibold mt-2">
+          <span className="font-bold">Bright and modern house</span> in Sandnes
+        </h2>
+        <p className="max-w-xl mx-auto mt-4 text-base">
+          God plass, moderne bad, basseng og nydelig utsikt. Perfekt for familier, par og mindre grupper – stedet passer til alle.
         </p>
-      </div>
-    </div>
+        <button className="mt-6 px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
+          Se søk & pris
+        </button>
+      </section>
+
+      <section className="max-w-4xl mx-auto px-4">
+        <img
+          src="/bilseng.png"
+          alt="Bilseng"
+          className="rounded-xl shadow-lg mb-12 w-full object-cover"
+        />
+
+        <h3 className="text-2xl font-semibold mb-4">Amenities</h3>
+        <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-left text-lg">
+          <li>🛋 Hemmekino</li>
+          <li>🌐 Høyhastighets internett</li>
+          <li>🔥 Utsikt og uteplass</li>
+          <li>🚿 Hurtig Wifi</li>
+          <li>🍽 Fullt kjøkken</li>
+          <li>🛏 Komfortable senger</li>
+        </ul>
+
+        <h3 className="text-2xl font-semibold mt-12 mb-4">Galleri</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <img src="/utsikt1.png" alt="Utsikt 1" className="rounded-lg" />
+          <img src="/utsikt2.png" alt="Utsikt 2" className="rounded-lg" />
+          <img src="/utsikt3.png" alt="Utsikt 3" className="rounded-lg" />
+        </div>
+      </section>
+    </main>
   );
 }
