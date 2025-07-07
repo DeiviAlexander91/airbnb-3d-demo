@@ -4,13 +4,14 @@ export default function Home() {
     <main className="bg-rose-50 min-h-screen text-gray-800">
       <section className="text-center py-16">
         <h1 className="text-4xl font-extrabold tracking-tight">
-          Stort hus i ypperlig beliggenhet
+          Eksklusiv enebolig med panoramautsikt i Sandnes
         </h1>
         <h2 className="text-2xl font-semibold mt-2">
-          <span className="font-bold">Bright and modern house</span> in Sandnes
+          <span className="font-bold">Spacious designer home with panoramic views in Sandnes</span> in Sandnes
         </h2>
         <p className="max-w-xl mx-auto mt-4 text-base">
-          God plass, moderne bad, basseng og nydelig utsikt. Perfekt for familier, par og mindre grupper – stedet passer til alle.
+          Romslig og moderne – perfekt for familieferier og vennehelger
+          Ideal for family vacations, retreats, and getaways
         </p>
         <button className="mt-6 px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
           Se søk & pris
