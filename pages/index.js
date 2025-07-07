@@ -19,7 +19,7 @@ export default function Home() {
 
       <section className="max-w-4xl mx-auto px-4">
         <img
-          src="/bilseng.png"
+          src="/bilseng.jpg"
           alt="Bilseng"
           className="rounded-xl shadow-lg mb-12 w-full object-cover"
         />
@@ -36,9 +36,9 @@ export default function Home() {
 
         <h3 className="text-2xl font-semibold mt-12 mb-4">Galleri</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <img src="/utsikt1.png" alt="Utsikt 1" className="rounded-lg" />
-          <img src="/utsikt2.png" alt="Utsikt 2" className="rounded-lg" />
-          <img src="/utsikt3.png" alt="Utsikt 3" className="rounded-lg" />
+          <img src="/utsikt1.jpg" alt="Utsikt 1" className="rounded-lg" />
+          <img src="/utsikt2.jpg" alt="Utsikt 2" className="rounded-lg" />
+          <img src="/utsikt3.jpg" alt="Utsikt 3" className="rounded-lg" />
         </div>
       </section>
     </main>
