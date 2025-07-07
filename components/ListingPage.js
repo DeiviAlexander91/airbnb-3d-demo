@@ -103,9 +103,9 @@
 
       <h2>Galleri</h2>
       <div class="gallery">
-        <img src="/utsikten1.jpg" alt="utsikten 1" />
-        <img src="/utsikten2.jpg" alt="utsikten 2" />
-        <img src="/utsikten3.jpg" alt="utsikten 3" />
+        <img src="/utsikt1.jpg" alt="utsikt 1" />
+        <img src="/utsikt2.jpg" alt="utsikt 2" />
+        <img src="/utsikt3.jpg" alt="utsikt 3" />
       </div>
     </div>
   </body>
