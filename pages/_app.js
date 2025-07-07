@@ -1,6 +1,5 @@
 // pages/_app.js
 import Layout from '../components/Layout';
-import '../styles/globals.css'; // Fjern denne hvis den ikke finnes
 
 function MyApp({ Component, pageProps }) {
   return (
