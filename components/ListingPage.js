@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stort hus i ypperlig beliggenhet</title>
+    <title>Eksklusiv enebolig med panoramautsikt i Sandnes</title>
     <style>
       body {
         margin: 0;
@@ -80,11 +80,11 @@
   </head>
   <body>
     <div class="container">
-      <h1>Stort hus i ypperlig beliggenhet</h1>
-      <h2><strong>Bright and modern house</strong> in Sandnes</h2>
+      <h1>Eksklusiv enebolig med panoramautsikt i Sandnest</h1>
+      <h2><strong>Spacious designer home with panoramic views in Sandnes</strong> in Sandnes</h2>
       <p class="description">
-        God plass, moderne båt-basse og nydelig utsikt! Perfekt for familier,
-        par og mindre grupper – med badehygge, hjemmekino og moderne fasiliteter.
+        Romslig og moderne – perfekt for familieferier og vennehelger
+      Ideal for family vacations, retreats, and getaways
       </p>
       <button class="cta-button">Ve spø aupris</button>
 
