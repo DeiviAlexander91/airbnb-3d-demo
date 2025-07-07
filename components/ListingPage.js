@@ -80,11 +80,14 @@
   </head>
   <body>
     <div class="container">
-      <h1>Eksklusiv enebolig med panoramautsikt i Sandnest</h1>
-      <h2><strong>Spacious designer home with panoramic views in Sandnes</strong> in Sandnes</h2>
-      <p class="description">
-        Romslig og moderne – perfekt for familieferier og vennehelger
-      Ideal for family vacations, retreats, and getaways
+   <h1 className="text-4xl font-extrabold tracking-tight">
+  Stort hus i ypperlig beliggenhet
+</h1>
+<h2 className="text-2xl font-semibold mt-2">
+  <span className="font-bold">Bright and modern house</span> in Sandnes
+</h2>
+<p className="max-w-xl mx-auto mt-4 text-base">
+  God plass, moderne bad, basseng og nydelig utsikt. Perfekt for familier, par og mindre grupper – stedet passer til alle.
       </p>
       <button class="cta-button">Ve spø aupris</button>
 
