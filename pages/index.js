@@ -3,17 +3,18 @@ export default function Home() {
   return (
     <main className="bg-rose-50 min-h-screen text-gray-800">
       <section className="text-center py-16">
-        <h1 className="text-4xl font-extrabold tracking-tight">
-          Eksklusiv enebolig med panoramautsikt i Sandnes
-        </h1>
-        <h2 className="text-2xl font-semibold mt-2">
-          <span className="font-bold">Spacious designer home with panoramic views in Sandnes</span> in Sandnes
-        </h2>
-        <p className="max-w-xl mx-auto mt-4 text-base">
-          Romslig og moderne – perfekt for familieferier og vennehelger
-          Ideal for family vacations, retreats, and getaways
-        </p>
-        <button className="mt-6 px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
+        <h1 className="text-4xl font-extrabold tracking-tight text-center">
+  Velkommen til ditt drømmehjem i Sandnes
+</h1>
+<h2 className="text-2xl font-semibold mt-2 text-center">
+  Grill nights, firelight and views – make yourself at home
+</h2>
+<p className="max-w-xl mx-auto mt-4 text-base text-center">
+  Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for familier, par og venner.
+  <br />
+  Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
+</p>
+     <button className="mt-6 px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
           Se søk & pris
         </button>
       </section>
