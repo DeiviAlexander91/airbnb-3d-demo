@@ -79,16 +79,18 @@
     </style>
   </head>
   <body>
-    <div class="container">
-   <h1 className="text-4xl font-extrabold tracking-tight">
-  Stort hus i ypperlig beliggenhet
+    <div class="container">-
+ <h1 className="text-4xl font-extrabold tracking-tight text-center">
+  Velkommen til ditt drømmehjem i Sandnes
 </h1>
-<h2 className="text-2xl font-semibold mt-2">
-  <span className="font-bold">Bright and modern house</span> in Sandnes
+<h2 className="text-2xl font-semibold mt-2 text-center">
+  Grill nights, firelight and views – make yourself at home
 </h2>
-<p className="max-w-xl mx-auto mt-4 text-base">
-  God plass, moderne bad, basseng og nydelig utsikt. Perfekt for familier, par og mindre grupper – stedet passer til alle.
-      </p>
+<p className="max-w-xl mx-auto mt-4 text-base text-center">
+  Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for familier, par og venner.
+  <br />
+  Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
+</p>
       <button class="cta-button">Ve spø aupris</button>
 
       <div class="hero">
