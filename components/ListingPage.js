@@ -89,7 +89,7 @@
       <button class="cta-button">Ve spø aupris</button>
 
       <div class="hero">
-        <img src="/public/bil-rom.jpg" alt="Bilrom" />
+        <img src="/bilseng.jpg" alt="Bilrom" />
       </div>
 
       <div class="amenities">
@@ -103,9 +103,9 @@
 
       <h2>Galleri</h2>
       <div class="gallery">
-        <img src="/public/1.avif.jpg" alt="Galleri 1" />
-        <img src="/public/2.avif.jpg" alt="Galleri 2" />
-        <img src="/public/3.avif.jpg" alt="Galleri 3" />
+        <img src="/utsikten1.jpg" alt="Galleri 1" />
+        <img src="/utsikten2.jpg" alt="Galleri 2" />
+        <img src="/utsikten3.jpg" alt="Galleri 3" />
       </div>
     </div>
   </body>
