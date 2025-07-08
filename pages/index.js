@@ -2,7 +2,8 @@ import React from "react";
 
 export default function Home() {
   return (
-    <main className="bg-rose-50 min-h-screen text-gray-800">
+    <div className="bg-rose-50 min-h-screen text-gray-800">
+    <main>
       {/* Introduksjon */}
       <section className="text-center py-16">
         <h1 className="text-4xl font-extrabold tracking-tight">
