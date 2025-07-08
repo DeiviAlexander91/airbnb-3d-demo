@@ -118,12 +118,13 @@
   </div> {/* Galleri-slutt */}
 <div style={{ textAlign: 'center', marginTop: '30px' }}>
   <a
-    href="https://www.airbnb.no/rooms/1282008856141933433"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-block px-6 py-3 bg-pink-500 text-white text-base rounded-full hover:bg-pink-600 transition">
-    Start ferien din her
-  </a>
+<a
+  href="https://www.airbnb.no/rooms/1282008856141933433"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block px-6 py-3 bg-pink-500 text-white text-base rounded-full hover:bg-pink-600 transition">
+  Start ferien din her
+</a>
  </div>
   </body>
 </html>
