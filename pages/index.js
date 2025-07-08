@@ -47,13 +47,23 @@ export default function Home() {
       </section>
 
       {/* Galleri */}
-      <section className="max-w-4xl mx-auto px-4 pb-16">
-        <h3 className="text-2xl font-semibold mb-4">Galleri</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <img src="/utsikt1.jpg" alt="Utsikt 1" className="rounded-lg" />
-          <img src="/utsikt2.jpg" alt="Utsikt 2" className="rounded-lg" />
-          <img src="/utsikt3.jpg" alt="Utsikt 3" className="rounded-lg" />
-        </div>
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+  <img
+    src="/utsikt1.jpg"
+    alt="Utsikt 1"
+    className="rounded-lg w-full aspect-[4/3] object-cover"
+  />
+  <img
+    src="/utsikt2.jpg"
+    alt="Utsikt 2"
+    className="rounded-lg w-full aspect-[4/3] object-cover"
+  />
+  <img
+    src="/utsikt3.jpg"
+    alt="Utsikt 3"
+    className="rounded-lg w-full aspect-[4/3] object-cover"
+  />
+</div>
       </section>
     </main>
   );
