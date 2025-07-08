@@ -117,13 +117,14 @@
       </div>
   <div style="text-align: center; margin-top: 30px;">
   <a
-    href="https://www.airbnb.no/rooms/1282008856141933433"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="cta-button"
-  >
-    Gå til Airbnb for å bestille
-  </a>
+<a
+  href="https://www.airbnb.no/rooms/1282008856141933433"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-block px-6 py-3 bg-pink-500 text-white text-base rounded-full hover:bg-pink-600 transition"
+>
+  Gå til Airbnb for å bestille
+</a>
 </div>
 
     </div>
