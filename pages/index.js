@@ -6,7 +6,8 @@ export default function Home() {
   <h1 className="text-4xl font-extrabold tracking-tight">
     Velkommen til ditt drømmehjem i Sandnes
   </h1>
-  <p className="mt-4 text-base text-gray-800">
+  <p 
+    className="mt-4 text-base text-gray-800">
     Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for familier, par og venner.
   </p>
 
@@ -17,7 +18,7 @@ export default function Home() {
     Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
   </p>
 </section>
-      <section className="max-w-4xl mx-auto px-4">
+      <div className="text-center mt-6">
         <img
           src="/bilseng.jpg"
           alt="Bilseng"
