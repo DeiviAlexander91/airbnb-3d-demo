@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="bg-rose-50 min-h-screen text-gray-800">
       {/* Introduksjon */}
-      <section className="text-center py-16 px-6">
+      <section className="text-center py-16 px-6 max-w-3xl mx-auto">
         <h1 className="text-4xl font-extrabold tracking-tight">
           Velkommen til ditt drømmehjem i Sandnes
         </h1>
@@ -20,7 +20,7 @@ export default function Home() {
       </section>
 
       {/* Bilde + knapp */}
-      <section className="w-full px-6">
+      <section className="max-w-5xl mx-auto px-4">
         <img
           src="/bilseng.jpg"
           alt="Bilseng"
@@ -34,7 +34,7 @@ export default function Home() {
       </section>
 
       {/* Fasiliteter */}
-      <section className="w-full px-6 py-12">
+      <section className="max-w-4xl mx-auto px-4 py-12">
         <h3 className="text-2xl font-semibold mb-6">Fasiliteter</h3>
         <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-left text-lg">
           <li>🛋 Hjemmekino</li>
@@ -47,7 +47,7 @@ export default function Home() {
       </section>
 
       {/* Galleri */}
-      <section className="w-full px-6 pb-16">
+      <section className="max-w-6xl mx-auto px-4 pb-16">
         <h3 className="text-2xl font-semibold mb-4">Galleri</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <img
