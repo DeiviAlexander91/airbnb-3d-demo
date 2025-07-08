@@ -37,14 +37,15 @@ export default function Home() {
       {/* Fasiliteter */}
       <section className="max-w-4xl mx-auto px-4 py-12">
         <h3 className="text-2xl font-semibold mb-6">Fasiliteter</h3>
-        <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-left text-lg">
-          <li>🛋 Hjemmekino</li>
-          <li>🌐 Høyhastighets internett</li>
-          <li>🔥 Utsikt og uteplass</li>
-          <li>🚿 Hurtig WiFi</li>
-          <li>🍽 Fullt kjøkken</li>
-          <li>🛏 Komfortable senger</li>
-        </ul>
+     <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-left text-lg">
+  <li>📺 Film opplevese</li>
+  <li>🌐 Wifi</li>
+  <li>🔥 Utsikt og uteplass</li>
+  <li>🛋 Gode sitteplasser</li>
+  <li>🍽 Fullt kjøkken</li>
+  <li>🛏 Komfortable senger</li>
+</ul>
+
       </section>
 
       {/* Galleri */}
