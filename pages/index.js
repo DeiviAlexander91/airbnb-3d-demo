@@ -29,7 +29,7 @@ export default function Home() {
         />
         <div className="text-center mt-6">
           <button className="px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
-            Se søk & pris
+            Start ferien din her
           </button>
         </div>
       </section>
