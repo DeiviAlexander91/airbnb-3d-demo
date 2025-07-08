@@ -66,5 +66,6 @@ export default function Home() {
       className="rounded-lg w-full object-cover"
     />
   </div>
-</section>
+  );
+}
 
