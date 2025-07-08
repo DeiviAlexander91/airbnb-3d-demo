@@ -121,7 +121,6 @@
   target="_blank"
   rel="noopener noreferrer"
   class="inline-block px-6 py-3 bg-pink-500 text-white text-base rounded-full hover:bg-pink-600 transition"
->
   Start ferien din her
 </a>
 </div>
