@@ -117,7 +117,6 @@
       </div>
   <div style="text-align: center; margin-top: 30px;">
   <a
-<a
   href="https://www.airbnb.no/rooms/1282008856141933433"
   target="_blank"
   rel="noopener noreferrer"
