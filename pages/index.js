@@ -22,7 +22,7 @@ export default function Home() {
           src="/bilseng.jpg"
           alt="Bilseng"
           className="rounded-xl shadow-lg mb-12 w-full object-cover"
-        />
+        /p>
             
             <div className="text-center mt-6">
     <button className="px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
