@@ -45,12 +45,23 @@ export default function Home() {
           <li>🛏 Komfortable senger</li>
         </ul>
       </section>
-
-      {/* Galleri */}
+     {/* Galleri */}
 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-  <img src="/utsikt1.jpg" alt="Utsikt 1" className="rounded-lg w-full aspect-[4/3] object-cover" />
-  <img src="/utsikt2.jpg" alt="Utsikt 2" className="rounded-lg w-full aspect-[4/3] object-cover" />
-  <img src="/utsikt3.jpg" alt="Utsikt 3" className="rounded-lg w-full aspect-[4/3] object-cover" />
+  <img
+    src="/utsikt1.jpg"
+    alt="Utsikt 1"
+    className="rounded-lg w-full aspect-video object-cover"
+  />
+  <img
+    src="/utsikt2.jpg"
+    alt="Utsikt 2"
+    className="rounded-lg w-full aspect-video object-cover"
+  />
+  <img
+    src="/utsikt3.jpg"
+    alt="Utsikt 3"
+    className="rounded-lg w-full aspect-video object-cover"
+  />
 </div>
       </section>
     </main>
