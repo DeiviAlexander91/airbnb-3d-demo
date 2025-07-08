@@ -17,26 +17,19 @@ export default function Home() {
     Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
   </p>
 </section>
-
-<section className="max-w-5xl mx-auto px-4">
-  <img
-    src="/utsikt1.jpg"
-    alt="Utsikt over Sandnes"
-    className="rounded-xl shadow-lg w-full object-cover"
-  />
-
-  <div className="text-center mt-6">
-    <button className="px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
-      Se søk & pris
-    </button>
-  </div>
-</section>
       <section className="max-w-4xl mx-auto px-4">
         <img
           src="/bilseng.jpg"
           alt="Bilseng"
           className="rounded-xl shadow-lg mb-12 w-full object-cover"
         />
+            
+            <div className="text-center mt-6">
+    <button className="px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
+      Se søk & pris
+    </button>
+  </div>
+</section>
 
         <h3 className="text-2xl font-semibold mb-4">Amenities</h3>
         <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-left text-lg">
