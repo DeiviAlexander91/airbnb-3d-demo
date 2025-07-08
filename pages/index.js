@@ -5,7 +5,7 @@ export default function Home() {
     <div className="bg-rose-50 min-h-screen text-gray-800">
      <main>
       {/* Introduksjon */}
-      <section className="text-center py-16">
+     <section className="text-center py-16 max-w-4xl mx-auto px-4">
         <h1 className="text-4xl font-extrabold tracking-tight">
           Velkommen til ditt drømmehjem i Sandnes
         </h1>
