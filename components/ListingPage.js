@@ -115,6 +115,17 @@
         <img src="/utsikt2.jpg" alt="utsikt 2" />
         <img src="/utsikt3.jpg" alt="utsikt 3" />
       </div>
+  <div style="text-align: center; margin-top: 30px;">
+  <a
+    href="https://www.airbnb.no/rooms/1282008856141933433"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="cta-button"
+  >
+    Gå til Airbnb for å bestille
+  </a>
+</div>
+
     </div>
   </body>
 </html>
