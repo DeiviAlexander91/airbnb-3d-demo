@@ -115,17 +115,19 @@
         <img src="/utsikt2.jpg" alt="utsikt 2" />
         <img src="/utsikt3.jpg" alt="utsikt 3" />
       </div>
-  <div style="text-align: center; margin-top: 30px;">
-<a
-  href="https://www.airbnb.no/rooms/1282008856141933433"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-block px-6 py-3 bg-pink-500 text-white text-base rounded-full hover:bg-pink-600 transition">
-  Start ferien din her
+  </div> {/* Galleri-slutt */}
+<div style={{ textAlign: 'center', marginTop: '30px' }}>
+  <a
+    href="https://www.airbnb.no/rooms/1282008856141933433"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block px-6 py-3 bg-pink-500 text-white text-base rounded-full hover:bg-pink-600 transition">
+    Start ferien din her
+  </a>
+</div>
 </a>
 </div>
-
-    </div>
+ </div>
   </body>
 </html>
 
