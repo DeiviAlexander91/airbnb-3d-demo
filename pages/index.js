@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="bg-rose-50 min-h-screen text-gray-800">
      <main>
-</div>
+
       {/* Introduksjon */}
       <section className="text-center py-16">
         <h1 className="text-4xl font-extrabold tracking-tight">
