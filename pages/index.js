@@ -1,4 +1,4 @@
-// pages/index.js
+import React from "react";
 
 export default function Home() {
   return (
@@ -33,4 +33,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Fa*
+      {/* Fasiliteter */}
+      <section className="max-w-4xl mx-auto px-4 py-12">
+        <h3 className="text-2xl font-semibold mb-6">Fasiliteter</h3>
+        <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-left text-lg">
+          <li>🛋 Hjemmekino</li>
+          <li>🌐 Høyhastighets internett</li>
+          <li>🔥 Utsikt og uteplass</li>
+          <li>🚿 Hurtig WiFi</li>
+          <li>🍽 Fullt kjøkken</li>
+          <li>🛏 Komfortable senger</li>
+        </ul>
+      </section>
+
+      {/* Galleri */}
+      <section className="max-w-4xl mx-auto px-4 pb-16">
+        <h3 className="text-2xl font-semibold mb-4">Galleri</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <img src="/utsikt1.jpg" alt="Utsikt 1" className="rounded-lg" />
+          <img src="/utsikt2.jpg" alt="Utsikt 2" className="rounded-lg" />
+          <img src="/utsikt3.jpg" alt="Utsikt 3" className="rounded-lg" />
+        </div>
+      </section>
+    </main>
+  );
+}
