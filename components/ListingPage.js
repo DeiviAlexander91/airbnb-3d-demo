@@ -117,6 +117,7 @@ export default function ListingPage() {
           width={80}
           height={80}
           className="rounded-full shadow-xl"
+          unoptimized
         />
       </div>
 
@@ -134,7 +135,6 @@ export default function ListingPage() {
                 </p>
               </div>
             )}
-            {/* Her kan du legge til mer chatfunksjonalitet */}
           </div>
           <div className="p-3 border-t">
             <input
