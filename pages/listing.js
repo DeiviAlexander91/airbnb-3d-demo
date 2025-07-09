@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Image from "next/image";
 
@@ -48,10 +47,10 @@ export default function ListingPage() {
     },
   ];
 
-const gallery = [
-  "/barnerom.jpg",
-  "/tvstue1.jpg",
-  "/treningsrom1.jpg"
+  const gallery = [
+    "/barnerom.jpg",
+    "/tvstue1.jpg",
+    "/treningsrom1.jpg"
   ];
 
   return (
@@ -92,8 +91,9 @@ const gallery = [
               key={index}
               onClick={() => item.image && setModalImage(item.image)}
               className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
-                item.image ? "text-blue-800 hover:text-blue-600" : "text-gray-500 hover:text-gray-700">
-             }`}
+                item.image ? "text-blue-800 hover:text-blue-600" : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
               <span className="text-2xl mb-1">{item.icon}</span>
               <span>{item.label}</span>
             </div>
@@ -104,7 +104,8 @@ const gallery = [
           href="https://www.airbnb.no/rooms/1282008856141933433"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8">
+          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8"
+        >
           Start ferien din her
         </a>
 
@@ -113,7 +114,8 @@ const gallery = [
           {gallery.map((img, index) => (
             <div
               key={index}
-              className="overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300">
+              className="overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300"
+            >
               <Image
                 src={img}
                 alt={`Galleri ${index + 1}`}
@@ -129,26 +131,26 @@ const gallery = [
       {modalImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setModalImage(null)}>
+          onClick={() => setModalImage(null)}
+        >
           <div className="bg-white p-4 rounded-xl max-w-xl">
             <Image src={modalImage} alt="Utstyrsdetalj" width={800} height={600} />
           </div>
-              </div> {/* slutt på .max-w-4xl */}
-
-    {/* Chat-avatar nederst til høyre – alltid synlig */}
-    <div onClick={() => alert("Hei! Hva vil du vite?")} className="fixed bottom-5 right-5 z-50 cursor-pointer">
-      <Image
-        src="/avatar-deivi.png?ver=2"
-        alt="Chat Avatar"
-        width={64}
-        height={64}
-        className="rounded-full shadow-md hover:scale-105 transition-transform"
-      />
-    </div>
-</div> 
-
         </div>
       )}
+
+      {/* Chat-avatar nederst til høyre – alltid synlig */}
+      <div onClick={() => alert("Hei! Hva vil du vite?")} className="fixed bottom-5 right-5 z-50 cursor-pointer">
+        <Image
+          src="/avatar-deivi.png?ver=2"
+          alt="Chat Avatar"
+          width={64}
+          height={64}
+          className="rounded-full shadow-md hover:scale-105 transition-transform"
+        />
+      </div>
     </div>
   );
+}
+
 }
