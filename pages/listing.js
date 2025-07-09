@@ -50,7 +50,7 @@ export default function ListingPage() {
 
 const gallery = [
   "/barnerom.jpg",
-  "/utsikt1.jpg",
+  "/tvstue1.jpg",
   "/treningsrom1.jpg"
   ];
 
