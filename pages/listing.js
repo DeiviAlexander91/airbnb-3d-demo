@@ -32,14 +32,17 @@ export default function ListingPage() {
         </a>
       </div>
 
-   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-10 text-sm text-center">
-  <div>📺 TV-stue med stor skjerm / TV lounge with big screen</div>
-  <div>🌅 Panoramautsikt / Scenic panoramic views</div>
-  <div>🛏️ Komfortable senger / Comfortable beds</div>
-  <div>🍽️ Fullt kjøkkenutstyr / All kitchen equipment</div>
+<div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 text-sm text-center">
+  <div>📺 TV-stue / TV lounge</div>
+  <div>🌅 Utsikt / Scenic view</div>
+  <div>🛏️ Komfortable senger / Cozy beds</div>
+  <div>🍽️ Kjøkken / Kitchen equipped</div>
   <div>🌐 WiFi / Free WiFi</div>
   <div>🔌 Elbillader / EV charger</div>
+  <div>🧼 Vaskemaskin / Washing machine</div>
+  <div>🔥 Bålpanne / Fire pit</div>
 </div>
+
 
 
       <h2 className="text-2xl font-semibold mt-12 mb-4 text-center">Galleri</h2>
