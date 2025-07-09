@@ -17,13 +17,12 @@ export default function ListingPage() {
     { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
   ];
 
-  // Gallery with unique images only
-  const gallery = [
-    "/barnerom.jpg",
-    "/utsikt1.jpg",
-    "/utsikt2.jpg",
-    "/utsikt3.jpg",
-    "/treningsrom1.jpg" // Only one instance
+const galleryImages = [
+  { src: "/bilseng.jpg", alt: "Bilseng med lys" },
+  { src: "/utsikt4.jpg", alt: "Utsikt fra hagen" },
+  { src: "/utsikt2.jpg", alt: "Solnedgang" },
+  { src: "/treningsrom1.jpg", alt: "Treningsrom" },
+  { src: "/tvstue1.jpg", alt: "TV stue" },
   ];
 
   const toggleChat = () => {
