@@ -137,16 +137,19 @@ const gallery = [
           <div className="bg-white p-4 rounded-xl max-w-xl">
             <Image src={modalImage} alt="Utstyrsdetalj" width={800} height={600} />
           </div>
-            {/* Chat-avatar nederst til høyre */}
-<div onClick={() => alert("Hei! Hva vil du vite?")} className="fixed bottom-5 right-5 z-50 cursor-pointer">
-  <Image
-    src="/avatar-deivi.png?ver=2"
-    alt="Chat Avatar"
-    width={64}
-    height={64}
-    className="rounded-full shadow-md hover:scale-105 transition-transform"
-  />
-</div>
+              </div> {/* slutt på .max-w-4xl */}
+
+    {/* Chat-avatar nederst til høyre – alltid synlig */}
+    <div onClick={() => alert("Hei! Hva vil du vite?")} className="fixed bottom-5 right-5 z-50 cursor-pointer">
+      <Image
+        src="/avatar-deivi.png?ver=2"
+        alt="Chat Avatar"
+        width={64}
+        height={64}
+        className="rounded-full shadow-md hover:scale-105 transition-transform"
+      />
+    </div>
+</div> {/* slutt på hele return */}
 
         </div>
       )}
