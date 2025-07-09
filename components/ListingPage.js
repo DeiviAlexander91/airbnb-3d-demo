@@ -1,133 +1,145 @@
-<!DOCTYPE html>
-<html lang="no">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eksklusiv enebolig med panoramautsikt i Sandnes</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #fff9f7;
-        color: #111;
-      }
-      .container {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-      }
-      h1 {
-        font-size: 2em;
-        font-weight: bold;
-        text-align: center;
-      }
-      h2 {
-        font-size: 1.4em;
-        text-align: center;
-        margin-top: 0.2em;
-      }
-      p.description {
-        text-align: center;
-        font-size: 0.95em;
-        margin: 0.5em auto 1.5em;
-        max-width: 700px;
-      }
-      .cta-link {
-        display: inline-block;
-        margin: 30px auto;
-        padding: 12px 30px;
-        font-size: 1em;
-        background-color: #ff4f9b;
-        color: white;
-        border-radius: 25px;
-        text-decoration: none;
-        text-align: center;
-        transition: background-color 0.3s ease;
-      }
-      .cta-link:hover {
-        background-color: #e8438b;
-      }
-      .hero img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 20px;
-      }
-      .amenities {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-        text-align: center;
-        margin-bottom: 30px;
-      }
-      .amenity {
-        font-size: 0.95em;
-      }
-      .gallery {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .gallery img {
-        width: calc(33% - 10px);
-        height: auto;
-        border-radius: 8px;
-        object-fit: cover;
-      }
-      @media (max-width: 768px) {
-        .gallery img {
-          width: 100%;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Velkommen til ditt drømmehjem i Sandnes</h1>
-      <p class="description">
-        Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig –
-        perfekt for familier, par og venner.
-      </p>
+import { useState } from "react";
+import Image from "next/image";
 
-      <h2>Grill nights, firelight and views – make yourself at home</h2>
-      <p class="description" style="font-style: italic; color: #666;">
-        Cozy fire nights, scenic views and room to relax – everything you need
-        for a memorable stay.
-      </p>
+export default function ListingPage() {
+  const [modalImage, setModalImage] = useState(null);
 
-      <!-- CTA-knapp -->
-      <div style="text-align: center;">
+  const equipment = [
+    {
+      label: "TV-stue / TV lounge",
+      icon: "📺",
+      image: "/tvstue1.jpg",
+    },
+    {
+      label: "Utsikt / view",
+      icon: "🌅",
+      image: "/utsikt4.jpg",
+    },
+    {
+      label: "Komfortable senger / Cozy beds",
+      icon: "🛏️",
+      image: "/soverom1.jpg",
+    },
+    {
+      label: "Kjøkken / Kitchen equipped",
+      icon: "🍴",
+      image: "/utstyr1.jpg",
+    },
+    {
+      label: "WiFi",
+      icon: "📶",
+      image: "/wifi.jpg", // Legg til bilde for WiFi hvis ønskelig
+    },
+    {
+      label: "Elbillader / EV charger",
+      icon: "🔌",
+      image: "/lader1.jpg",
+    },
+    {
+      label: "Vaskemaskin / Washing machine",
+      icon: "🧺",
+      image: "/treningsrom1.jpg",
+    },
+    {
+      label: "Bålpanne / Fire pit",
+      icon: "🔥",
+      image: "/balplass.jpg", // Legg til bilde for bålplass hvis ønskelig
+    },
+  ];
+
+  const gallery = [
+    "/barnerom.jpg", // Barnerom med bilseng som første bilde i galleriet
+    "/utsikt1.jpg",
+    "/utsikt2.jpg",
+    "/utsikt3.jpg",
+    "/treningsrom1.jpg",
+  ];
+
+  return (
+    <div className="bg-pink-50 min-h-screen text-center text-gray-900 px-4">
+      <div className="max-w-4xl mx-auto py-10">
+        <h1 className="text-3xl md:text-4xl font-extrabold mb-2">
+          Velkommen til ditt drømmehjem i Sandnes
+        </h1>
+        <p className="text-base md:text-lg text-gray-700 mb-1">
+          Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for
+          familier, par og venner.
+        </p>
+        <h2 className="text-xl font-semibold mt-4">
+          Grill nights, firelight and views – make yourself at home
+        </h2>
+        <p className="italic text-sm text-gray-600 mb-6">
+          Cozy fire nights, scenic views and room to relax – everything you need for a memorable
+          stay.
+        </p>
+
+        <div className="rounded-xl overflow-hidden shadow-lg mb-4">
+          <Image
+            src="/forsidelayout.jpg"
+            alt="Hovedbilde"
+            width={1200}
+            height={800}
+            className="w-full h-auto"
+          />
+        </div>
+
+        <p className="text-sm italic mb-4">
+          Trykk på ikonene for å se bilder av utstyret / Click on the icons to view equipment
+        </p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
+          {equipment.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => item.image && setModalImage(item.image)}
+              className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
+                item.image ? "text-blue-800 hover:text-blue-600" : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <span className="text-2xl mb-1">{item.icon}</span>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+
         <a
           href="https://www.airbnb.no/rooms/1282008856141933433"
           target="_blank"
           rel="noopener noreferrer"
-          class="cta-link"
+          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8"
         >
           Start ferien din her
         </a>
+
+        <h3 className="text-lg font-semibold mb-4">Galleri</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {gallery.map((img, index) => (
+            <div 
+              key={index} 
+              className="overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300"
+            >
+              <Image 
+                src={img} 
+                alt={`Galleri ${index + 1}`} 
+                width={400} 
+                height={300}
+                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
-      <!-- Bilde (hvis ønsket) -->
-      <div class="hero">
-        <img src="/bilseng.jpg" alt="bilseng" />
-      </div>
-
-      <div class="amenities">
-        <div class="amenity">🎬 Hjemmekino</div>
-        <div class="amenity">📶 High speed internet</div>
-        <div class="amenity">⚡️ Utsikt</div>
-        <div class="amenity">💪 Hurtig Wifi</div>
-        <div class="amenity">🍽 Fullt kjøkken</div>
-        <div class="amenity">🛏 Komfortable senger</div>
-      </div>
-
-      <h2>Galleri</h2>
-      <div class="gallery">
-        <img src="/utsikt1.jpg" alt="utsikt 1" />
-        <img src="/utsikt2.jpg" alt="utsikt 2" />
-        <img src="/utsikt3.jpg" alt="utsikt 3" />
-      </div>
+      {modalImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setModalImage(null)}
+        >
+          <div className="bg-white p-4 rounded-xl max-w-xl">
+            <Image src={modalImage} alt="Utstyrsdetalj" width={800} height={600} />
+          </div>
+        </div>
+      )}
     </div>
-  </body>
-</html>
+  );
+}
