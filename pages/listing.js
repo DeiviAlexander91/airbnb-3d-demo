@@ -17,14 +17,11 @@ export default function ListingPage() {
       <h1 className="text-4xl font-bold text-center">
         Velkommen til ditt drømmehjem i Sandnes
       </h1>
-      <p className="text-center mt-4 text-base">
-        Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig –
-        perfekt for familier, par og venner.
+      <p className="text-center mt-2 text-base text-gray-700">
+        Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for familier, par og venner.
       </p>
-               <h2>Grill nights, firelight and views – make yourself at home</h2>
-      <p class="description" style="font-style: italic; color: #666;">
-        Cozy fire nights, scenic views and room to relax – everything you need
-        for a memorable stay.
+      <p className="text-center mt-1 text-base italic text-gray-600">
+        Enjoy sunsets, firelight and comfort in a modern family-friendly home
       </p>
 
       <div className="mt-10">
@@ -39,13 +36,13 @@ export default function ListingPage() {
         <button onClick={() => setActiveGallery("tv")} className="hover:underline">
           🔍 📺 TV-stue / TV lounge
         </button>
-        <div>🌅 Utsikt / Scenic view</div>
         <button onClick={() => setActiveGallery("bedroom")} className="hover:underline">
           🔍 🛏️ Komfortable senger / Cozy beds
         </button>
         <button onClick={() => setActiveGallery("kitchen")} className="hover:underline">
           🔍 🍽️ Kjøkken / Kitchen equipped
         </button>
+        <div>🌅 Utsikt / Scenic view</div>
         <div>🌐 WiFi / Free WiFi</div>
         <button onClick={() => setActiveGallery("charger")} className="hover:underline">
           🔍 🔌 Elbillader / EV charger
