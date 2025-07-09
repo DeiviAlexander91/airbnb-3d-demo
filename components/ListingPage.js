@@ -22,10 +22,10 @@ export default function ListingPage() {
     { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
   ];
 
-  const galleryImages = [
-    { src: "/bilseng.jpg", alt: "Bilseng med lys" },
-    { src: "/treningsrom1.jpg", alt: "Treningsrom" },
-    { src: "/tvstue1.jpg", alt: "TV stue" },
+const gallery = [
+  "/barnerom.jpg",
+  "/utsikt1.jpg",
+  "/treningsrom1.jpg"
   ];
 
   return (
