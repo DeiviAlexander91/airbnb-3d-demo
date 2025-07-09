@@ -27,7 +27,7 @@ export default function ListingPage() {
       image: "/utstyr1.jpg",
     },
     {
-      label: "WiFi / Free WiFi",
+      label: "WiFi",
       icon: "📶",
     },
     {
@@ -46,7 +46,7 @@ export default function ListingPage() {
     },
   ];
 
-  const gallery = ["/utsikt1.jpg", "/utsikt2.jpg", "/utsikt3.jpg"];
+  const gallery = ["/barnerom.jpg", "/treningsrom1.jpg", "/utsikt3.jpg"];
 
   return (
     <div className="bg-pink-50 min-h-screen text-center text-gray-900 px-4">
@@ -68,7 +68,7 @@ export default function ListingPage() {
 
         <div className="rounded-xl overflow-hidden shadow-lg mb-4">
           <Image
-            src="/utsikt1.jpg"
+            src="/forsidelayout.jpg"
             alt="Hovedbilde"
             width={1200}
             height={800}
