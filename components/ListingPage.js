@@ -108,16 +108,17 @@ export default function ListingPage() {
             {/* Chat-avatar */}
 <div
   className="fixed bottom-6 right-6 cursor-pointer z-50 hover:scale-105 transition-transform duration-300"
-  onClick={() => alert("Hei! Har du spørsmål? 😄 Chat kommer snart...")}
-<img
-  src="/avatar-deivi.png"
-  alt="Chat med Deivi"
-  width={80}
-  height={80}
-  className="rounded-full shadow-xl"
-/>
+  onClick={() => alert("Hei! Har du spørsmål? 😊 Chat kommer snart...")}
+>
+  <img
+    src="/avatar-deivi.png"
+    alt="Chat med Deivi"
+    width={80}
+    height={80}
+    className="rounded-full shadow-xl"
   />
 </div>
+
 
         </div>
       )}
