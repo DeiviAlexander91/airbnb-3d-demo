@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function ListingPage() {
@@ -17,19 +17,18 @@ export default function ListingPage() {
     { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
   ];
 
+  // Galleri med unike bilder - kun ett treningsrom-bilde
   const gallery = [
     "/barnerom.jpg",
-    "/utsikt1.jpg",
+    "/utsikt1.jpg", 
     "/utsikt2.jpg",
     "/utsikt3.jpg",
-    "/treningsrom1.jpg",
+    "/treningsrom1.jpg" // Kun én forekomst
   ];
 
   const toggleChat = () => {
     setShowChat(!showChat);
-    if (!firstMessage) {
-      setFirstMessage(true);
-    }
+    if (!firstMessage) setFirstMessage(true);
   };
 
   return (
@@ -92,13 +91,13 @@ export default function ListingPage() {
           {gallery.map((img, index) => (
             <div
               key={index}
-              className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300"
+              className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow"
             >
               <Image
                 src={img}
                 alt={`Galleri ${index + 1}`}
                 fill
-                className="object-cover hover:scale-105 transition-transform duration-300"
+                className="object-cover hover:scale-105 transition-transform"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
@@ -106,14 +105,14 @@ export default function ListingPage() {
         </div>
       </div>
 
-      {/* Chat Avatar */}
+      {/* Chat Avatar - Nå med bedre synlighet */}
       <div
-        className="fixed bottom-6 right-6 cursor-pointer z-40 hover:scale-105 transition-transform duration-300"
+        className="fixed bottom-6 right-6 cursor-pointer z-40 hover:scale-105 transition-transform"
         onClick={toggleChat}
       >
         <Image
           src="/avatar-deivi.png"
-          alt="Chat med Deivi"
+          alt="Chat-hjelp"
           width={80}
           height={80}
           className="rounded-full shadow-xl"
@@ -123,11 +122,20 @@ export default function ListingPage() {
 
       {/* Chat Popup */}
       {showChat && (
-        <div className="fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-xl z-50 overflow-hidden">
+        <div className="fixed bottom-28 right-6 w-80 bg-white rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200">
           <div className="bg-pink-600 text-white p-3 font-semibold">
-            DeiviBot - Din digitale vert
+            <div className="flex items-center">
+              <Image 
+                src="/avatar-deivi.png" 
+                width={40} 
+                height={40} 
+                className="rounded-full mr-2"
+                alt="DeiviBot"
+              />
+              <span>DeiviBot - Din digitale vert</span>
+            </div>
           </div>
-          <div className="p-4 max-h-80 overflow-y-auto">
+          <div className="p-4 max-h-60 overflow-y-auto">
             {firstMessage && (
               <div className="mb-3 text-left">
                 <p className="bg-gray-100 p-3 rounded-lg">
@@ -140,7 +148,7 @@ export default function ListingPage() {
             <input
               type="text"
               placeholder="Spør meg om noe..."
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500"
             />
           </div>
         </div>
