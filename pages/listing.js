@@ -4,24 +4,12 @@ export default function ListingPage() {
   const [activeGallery, setActiveGallery] = useState(null);
 
   const galleries = {
-    kitchen: [
-      "/utsikt4.jpg"
-    ],
-    tv: [
-      "/tvstue1.jpg"
-    ],
-    bedroom: [
-      "/soverom1.jpg"
-    ],
-    washing: [
-      "/treningsrom1.jpg"
-    ],
-    charger: [
-      "/lader1.jpg"
-    ],
-    firepit: [
-      "/bilseng.jpg"
-    ]
+    kitchen: ["/utsikt4.jpg"],
+    tv: ["/tvstue1.jpg"],
+    bedroom: ["/soverom1.jpg"],
+    washing: ["/treningsrom1.jpg"],
+    charger: ["/lader1.jpg"],
+    firepit: ["/bilseng.jpg"]
   };
 
   return (
@@ -59,6 +47,28 @@ export default function ListingPage() {
         <button onClick={() => setActiveGallery("firepit")} className="hover:underline">
           🔍 🔥 Bålpanne / Fire pit
         </button>
+      </div>
+
+      <div className="text-center mt-10 mb-10">
+        <a
+          href="https://www.airbnb.no/rooms/1282008856141933433"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-full shadow-md hover:bg-pink-700 transition duration-300"
+        >
+          Start ferien din her
+        </a>
+      </div>
+
+      <div className="mt-10">
+        <img src="/bilseng.jpg" alt="bilseng" className="rounded-xl w-full" />
+      </div>
+
+      <h2 className="text-2xl font-semibold mt-12 mb-4 text-center">Galleri</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-20">
+        <img src="/utsikt1.jpg" alt="utsikt 1" className="rounded-lg" />
+        <img src="/utsikt2.jpg" alt="utsikt 2" className="rounded-lg" />
+        <img src="/utsikt3.jpg" alt="utsikt 3" className="rounded-lg" />
       </div>
 
       {activeGallery && (
