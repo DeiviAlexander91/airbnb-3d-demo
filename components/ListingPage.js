@@ -6,6 +6,11 @@ export default function ListingPage() {
   const [showChat, setShowChat] = useState(false);
   const [firstMessage, setFirstMessage] = useState(false);
 
+  const toggleChat = () => {
+    setShowChat(!showChat);
+    if (!firstMessage) setFirstMessage(true);
+  };
+
   const equipment = [
     { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
     { label: "Utsikt / view", icon: "🌅", image: "/utsikt4.jpg" },
@@ -17,52 +22,46 @@ export default function ListingPage() {
     { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
   ];
 
-const galleryImages = [
-  { src: "/bilseng.jpg", alt: "Bilseng med lys" },
-  { src: "/utsikt4.jpg", alt: "Utsikt fra hagen" },
-  { src: "/utsikt2.jpg", alt: "Solnedgang" },
-  { src: "/treningsrom1.jpg", alt: "Treningsrom" },
-  { src: "/tvstue1.jpg", alt: "TV stue" },
+  const galleryImages = [
+    { src: "/bilseng.jpg", alt: "Bilseng med lys" },
+    { src: "/utsikt4.jpg", alt: "Utsikt fra hagen" },
+    { src: "/utsikt2.jpg", alt: "Solnedgang" },
+    { src: "/treningsrom1.jpg", alt: "Treningsrom" },
+    { src: "/tvstue1.jpg", alt: "TV stue" },
   ];
-
-  const toggleChat = () => {
-    setShowChat(!showChat);
-    if (!firstMessage) setFirstMessage(true);
-  };
 
   return (
     <div className="bg-pink-50 min-h-screen text-center text-gray-900 px-4">
       <div className="max-w-4xl mx-auto py-10">
-        {/* ... (other content remains unchanged) ... */}
+        {/* ... (andre seksjoner over kan være her) ... */}
 
         <h3 className="text-lg font-semibold mb-4">Galleri</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {gallery.map((img, index) => (
+          {galleryImages.map((img, index) => (
             <div
-              key={`gallery-${index}`} // Unique key
+              key={`gallery-${index}`}
               className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow bg-gray-100"
             >
               <Image
-                src={img}
-                alt={`Galleri ${index + 1}`}
+                src={img.src}
+                alt={img.alt}
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={index < 3} // Prioritize first few images
+                priority={index < 3}
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Avatar with direct img tag as fallback */}
+      {/* Avatar (øverst høyre) */}
       <div 
-        className="fixed bottom-6 right-6 cursor-pointer z-40 hover:scale-105 transition-transform"
+        className="fixed top-4 right-4 cursor-pointer z-50 hover:scale-105 transition-transform"
         onClick={toggleChat}
       >
-        {/* Try both approaches - one should work */}
         <Image
-          src="/avatar-deivi.png?ver=1" // Cache buster
+          src="/avatar-deivi.png?ver=1"
           alt="Chat-hjelp"
           width={80}
           height={80}
@@ -70,11 +69,10 @@ const galleryImages = [
           unoptimized
           priority
         />
-        {/* Fallback */}
         <img 
           src="/avatar-deivi.png" 
           alt="Chat fallback" 
-          className="hidden" 
+          className="hidden"
           onError={(e) => {
             e.target.style.display = 'none';
             document.querySelector('.avatar-fallback').style.display = 'block';
@@ -87,7 +85,7 @@ const galleryImages = [
         />
       </div>
 
-      {/* Chat Popup (unchanged) */}
+      {/* Chat-popup */}
       {showChat && (
         <div className="fixed bottom-28 right-6 w-80 bg-white rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200">
           <div className="bg-pink-600 text-white p-3 font-semibold flex items-center">
@@ -100,11 +98,23 @@ const galleryImages = [
             />
             <span>DeiviBot - Din digitale vert</span>
           </div>
-          {/* ... rest of chat popup ... */}
+          <div className="p-4">
+            {firstMessage && (
+              <p className="text-gray-700 mb-2 text-sm">Hei! Hva kan jeg hjelpe deg med? 😊</p>
+            )}
+            <textarea
+              className="w-full p-2 border border-gray-300 rounded resize-none text-sm"
+              rows="3"
+              placeholder="Skriv en melding..."
+            />
+            <button className="mt-2 bg-pink-600 text-white px-3 py-1 rounded text-sm hover:bg-pink-700">
+              Send
+            </button>
+          </div>
         </div>
       )}
 
-      {/* Image Modal (unchanged) */}
+      {/* Bilde-modalen */}
       {modalImage && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-white p-4 rounded-xl max-w-xl">
