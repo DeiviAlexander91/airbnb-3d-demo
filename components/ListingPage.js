@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function ListingPage() {
   const [modalImage, setModalImage] = useState(null);
+  const [showChat, setShowChat] = useState(false);
+  const [firstMessage, setFirstMessage] = useState(false);
 
   const equipment = [
     { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
@@ -22,6 +24,13 @@ export default function ListingPage() {
     "/utsikt3.jpg",
     "/treningsrom1.jpg",
   ];
+
+  const toggleChat = () => {
+    setShowChat(!showChat);
+    if (!firstMessage) {
+      setFirstMessage(true);
+    }
+  };
 
   return (
     <div className="bg-pink-50 min-h-screen text-center text-gray-900 px-4">
@@ -46,6 +55,7 @@ export default function ListingPage() {
             width={1200}
             height={800}
             className="w-full h-auto"
+            priority
           />
         </div>
 
@@ -72,7 +82,8 @@ export default function ListingPage() {
           href="https://www.airbnb.no/rooms/1282008856141933433"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8">
+          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8"
+        >
           Start ferien din her
         </a>
 
@@ -81,41 +92,75 @@ export default function ListingPage() {
           {gallery.map((img, index) => (
             <div
               key={index}
-              className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300">
+              className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300"
+            >
               <Image
                 src={img}
                 alt={`Galleri ${index + 1}`}
-                layout="fill"
-                objectFit="cover"
-                className="w-full h-full"
-                unoptimized
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           ))}
         </div>
       </div>
 
+      {/* Chat Avatar */}
+      <div
+        className="fixed bottom-6 right-6 cursor-pointer z-40 hover:scale-105 transition-transform duration-300"
+        onClick={toggleChat}
+      >
+        <Image
+          src="/avatar-deivi.png"
+          alt="Chat med Deivi"
+          width={80}
+          height={80}
+          className="rounded-full shadow-xl"
+        />
+      </div>
+
+      {/* Chat Popup */}
+      {showChat && (
+        <div className="fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-xl z-50 overflow-hidden">
+          <div className="bg-pink-600 text-white p-3 font-semibold">
+            DeiviBot - Din digitale vert
+          </div>
+          <div className="p-4 max-h-80 overflow-y-auto">
+            {firstMessage && (
+              <div className="mb-3 text-left">
+                <p className="bg-gray-100 p-3 rounded-lg">
+                  Heisann! Jeg er DeiviBot – din digitale vert med peiling på alt fra puter til panoramautsikt 😎🛏️🌄
+                </p>
+              </div>
+            )}
+            {/* Her kan du legge til mer chatfunksjonalitet */}
+          </div>
+          <div className="p-3 border-t">
+            <input
+              type="text"
+              placeholder="Spør meg om noe..."
+              className="w-full p-2 border rounded"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Bilde Modal */}
       {modalImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setModalImage(null)}>
+          onClick={() => setModalImage(null)}
+        >
           <div className="bg-white p-4 rounded-xl max-w-xl">
-            <Image src={modalImage} alt="Utstyrsdetalj" width={800} height={600} />
+            <Image
+              src={modalImage}
+              alt="Utstyrsdetalj"
+              width={800}
+              height={600}
+              className="w-full h-auto"
+            />
           </div>
-            {/* Chat-avatar */}
-<div
-  className="fixed bottom-6 right-6 cursor-pointer z-50 hover:scale-105 transition-transform duration-300"
-  onClick={() => alert("Hei! Har du spørsmål? 😊 Chat kommer snart...")}>
-  <img
-    src="/avatar-deivi.png"
-    alt="Chat med Deivi"
-    width={80}
-    height={80}
-    className="rounded-full shadow-xl"
-  />
-</div>
-
-
         </div>
       )}
     </div>
