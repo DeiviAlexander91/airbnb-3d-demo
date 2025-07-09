@@ -12,9 +12,8 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
      <Head>
   <link rel="preload" href="/avatar-deivi.png" as="image" />
-</Head>
 
-        <Main />
+       <Main />
         <NextScript />
       </body>
     </Html>
