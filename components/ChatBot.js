@@ -1,38 +1,45 @@
-
 import { useState } from "react";
-
-const faq = [
-  { keywords: ["wifi", "internett"], answer: "WiFi-passordet finner du på ruteren i stua eller i velkomstmappen." },
-  { keywords: ["parkering", "bil"], answer: "Ja, det er gratis parkering rett utenfor huset." },
-  { keywords: ["innsjekk", "check-in"], answer: "Innsjekk er fra kl. 15:00. Du får mer info på e-post før ankomst." },
-  { keywords: ["utsjekk", "check-out"], answer: "Utsjekk er før kl. 11:00. Bare lås døra og legg nøkkelen tilbake i boksen." },
-  { keywords: ["sengetøy", "håndklær", "laken"], answer: "Sengetøy og håndklær er inkludert i oppholdet." },
-  { keywords: ["grill", "gass"], answer: "Grillen står klar på terrassen. Husk å sjekke at gassflasken er tilkoblet." },
-  { keywords: ["kontakt", "eier", "hjelp"], answer: "Du kan kontakte oss når som helst via Airbnb-meldinger 😊" },
-];
-
-function getBotResponse(userInput) {
-  const input = userInput.toLowerCase();
-  for (const item of faq) {
-    if (item.keywords.some(keyword => input.includes(keyword))) {
-      return item.answer;
-    }
-  }
-  return "Beklager, jeg er ikke helt sikker på det. Prøv gjerne å stille spørsmålet på en annen måte 🙏";
-}
+import axios from "axios";
 
 export default function ChatBot() {
   const [messages, setMessages] = useState([
-    { from: "bot", text: "Hei! Jeg er DeiviBot – spør meg gjerne om ting knyttet til oppholdet 😊" }
+    { from: "bot", text: "Hei! Jeg er DeiviBot 🤖 – spør meg hva som helst om oppholdet!" }
   ]);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
+
     const userMessage = { from: "user", text: input };
-    const botMessage = { from: "bot", text: getBotResponse(input) };
-    setMessages([...messages, userMessage, botMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInput("");
+    setLoading(true);
+
+    try {
+      const response = await axios.post(
+        "https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium",
+        { inputs: { text: input } },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_HF_API_KEY}`,
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      const botText = response.data.generated_text || "Beklager, jeg forstod ikke helt det. Prøv igjen 😊";
+      const botMessage = { from: "bot", text: botText };
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Feil i forespørsel:", error);
+      setMessages(prev => [
+        ...prev,
+        { from: "bot", text: "Noe gikk galt med svaret. Prøv igjen senere 😓" }
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,6 +53,7 @@ export default function ChatBot() {
             {msg.text}
           </div>
         ))}
+        {loading && <div className="text-gray-400 italic">Skriver svar...</div>}
       </div>
       <div className="p-3 border-t flex gap-2">
         <input
