@@ -24,8 +24,6 @@ export default function ListingPage() {
 
   const galleryImages = [
     { src: "/bilseng.jpg", alt: "Bilseng med lys" },
-    { src: "/utsikt4.jpg", alt: "Utsikt fra hagen" },
-    { src: "/utsikt2.jpg", alt: "Solnedgang" },
     { src: "/treningsrom1.jpg", alt: "Treningsrom" },
     { src: "/tvstue1.jpg", alt: "TV stue" },
   ];
