@@ -111,7 +111,7 @@ export default function ListingPage() {
   onClick={() => alert("Hei! Har du spørsmål? 😄 Chat kommer snart...")}
 >
   <Image
-    src={AvatarImage}
+    src={avatar-deivi.png}
     alt="Chat med Deivi"
     width={80}
     height={80}
