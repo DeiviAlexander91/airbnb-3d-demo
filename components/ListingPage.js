@@ -32,16 +32,20 @@
         margin: 0.5em auto 1.5em;
         max-width: 700px;
       }
-      .cta-button {
-        display: block;
-        margin: 0 auto 1.5em;
-        padding: 10px 25px;
+      .cta-link {
+        display: inline-block;
+        margin: 30px auto;
+        padding: 12px 30px;
         font-size: 1em;
         background-color: #ff4f9b;
         color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
+        border-radius: 25px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+      .cta-link:hover {
+        background-color: #e8438b;
       }
       .hero img {
         width: 100%;
@@ -79,36 +83,43 @@
     </style>
   </head>
   <body>
-    <div class="container">-
-<h1 className="text-4xl font-bold text-center">
-  Velkommen til ditt drømmehjem i Sandnes
-</h1>
-<p className="text-center text-gray-800 mt-4 text-base">
-  Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for familier, par og venner.
-</p>
+    <div class="container">
+      <h1>Velkommen til ditt drømmehjem i Sandnes</h1>
+      <p class="description">
+        Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig –
+        perfekt for familier, par og venner.
+      </p>
 
-{/* Engelske linjer – sekundær, men elegant */}
-<h2 className="text-xl font-medium text-center text-gray-700 mt-8">
-  Grill nights, firelight and views – make yourself at home
-</h2>
-<p className="text-center text-gray-600 mt-2 text-sm italic">
-  Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
-</p>
-<div style={{ textAlign: 'center', marginTop: '30px' }}>
-  <a
-  href="https://www.airbnb.no/rooms/1282008856141933433"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-block px-6 py-3 bg-pink-500 text-white text-base rounded-full hover:bg-pink-600 transition">
-  Start ferien din her
-</a>
+      <h2>Grill nights, firelight and views – make yourself at home</h2>
+      <p class="description" style="font-style: italic; color: #666;">
+        Cozy fire nights, scenic views and room to relax – everything you need
+        for a memorable stay.
+      </p>
+
+      <!-- CTA-knapp -->
+      <div style="text-align: center;">
+        <a
+          href="https://www.airbnb.no/rooms/1282008856141933433"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-link"
+        >
+          Start ferien din her
+        </a>
+      </div>
+
+      <!-- Bilde (hvis ønsket) -->
+      <div class="hero">
+        <img src="/bilseng.jpg" alt="bilseng" />
+      </div>
+
       <div class="amenities">
-        <div class="amenity">💬 Hemmekino</div>
-        <div class="amenity">📶 Hiu speed internet</div>
-        <div class="amenity">⚡️ Utsabt</div>
-        <div class="amenity">💪 Hurrig Wifi</div>
-        <div class="amenity">🍽 Fulti kjøkken</div>
-        <div class="amenity">❌ Fultii kjøkken</div>
+        <div class="amenity">🎬 Hjemmekino</div>
+        <div class="amenity">📶 High speed internet</div>
+        <div class="amenity">⚡️ Utsikt</div>
+        <div class="amenity">💪 Hurtig Wifi</div>
+        <div class="amenity">🍽 Fullt kjøkken</div>
+        <div class="amenity">🛏 Komfortable senger</div>
       </div>
 
       <h2>Galleri</h2>
@@ -116,7 +127,7 @@
         <img src="/utsikt1.jpg" alt="utsikt 1" />
         <img src="/utsikt2.jpg" alt="utsikt 2" />
         <img src="/utsikt3.jpg" alt="utsikt 3" />
-      </div> {/* Galleri-slutt */}
- </div>
+      </div>
+    </div>
   </body>
 </html>
