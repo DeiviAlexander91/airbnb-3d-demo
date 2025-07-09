@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import ChatBot from "../components/ChatBot";
 
 export default function Listing() {
   const [modalImage, setModalImage] = useState(null);
@@ -149,6 +150,7 @@ export default function Listing() {
           className="rounded-full shadow-md hover:scale-105 transition-transform"
         />
       </div>
+
     </div>
   );
 }
