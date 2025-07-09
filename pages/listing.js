@@ -12,7 +12,7 @@ export default function ListingPage() {
       image: "/tvstue1.jpg",
     },
     {
-      label: "Utsikt / Scenic view",
+      label: "Utsikt / view",
       icon: "🌅",
       image: "/utsikt4.jpg",
     },
