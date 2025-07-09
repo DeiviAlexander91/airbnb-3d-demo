@@ -1,98 +1,121 @@
-import { useState } from "react";
+import { useState } from 'react';
+import Image from 'next/image';
 
 export default function ListingPage() {
-  const [activeGallery, setActiveGallery] = useState(null);
+  const [modalImage, setModalImage] = useState(null);
 
-  const galleries = {
-    kitchen: ["/utsikt4.jpg"],
-    tv: ["/tvstue1.jpg"],
-    bedroom: ["/soverom1.jpg"],
-    washing: ["/treningsrom1.jpg"],
-    charger: ["/lader1.jpg"],
-    firepit: ["/bilseng.jpg"]
-  };
+  const equipment = [
+    {
+      label: 'TV-stue / TV lounge',
+      icon: '🛋️',
+      image: '/tvstue1.jpg',
+    },
+    {
+      label: 'Utsikt / Scenic view',
+      icon: '🌍',
+      image: '/utsikt4.jpg',
+    },
+    {
+      label: 'Komfortable senger / Cozy beds',
+      icon: '🛏️',
+      image: '/soverom1.jpg',
+    },
+    {
+      label: 'Kjøkken / Kitchen equipped',
+      icon: '🍽️',
+      image: '/kjokken.jpg',
+    },
+    {
+      label: 'WiFi / Free WiFi',
+      icon: '📶',
+    },
+    {
+      label: 'Elbillader / EV charger',
+      icon: '🔋',
+      image: '/lader1.jpg',
+    },
+    {
+      label: 'Vaskemaskin / Washing machine',
+      icon: '💊',
+      image: '/vaskemaskin.jpg',
+    },
+    {
+      label: 'Bålpanne / Fire pit',
+      icon: '🔥',
+      image: '/balpanne.jpg',
+    },
+  ];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 text-gray-800">
-      <h1 className="text-4xl font-bold text-center">
+    <div className="bg-pink-50 min-h-screen py-8 text-center text-gray-900">
+      <h1 className="text-3xl md:text-4xl font-bold mb-2">
         Velkommen til ditt drømmehjem i Sandnes
       </h1>
-      <p className="text-center mt-2 text-base text-gray-700">
+      <p className="text-sm md:text-base text-gray-800 mb-1">
         Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for familier, par og venner.
       </p>
-      <p className="text-center mt-1 text-base italic text-gray-600">
+      <p className="text-sm italic text-gray-600 mb-4">
         Enjoy sunsets, firelight and comfort in a modern family-friendly home
       </p>
 
-      <div className="mt-10">
-        <img src="/bilseng.jpg" alt="bilseng" className="rounded-xl w-full" />
-      </div>
+      <div className="max-w-3xl mx-auto">
+        <Image
+          src="/utsikt1.jpg"
+          alt="Hero image"
+          width={1200}
+          height={700}
+          className="rounded-xl mb-6 w-full object-cover"
+        />
 
-      <p className="text-center text-sm text-gray-600 mt-8 italic">
-        Trykk på ikonene for å se bilder av utstyret / Click on the icons to view equipment
-      </p>
+        <p className="text-xs italic text-gray-500 mb-4">
+          Trykk på ikonene for å se bilder av utstyret / Click on the icons to view equipment
+        </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-4 text-sm text-center">
-        <button onClick={() => setActiveGallery("tv")} className="hover:underline">
-          🔍 📺 TV-stue / TV lounge
-        </button>
-        <button onClick={() => setActiveGallery("bedroom")} className="hover:underline">
-          🔍 🛏️ Komfortable senger / Cozy beds
-        </button>
-        <button onClick={() => setActiveGallery("kitchen")} className="hover:underline">
-          🔍 🍽️ Kjøkken / Kitchen equipped
-        </button>
-        <div>🌅 Utsikt / Scenic view</div>
-        <div>🌐 WiFi / Free WiFi</div>
-        <button onClick={() => setActiveGallery("charger")} className="hover:underline">
-          🔍 🔌 Elbillader / EV charger
-        </button>
-        <button onClick={() => setActiveGallery("washing")} className="hover:underline">
-          🔍 🧼 Vaskemaskin / Washing machine
-        </button>
-        <button onClick={() => setActiveGallery("firepit")} className="hover:underline">
-          🔍 🔥 Bålpanne / Fire pit
-        </button>
-      </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm md:text-base mb-6">
+          {equipment.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => item.image && setModalImage(item.image)}
+              className={`flex items-center gap-1 justify-center hover:underline focus:outline-none transition ${
+                item.image ? 'cursor-pointer' : 'cursor-default opacity-70'
+              }`}
+            >
+              <span>{item.icon}</span>
+              {item.label}
+            </button>
+          ))}
+        </div>
 
-      <div className="text-center mt-10 mb-12">
         <a
           href="https://www.airbnb.no/rooms/1282008856141933433"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-full shadow-md hover:bg-pink-700 transition duration-300"
+          className="inline-block px-6 py-3 bg-pink-600 text-white text-base rounded-full hover:bg-pink-700 transition"
         >
           Start ferien din her
         </a>
       </div>
 
-      <h2 className="text-2xl font-semibold mb-4 text-center">Galleri</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-20">
-        <img src="/utsikt1.jpg" alt="utsikt 1" className="rounded-lg" />
-        <img src="/utsikt2.jpg" alt="utsikt 2" className="rounded-lg" />
-        <img src="/utsikt3.jpg" alt="utsikt 3" className="rounded-lg" />
+      <h2 className="text-lg font-semibold mt-10 mb-3">Galleri</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 max-w-5xl mx-auto">
+        <Image src="/bilseng.jpg" alt="bilseng" width={500} height={300} className="rounded-md object-cover" />
+        <Image src="/utsikt2.jpg" alt="utsikt 2" width={500} height={300} className="rounded-md object-cover" />
+        <Image src="/treningsrom1.jpg" alt="treningsrom" width={500} height={300} className="rounded-md object-cover" />
       </div>
 
-      {activeGallery && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-lg max-w-2xl w-full relative">
-            <button
-              className="absolute top-2 right-2 text-xl font-bold"
-              onClick={() => setActiveGallery(null)}
-            >
-              ×
-            </button>
-            <h2 className="text-xl font-semibold mb-4 text-center capitalize">
-              {activeGallery.charAt(0).toUpperCase() + activeGallery.slice(1)} gallery
-            </h2>
-            <div className="grid grid-cols-2 gap-4">
-              {galleries[activeGallery].map((src, index) => (
-                <img key={index} src={src} alt={`gallery ${index}`} className="rounded" />
-              ))}
-            </div>
-          </div>
+      {modalImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setModalImage(null)}
+        >
+          <img
+            src={modalImage}
+            alt="utstyr"
+            className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg"
+          />
         </div>
       )}
     </div>
   );
 }
+
