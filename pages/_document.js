@@ -10,8 +10,10 @@ export default function Document() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <body className="bg-[#fff9f6] text-black font-sans">
+     <Head>
+  <link rel="preload" href="/avatar-deivi.png" as="image" />
+</Head>
+
         <Main />
         <NextScript />
       </body>
