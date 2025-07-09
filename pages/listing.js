@@ -48,12 +48,10 @@ export default function ListingPage() {
     },
   ];
 
-  const gallery = [
-    "/barnerom.jpg",  // Riktig plassering av barnerom
-    "/utsikt1.jpg",
-    "/utsikt2.jpg",
-    "/utsikt3.jpg",
-    "/treningsrom1.jpg",
+const gallery = [
+  "/barnerom.jpg",
+  "/utsikt1.jpg",
+  "/treningsrom1.jpg"
   ];
 
   return (
