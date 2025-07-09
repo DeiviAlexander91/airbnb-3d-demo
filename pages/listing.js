@@ -1,7 +1,10 @@
+import { useState } from "react";
 
 export default function ListingPage() {
+  const [showKitchenGallery, setShowKitchenGallery] = useState(false);
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 text-gray-800">
+    <div className="max-w-5xl mx-auto px-4 py-8 text-gray-800">
       <h1 className="text-4xl font-bold text-center">
         Velkommen til ditt drømmehjem i Sandnes
       </h1>
@@ -10,47 +13,44 @@ export default function ListingPage() {
         perfekt for familier, par og venner.
       </p>
 
-      <h2 className="text-xl font-medium text-center mt-8">
-        Grill nights, firelight and views – make yourself at home
-      </h2>
-      <p className="text-center mt-2 text-sm italic text-gray-600">
-        Cozy fire nights, scenic views and room to relax – everything you need
-        for a memorable stay.
-      </p>
-
-      <div className="mt-10">
-        <img src="/bilseng.jpg" alt="bilseng" className="rounded-xl w-full" />
-      </div>
-             <div className="text-center mt-8">
-        <a
-          href="https://www.airbnb.no/rooms/1282008856141933433"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-full hover:bg-pink-700 transition duration-300"
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 text-sm text-center">
+        <div>📺 TV-stue / TV lounge</div>
+        <div>🌅 Utsikt / Scenic view</div>
+        <div>🛏️ Komfortable senger / Cozy beds</div>
+        <button
+          className="hover:underline focus:outline-none"
+          onClick={() => setShowKitchenGallery(true)}
         >
-          Start ferien din her
-        </a>
+          🍽️ Kjøkken / Kitchen equipped
+        </button>
+        <div>🌐 WiFi / Free WiFi</div>
+        <div>🔌 Elbillader / EV charger</div>
+        <div>🧼 Vaskemaskin / Washing machine</div>
+        <div>🔥 Bålpanne / Fire pit</div>
       </div>
 
-<div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 text-sm text-center">
-  <div>📺 TV-stue / TV lounge</div>
-  <div>🌅 Utsikt / Scenic view</div>
-  <div>🛏️ Komfortable senger / Cozy beds</div>
-  <div>🍽️ Kjøkken / Kitchen equipped</div>
-  <div>🌐 WiFi / Free WiFi</div>
-  <div>🔌 Elbillader / EV charger</div>
-  <div>🧼 Vaskemaskin / Washing machine</div>
-  <div>🔥 Bålpanne / Fire pit</div>
-</div>
-
-
-
-      <h2 className="text-2xl font-semibold mt-12 mb-4 text-center">Galleri</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <img src="/utsikt1.jpg" alt="utsikt 1" className="rounded-lg" />
-        <img src="/utsikt2.jpg" alt="utsikt 2" className="rounded-lg" />
-        <img src="/utsikt3.jpg" alt="utsikt 3" className="rounded-lg" />
-      </div>
+      {/* Modal popup for kitchen gallery */}
+      {showKitchenGallery && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-4 rounded-lg max-w-2xl w-full relative">
+            <button
+              className="absolute top-2 right-2 text-xl font-bold"
+              onClick={() => setShowKitchenGallery(false)}
+            >
+              ×
+            </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">
+              Kjøkkenutstyr / Kitchen equipment
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              <img src="/utsikt1.jpg" alt="utstyr 1" className="rounded" />
+              <img src="/utsikt2.jpg" alt="utstyr 2" className="rounded" />
+              <img src="/utsikt3.jpg" alt="utstyr 3" className="rounded" />
+              <img src="/bilseng.jpg" alt="utstyr 4" className="rounded" />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
