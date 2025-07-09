@@ -21,6 +21,11 @@ export default function ListingPage() {
         Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig –
         perfekt for familier, par og venner.
       </p>
+               <h2>Grill nights, firelight and views – make yourself at home</h2>
+      <p class="description" style="font-style: italic; color: #666;">
+        Cozy fire nights, scenic views and room to relax – everything you need
+        for a memorable stay.
+      </p>
 
       <div className="mt-10">
         <img src="/bilseng.jpg" alt="bilseng" className="rounded-xl w-full" />
