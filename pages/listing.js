@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function ListingPage() {
+export default function Listing() {
   const [modalImage, setModalImage] = useState(null);
 
   const equipment = [
