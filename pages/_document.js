@@ -8,12 +8,17 @@ export default function Document() {
         {/* Font og ikoner */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+          rel="stylesheet"
+        />
         <link rel="icon" href="/favicon.ico" />
-     <Head>
-  <link rel="preload" href="/avatar-deivi.png" as="image" />
 
-       <Main />
+        {/* Forhåndsinnlasting av avatar */}
+        <link rel="preload" href="/avatar-deivi.png" as="image" />
+      </Head>
+      <body>
+        <Main />
         <NextScript />
       </body>
     </Html>
