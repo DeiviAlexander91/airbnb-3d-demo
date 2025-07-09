@@ -149,7 +149,7 @@ const gallery = [
         className="rounded-full shadow-md hover:scale-105 transition-transform"
       />
     </div>
-</div> {/* slutt på hele return */}
+</div> 
 
         </div>
       )}
