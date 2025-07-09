@@ -18,7 +18,10 @@ export default function ListingPage() {
         for a memorable stay.
       </p>
 
-      <div className="text-center mt-8">
+      <div className="mt-10">
+        <img src="/bilseng.jpg" alt="bilseng" className="rounded-xl w-full" />
+      </div>
+             <div className="text-center mt-8">
         <a
           href="https://www.airbnb.no/rooms/1282008856141933433"
           target="_blank"
@@ -27,10 +30,6 @@ export default function ListingPage() {
         >
           Start ferien din her
         </a>
-      </div>
-
-      <div className="mt-10">
-        <img src="/bilseng.jpg" alt="bilseng" className="rounded-xl w-full" />
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-10 text-sm text-center">
