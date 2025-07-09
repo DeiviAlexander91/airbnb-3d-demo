@@ -29,6 +29,7 @@ export default function ListingPage() {
     {
       label: "WiFi",
       icon: "📶",
+      image: "/wifi.jpg",
     },
     {
       label: "Elbillader / EV charger",
@@ -43,10 +44,17 @@ export default function ListingPage() {
     {
       label: "Bålpanne / Fire pit",
       icon: "🔥",
+      image: "/balplass.jpg",
     },
   ];
 
-  const gallery = ["/barnerom.jpg", "/treningsrom1.jpg", "/utsikt3.jpg"];
+  const gallery = [
+    "/barnerom.jpg",  // Riktig plassering av barnerom
+    "/utsikt1.jpg",
+    "/utsikt2.jpg",
+    "/utsikt3.jpg",
+    "/treningsrom1.jpg",
+  ];
 
   return (
     <div className="bg-pink-50 min-h-screen text-center text-gray-900 px-4">
@@ -86,10 +94,10 @@ export default function ListingPage() {
               key={index}
               onClick={() => item.image && setModalImage(item.image)}
               className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
-                item.image ? "text-blue-800" : "text-gray-500"
+                item.image ? "text-blue-800 hover:text-blue-600" : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              <span className="text-xl">{item.icon}</span>
+              <span className="text-2xl mb-1">{item.icon}</span>
               <span>{item.label}</span>
             </div>
           ))}
@@ -104,11 +112,20 @@ export default function ListingPage() {
           Start ferien din her
         </a>
 
-        <h3 className="text-lg font-semibold mb-2">Galleri</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <h3 className="text-lg font-semibold mb-4">Galleri</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {gallery.map((img, index) => (
-            <div key={index} className="overflow-hidden rounded-xl shadow">
-              <Image src={img} alt={`Galleri ${index + 1}`} width={400} height={300} />
+            <div
+              key={index}
+              className="overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300"
+            >
+              <Image
+                src={img}
+                alt={`Galleri ${index + 1}`}
+                width={400}
+                height={300}
+                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+              />
             </div>
           ))}
         </div>
