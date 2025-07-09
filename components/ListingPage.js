@@ -72,8 +72,7 @@ export default function ListingPage() {
           href="https://www.airbnb.no/rooms/1282008856141933433"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8"
-        >
+          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8">
           Start ferien din her
         </a>
 
@@ -82,8 +81,7 @@ export default function ListingPage() {
           {gallery.map((img, index) => (
             <div
               key={index}
-              className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300"
-            >
+              className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300">
               <Image
                 src={img}
                 alt={`Galleri ${index + 1}`}
@@ -100,16 +98,14 @@ export default function ListingPage() {
       {modalImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setModalImage(null)}
-        >
+          onClick={() => setModalImage(null)}>
           <div className="bg-white p-4 rounded-xl max-w-xl">
             <Image src={modalImage} alt="Utstyrsdetalj" width={800} height={600} />
           </div>
             {/* Chat-avatar */}
 <div
   className="fixed bottom-6 right-6 cursor-pointer z-50 hover:scale-105 transition-transform duration-300"
-  onClick={() => alert("Hei! Har du spørsmål? 😊 Chat kommer snart...")}
->
+  onClick={() => alert("Hei! Har du spørsmål? 😊 Chat kommer snart...")}>
   <img
     src="/avatar-deivi.png"
     alt="Chat med Deivi"
