@@ -29,14 +29,16 @@ export default function ChatBot() {
         }
       );
 
-      const botReply = response.data?.[0]?.generated_text || "Beklager, jeg forstod ikke helt 🤖";
+      const botReply =
+        response.data?.[0]?.generated_text ||
+        "Beklager, jeg forstod ikke helt 🤖";
       setMessages((prev) => [...prev, { from: "bot", text: botReply }]);
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { from: "bot", text: "Oops! Noe gikk galt med AI-svaret 😥" },
+        { from: "bot", text: "Oops! Noe gikk galt med svaret. Prøv igjen senere 😕" },
       ]);
-      console.error("API-feil:", error);
+      console.error("Feil i forespørsel:", error);
     } finally {
       setLoading(false);
     }
@@ -44,7 +46,9 @@ export default function ChatBot() {
 
   return (
     <div className="fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200">
-      <div className="bg-pink-600 text-white p-3 font-semibold">DeiviBot – AI-assistent</div>
+      <div className="bg-pink-600 text-white p-3 font-semibold">
+        DeiviBot – Din digitale vert
+      </div>
       <div className="p-4 max-h-80 overflow-y-auto space-y-2 text-sm">
         {messages.map((msg, idx) => (
           <div
@@ -58,12 +62,12 @@ export default function ChatBot() {
             {msg.text}
           </div>
         ))}
-        {loading && <div className="text-xs text-gray-400">Skriver...</div>}
+        {loading && <div className="text-gray-400 italic">Skriver svar...</div>}
       </div>
       <div className="p-3 border-t flex gap-2">
         <input
           type="text"
-          placeholder="Skriv en melding..."
+          placeholder="Spør meg om noe..."
           className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
           value={input}
           onChange={(e) => setInput(e.target.value)}
