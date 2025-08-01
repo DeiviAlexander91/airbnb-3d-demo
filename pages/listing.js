@@ -4,54 +4,27 @@ import ChatBot from "../components/ChatBot";
 
 export default function Listing() {
   const [modalImage, setModalImage] = useState(null);
+  const [showChat, setShowChat] = useState(false);
+
+  const toggleChat = () => {
+    setShowChat(!showChat);
+  };
 
   const equipment = [
-    {
-      label: "TV-stue / TV lounge",
-      icon: "📺",
-      image: "/tvstue1.jpg",
-    },
-    {
-      label: "Utsikt / view",
-      icon: "🌅",
-      image: "/utsikt4.jpg",
-    },
-    {
-      label: "Komfortable senger / Cozy beds",
-      icon: "🛏️",
-      image: "/soverom1.jpg",
-    },
-    {
-      label: "Kjøkken / Kitchen equipped",
-      icon: "🍴",
-      image: "/utstyr1.jpg",
-    },
-    {
-      label: "WiFi",
-      icon: "📶",
-      image: "/wifi.jpg",
-    },
-    {
-      label: "Elbillader / EV charger",
-      icon: "🔌",
-      image: "/lader1.jpg",
-    },
-    {
-      label: "Vaskemaskin / Washing machine",
-      icon: "🧺",
-      image: "/treningsrom1.jpg",
-    },
-    {
-      label: "Bålpanne / Fire pit",
-      icon: "🔥",
-      image: "/balplass.jpg",
-    },
+    { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
+    { label: "Utsikt / view", icon: "🌅", image: "/utsikt4.jpg" },
+    { label: "Komfortable senger / Cozy beds", icon: "🛏️", image: "/soverom1.jpg" },
+    { label: "Kjøkken / Kitchen equipped", icon: "🍴", image: "/utstyr1.jpg" },
+    { label: "WiFi", icon: "📶", image: "/wifi.jpg" },
+    { label: "Elbillader / EV charger", icon: "🔌", image: "/lader1.jpg" },
+    { label: "Vaskemaskin / Washing machine", icon: "🧺", image: "/treningsrom1.jpg" },
+    { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
   ];
 
-  const gallery = [
-    "/barnerom.jpg",
-    "/tvstue1.jpg",
-    "/treningsrom1.jpg"
+  const galleryImages = [
+    { src: "/barnerom.jpg", alt: "Barnerom" },
+    { src: "/utsikt1.jpg", alt: "Utsikt 1" },
+    { src: "/treningsrom1.jpg", alt: "Treningsrom" },
   ];
 
   return (
@@ -68,8 +41,7 @@ export default function Listing() {
           Grill nights, firelight and views – make yourself at home
         </h2>
         <p className="italic text-sm text-gray-600 mb-6">
-          Cozy fire nights, scenic views and room to relax – everything you need for a memorable
-          stay.
+          Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
         </p>
 
         <div className="rounded-xl overflow-hidden shadow-lg mb-4">
@@ -79,6 +51,7 @@ export default function Listing() {
             width={1200}
             height={800}
             className="w-full h-auto"
+            priority
           />
         </div>
 
@@ -92,7 +65,9 @@ export default function Listing() {
               key={index}
               onClick={() => item.image && setModalImage(item.image)}
               className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
-                item.image ? "text-blue-800 hover:text-blue-600" : "text-gray-500 hover:text-gray-700"
+                item.image
+                  ? "text-blue-800 hover:text-blue-600"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               <span className="text-2xl mb-1">{item.icon}</span>
@@ -112,45 +87,61 @@ export default function Listing() {
 
         <h3 className="text-lg font-semibold mb-4">Galleri</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {gallery.map((img, index) => (
+          {galleryImages.map((img, index) => (
             <div
-              key={index}
-              className="overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow duration-300"
+              key={`gallery-${index}`}
+              className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow bg-gray-100"
             >
               <Image
-                src={img}
-                alt={`Galleri ${index + 1}`}
-                width={400}
-                height={300}
-                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={index < 3}
               />
             </div>
           ))}
         </div>
       </div>
 
+      {/* Avatar-knapp for å åpne/lukke chatboten */}
+      <div
+        className="fixed top-4 right-4 cursor-pointer z-50 hover:scale-105 transition-transform"
+        onClick={toggleChat}
+      >
+        <Image
+          src="/avatar-deivi.png?ver=2"
+          alt="Chat-hjelp"
+          width={80}
+          height={80}
+          className="rounded-full shadow-xl"
+          unoptimized
+          priority
+        />
+      </div>
+
+      {/* Chatbot vises når avataren er trykket */}
+      {showChat && <ChatBot />}
+
+      {/* Bilde-modalen */}
       {modalImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
           onClick={() => setModalImage(null)}
         >
           <div className="bg-white p-4 rounded-xl max-w-xl">
-            <Image src={modalImage} alt="Utstyrsdetalj" width={800} height={600} />
+            <Image
+              src={modalImage}
+              alt="Utstyrsdetalj"
+              width={800}
+              height={600}
+              className="w-full h-auto"
+              unoptimized
+            />
           </div>
         </div>
       )}
-
-      {/* Chat-avatar nederst til høyre – alltid synlig */}
-      <div onClick={() => alert("Hei! Hva vil du vite?")} className="fixed bottom-5 right-5 z-50 cursor-pointer">
-        <Image
-          src="/avatar-deivi.png?ver=2"
-          alt="Chat Avatar"
-          width={64}
-          height={64}
-          className="rounded-full shadow-md hover:scale-105 transition-transform"
-        />
-      </div>
-
     </div>
   );
 }
