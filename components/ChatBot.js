@@ -17,28 +17,18 @@ export default function ChatBot() {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        process.env.NEXT_PUBLIC_HF_API_URL,
-        {
-          inputs: input,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_HF_API_KEY}`,
-          },
-        }
-      );
+      const response = await axios.post("/api/chat", {
+        message: input,
+      });
 
-      const botReply =
-        response.data?.[0]?.generated_text ||
-        "Beklager, jeg forstod ikke helt 🤖";
+      const botReply = response.data.reply || "Beklager, jeg forstod ikke helt 🤖";
       setMessages((prev) => [...prev, { from: "bot", text: botReply }]);
     } catch (error) {
       setMessages((prev) => [
         ...prev,
         { from: "bot", text: "Oops! Noe gikk galt med svaret. Prøv igjen senere 😕" },
       ]);
-      console.error("Feil i forespørsel:", error);
+      console.error("Feil i API-kall:", error);
     } finally {
       setLoading(false);
     }
