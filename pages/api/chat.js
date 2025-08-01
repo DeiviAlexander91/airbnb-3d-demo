@@ -1,22 +1,17 @@
 // pages/api/chat.js
 
 export default async function handler(req, res) {
-  const { messages } = req.body; // array av { role: "user"|"assistant", content: string }
+  const { messages } = req.body; // array av { role, content }
 
-  // 1) System-prompt
-  const systemPrompt = 
+  // System-prompt + flatten samtale
+  const systemPrompt =
     "Du er DeiviBot, en vennlig og hjelpsom AI-vert for et feriehus i Sandnes. " +
     "Svar kort, på norsk, gi tips om fasiliteter, lokale attraksjoner og reiseveier.";
 
-  // 2) Flatten samtalen til én streng
   const conversation = messages
-    .map((m) => {
-      const speaker = m.role === "user" ? "Bruker" : "AI";
-      return `${speaker}: ${m.content.trim()}`;
-    })
+    .map(m => `${m.role === "user" ? "Bruker" : "AI"}: ${m.content.trim()}`)
     .join("\n");
 
-  // 3) Legg på en avsluttende AI-indikator
   const prompt = `${systemPrompt}\n\n${conversation}\nAI:`;
 
   try {
@@ -31,17 +26,20 @@ export default async function handler(req, res) {
         body: JSON.stringify({ inputs: prompt }),
       }
     );
-
     const data = await hfRes.json();
 
-    if (Array.isArray(data) && data[0]?.generated_text) {
-      // Hugging Face response ligger i data[0].generated_text
-      const reply = data[0].generated_text.trim();
-      return res.status(200).json({ reply });
+    // Håndter begge tilfeller: objekt eller liste
+    let reply;
+    if (data.generated_text) {
+      reply = data.generated_text;
+    } else if (Array.isArray(data) && data[0]?.generated_text) {
+      reply = data[0].generated_text;
     } else {
-      console.error("Uventet HF-svar:", data);
+      console.error("Uventet HF-respons:", data);
       return res.status(500).json({ error: "Ingen gyldig respons fra AI" });
     }
+
+    return res.status(200).json({ reply: reply.trim() });
   } catch (err) {
     console.error("API-error:", err);
     return res.status(500).json({ error: "Feil i chat-API" });
