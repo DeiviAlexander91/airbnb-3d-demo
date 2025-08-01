@@ -11,24 +11,32 @@ export default function ChatBot() {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { from: "user", text: input };
-    setMessages((prev) => [...prev, userMessage]);
+    // Legg bruker-melding til historikken
+    const newMessages = [
+      ...messages,
+      { from: "user", text: input }
+    ];
+    setMessages(newMessages);
     setInput("");
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/chat", {
-        message: input,
-      });
+      // Map til role/content-format
+      const apiMsgs = newMessages.map((m) => ({
+        role: m.from === "bot" ? "assistant" : "user",
+        content: m.text,
+      }));
 
-      const botReply = response.data.reply || "Beklager, jeg forstod ikke helt 🤖";
-      setMessages((prev) => [...prev, { from: "bot", text: botReply }]);
-    } catch (error) {
+      const res = await axios.post("/api/chat", { messages: apiMsgs });
+
+      const reply = res.data.reply?.trim() || "Beklager, jeg forstod ikke helt 🤔";
+      setMessages((prev) => [...prev, { from: "bot", text: reply }]);
+    } catch (err) {
+      console.error("Chat-error:", err);
       setMessages((prev) => [
         ...prev,
-        { from: "bot", text: "Oops! Noe gikk galt med svaret. Prøv igjen senere 😕" },
+        { from: "bot", text: "Oops, noe gikk galt. Prøv igjen om litt!" },
       ]);
-      console.error("Feil i API-kall:", error);
     } finally {
       setLoading(false);
     }
@@ -40,24 +48,22 @@ export default function ChatBot() {
         DeiviBot – Din digitale vert
       </div>
       <div className="p-4 max-h-80 overflow-y-auto space-y-2 text-sm">
-        {messages.map((msg, idx) => (
+        {messages.map((m, i) => (
           <div
-            key={idx}
+            key={i}
             className={`p-2 rounded-lg ${
-              msg.from === "bot"
-                ? "bg-gray-100 text-left"
-                : "bg-pink-100 text-right"
+              m.from === "bot" ? "bg-gray-100 text-left" : "bg-pink-100 text-right"
             }`}
           >
-            {msg.text}
+            {m.text}
           </div>
         ))}
-        {loading && <div className="text-gray-400 italic">Skriver svar...</div>}
+        {loading && <div className="text-gray-400 italic">Skriver svar…</div>}
       </div>
       <div className="p-3 border-t flex gap-2">
         <input
           type="text"
-          placeholder="Spør meg om noe..."
+          placeholder="Spør meg om noe…"
           className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
           value={input}
           onChange={(e) => setInput(e.target.value)}
