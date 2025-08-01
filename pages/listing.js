@@ -23,7 +23,7 @@ export default function Listing() {
 
   const galleryImages = [
     { src: "/barnerom.jpg", alt: "Barnerom" },
-    { src: "/utsikt1.jpg", alt: "Utsikt 1" },
+    { src: "/forsidelayout.jpg", alt: "forsidelayout" },
     { src: "/treningsrom1.jpg", alt: "Treningsrom" },
   ];
 
