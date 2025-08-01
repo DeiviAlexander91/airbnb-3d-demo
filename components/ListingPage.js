@@ -1,14 +1,13 @@
 import { useState } from "react";
 import Image from "next/image";
+import ChatBot from "../components/ChatBot";
 
 export default function Listing() {
   const [modalImage, setModalImage] = useState(null);
   const [showChat, setShowChat] = useState(false);
-  const [firstMessage, setFirstMessage] = useState(false);
 
   const toggleChat = () => {
     setShowChat(!showChat);
-    if (!firstMessage) setFirstMessage(true);
   };
 
   const equipment = [
@@ -25,7 +24,7 @@ export default function Listing() {
   const galleryImages = [
     { src: "/barnerom.jpg", alt: "Barnerom" },
     { src: "/utsikt1.jpg", alt: "Utsikt 1" },
-    { src: "/treningsrom1.jpg", alt: "Treningsrom" }
+    { src: "/treningsrom1.jpg", alt: "Treningsrom" },
   ];
 
   return (
@@ -66,7 +65,9 @@ export default function Listing() {
               key={index}
               onClick={() => item.image && setModalImage(item.image)}
               className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
-                item.image ? "text-blue-800 hover:text-blue-600" : "text-gray-500 hover:text-gray-700"
+                item.image
+                  ? "text-blue-800 hover:text-blue-600"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               <span className="text-2xl mb-1">{item.icon}</span>
@@ -104,8 +105,8 @@ export default function Listing() {
         </div>
       </div>
 
-      {/* Avatar-knapp */}
-      <div 
+      {/* Avatar-knapp for å åpne/lukke chatboten */}
+      <div
         className="fixed top-4 right-4 cursor-pointer z-50 hover:scale-105 transition-transform"
         onClick={toggleChat}
       >
@@ -120,36 +121,10 @@ export default function Listing() {
         />
       </div>
 
-      {/* Chat-popup */}
-      {showChat && (
-        <div className="fixed bottom-28 right-6 w-80 bg-white rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200">
-          <div className="bg-pink-600 text-white p-3 font-semibold flex items-center">
-            <img 
-              src="/avatar-deivi.png" 
-              width={40} 
-              height={40} 
-              className="rounded-full mr-2"
-              alt="Avatar"
-            />
-            <span>DeiviBot - Din digitale vert</span>
-          </div>
-          <div className="p-4">
-            {firstMessage && (
-              <p className="text-gray-700 mb-2 text-sm">Hei! Hva kan jeg hjelpe deg med? 😊</p>
-            )}
-            <textarea
-              className="w-full p-2 border border-gray-300 rounded resize-none text-sm"
-              rows="3"
-              placeholder="Skriv en melding..."
-            />
-            <button className="mt-2 bg-pink-600 text-white px-3 py-1 rounded text-sm hover:bg-pink-700">
-              Send
-            </button>
-          </div>
-        </div>
-      )}
+      {/* ChatBot vises hvis aktivert */}
+      {showChat && <ChatBot />}
 
-      {/* Bilde-modalen */}
+      {/* Bilde-modal */}
       {modalImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
