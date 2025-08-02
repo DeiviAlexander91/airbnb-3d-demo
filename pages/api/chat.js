@@ -1,71 +1,49 @@
 // pages/api/chat.js
 
 export default async function handler(req, res) {
-  const { messages } = req.body; // [{ role, content }, ...]
+  const { messages } = req.body;  
 
-  // 1) System-prompt
-  const systemPrompt =
-    "Du er DeiviBot, en vennlig og hjelpsom AI-vert for et feriehus i Sandnes. " +
-    "Svar kort, på norsk, gi tips om fasiliteter, lokale attraksjoner og reiseveier.";
-
-  // 2) Flatten samtalen til én streng
-  const conversation = messages
-    .map((m) => `${m.role === "user" ? "Bruker" : "AI"}: ${m.content.trim()}`)
-    .join("\n");
-
-  const prompt = `${systemPrompt}\n\n${conversation}\nAI:`;
+  // System-prompt + map til OpenAI-format
+  const chatMessages = [
+    {
+      role: "system",
+      content:
+        "Du er DeiviBot, en hjelpsom AI-vert for et feriehus i Sandnes. " +
+        "Svar kort, på norsk, gi tips om fasiliteter og lokale attraksjoner."
+    },
+    ...messages.map((m) => ({
+      role: m.from === "bot" ? "assistant" : "user",
+      content: m.text
+    }))
+  ];
 
   try {
-    const hfRes = await fetch(
-      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.HF_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ inputs: prompt }),
-      }
-    );
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: chatMessages,
+        temperature: 0.7
+      })
+    });
 
-    // Les rå respons
-    const text = await hfRes.text();
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch (parseErr) {
-      console.error("Ikke-JSON respons fra HF:", text);
-      return res
-        .status(500)
-        .json({ error: "Non-JSON response from HF", details: text });
+    if (!response.ok) {
+      const body = await response.text();
+      console.error("OpenRouter feilet:", response.status, body);
+      return res.status(500).json({ error: "OpenRouter API-feil", details: body });
     }
 
-    console.log("HF-status:", hfRes.status, "HF-data:", data);
+    const data = await response.json();
+    const reply = data.choices?.[0]?.message?.content?.trim();
+    if (!reply) throw new Error("Ingen melding fra OpenRouter");
 
-    // Håndter feilstatus
-    if (!hfRes.ok) {
-      return res
-        .status(500)
-        .json({ error: "HF API error", status: hfRes.status, details: data });
-    }
-
-    // Finn generert tekst
-    const reply =
-      data.generated_text ??
-      (Array.isArray(data) && data[0]?.generated_text) ??
-      null;
-
-    if (!reply) {
-      console.error("Ingen generated_text funnet i respons:", data);
-      return res
-        .status(500)
-        .json({ error: "Ingen generated_text i HF-respons", details: data });
-    }
-
-    return res.status(200).json({ reply: reply.trim() });
+    return res.status(200).json({ reply });
   } catch (err) {
-    console.error("Uventet feil i API-ruta:", err);
-    return res.status(500).json({ error: "Unexpected error", details: err.message });
+    console.error("chat.js error:", err);
+    return res.status(500).json({ error: err.message });
   }
 }
-
