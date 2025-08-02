@@ -3,7 +3,7 @@
 export default async function handler(req, res) {
   const { messages } = req.body;  
 
-  // System-prompt + map til OpenAI-format
+  // Bygg chat-historikken for OpenRouter
   const chatMessages = [
     {
       role: "system",
