@@ -50,13 +50,16 @@ export default function ChatBot() {
   ];
 
   // 🎭 Deivi-facts
-  const deiviFacts = [
-    "Deivi kan skru sammen IKEA-møbler uten manual – og uten ekstra skruer igjen! 🪛🪑🤣",
-    "Når Deivi logger på WiFi, får ruteren bedre signal 📶💪😂",
-    "Han kan grille pølser med bare blikket 🌭🔥😆",
-    "Når han hopper i boblebadet, starter boblene automatisk 🛁💨🤣",
-    "Deivi trenger ikke Google – Google spør ham først 🔍😎",
-  ];
+ const deiviFacts = [
+  "Deivi prøvde å koke pasta – men måtte ringe Edyta for å få vite når vannet koker 🍝🤣",
+  "Når Deivi bruker Google, skriver han bare 'Edyta' og venter på svar 🔍😂",
+  "Han klarte å sette opp Netflix... etter at Edyta hadde trykket på 'OK' for ham 📺😆",
+  "Deivi prøvde å vaske klær alene – maskinen ringte Edyta for hjelp 🧺📞🤣",
+  "Når han griller, må han spørre Edyta om hvilken side av pølsa som skal stekes 🌭🔥😂",
+  "Deivi kan kode nettsider – men bare hvis Edyta nikker godkjennende 💻😉",
+  "Han kjøpte en ny drill… men Edyta måtte forklare hvilken vei som er 'inn' og 'ut' 🔧🤣",
+  "Når Deivi sier 'jeg fikser det', betyr det egentlig 'jeg går og spør Edyta' 😅❤️",
+];
 
   const handleUserMessage = async () => {
     if (!input.trim()) return;
