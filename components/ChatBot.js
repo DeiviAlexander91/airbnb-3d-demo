@@ -6,7 +6,6 @@ export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [typing, setTyping] = useState(false);
 
   const handleUserMessage = async () => {
     if (!input.trim()) return;
@@ -16,34 +15,36 @@ export default function ChatBot() {
 
     const messageText = input.toLowerCase();
     setInput("");
-    setTyping(true);
 
     let botReply = "";
 
-    // Spesialregel for "hvem er Deivi"
-    if (messageText.includes("hvem er deivi")) {
+    // 🎭 Humor-regler
+    if (messageText.includes("deivi") && messageText.includes("edyta")) {
+      botReply =
+        "Deivi + Edyta = Norges ultimate power-couple 💑⚡ Hun er hjernen, han er verktøykassa – sammen kan de fikse alt fra verdenskriser til grillkvelder i hagen 🔧🔥😂";
+    } else if (messageText.includes("hvem er deivi")) {
       botReply =
         "Deivi? Han er basically en blanding av Elon Musk, Iron Man og en barista fra Starbucks. En ekte superhelt fra Sandnes! 🚀🤖☕";
+    } else if (messageText.includes("hvor er deivi")) {
+      botReply =
+        "Akkurat nå? På hemmelig oppdrag… men mest sannsynlig ved nærmeste kaffemaskin ☕🕵️‍♂️";
+    } else if (messageText.includes("hva kan deivi")) {
+      botReply =
+        "Deivi kan fikse alt fra koding til boblebad – han er basically MacGyver med WiFi! 🔧💻🛁";
+    } else if (messageText.includes("hvem er edyta")) {
+      botReply =
+        "Edyta? Hun er rett og slett verdens beste dame 💖 – smartere enn Google, mer tålmodig enn en mobil-lader, og hun holder Deivi i sjakk når han prøver å bygge roboter på kjøkkenet 🤖🍳😂";
+    } else if (messageText.includes("kaffe") || messageText.includes("coffee")) {
+      botReply =
+        "Kaffe? Det er Deivi sitt drivstoff ☕⚡️ Uten kaffe starter ikke dagen, med kaffe kan han fikse hele Sandnes (og kanskje halve Stavanger også)! 😂";
     } else {
-      // Her ville API-kall til HuggingFace/andre ligget
+      // 👇 Standard fallback
       botReply = "La meg tenke litt... 🤔 (API-svar kommer her)";
     }
 
-    // Simuler typing-effekt
-    let displayedText = "";
-    for (let i = 0; i < botReply.length; i++) {
-      displayedText += botReply[i];
-      await new Promise((resolve) => setTimeout(resolve, 20)); // 20ms per bokstav
-      setMessages((prev) => [
-        ...prev.filter((m) => m !== "typing"),
-        "typing",
-      ]);
-      setMessages((prev) =>
-        prev.map((m) => (m === "typing" ? { sender: "bot", text: displayedText } : m))
-      );
-    }
-
-    setTyping(false);
+    // Send hele svaret med en gang
+    const botMessage = { sender: "bot", text: botReply };
+    setMessages((prev) => [...prev, botMessage]);
   };
 
   return (
@@ -86,11 +87,6 @@ export default function ChatBot() {
                 {msg.text}
               </div>
             ))}
-            {typing && (
-              <div className="bg-gray-100 text-gray-600 text-sm p-2 rounded-lg inline-block">
-                ✍️ DeiviBot skriver...
-              </div>
-            )}
           </div>
 
           <div className="mt-2 flex">
@@ -114,5 +110,3 @@ export default function ChatBot() {
     </div>
   );
 }
-
-
