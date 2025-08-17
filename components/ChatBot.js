@@ -11,7 +11,7 @@ export default function ChatBot() {
   const [inDeiviMode, setInDeiviMode] = useState(false);
   const chatEndRef = useRef(null);
 
-  // 👇 Scroll til bunn når meldinger oppdateres
+  // 👇 Auto-scroll til siste melding
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -70,7 +70,13 @@ export default function ChatBot() {
           "Det var alle Edyta-fun facts! 🎉😂\n\nVil du ha noen fun fact om Deivi også? Skriv ja.";
       }
     }
-    // 🎭 Deivi facts starter
+    // 🎭 Start Deivi facts direkte
+    else if (messageText.includes("fun fact om deivi")) {
+      setInDeiviMode(true);
+      const fact = deiviFacts[Math.floor(Math.random() * deiviFacts.length)];
+      botReply = fact + "\n\nVil du ha en ny? Skriv ja.";
+    }
+    // 🎭 Fortsett Deivi facts
     else if (inDeiviMode && messageText === "ja") {
       const fact = deiviFacts[Math.floor(Math.random() * deiviFacts.length)];
       botReply = fact + "\n\nVil du ha en ny? Skriv ja.";
