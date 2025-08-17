@@ -1,81 +1,47 @@
+// components/ChatBot.js
 import { useState } from "react";
-import axios from "axios";
+import Image from "next/image";
 
 export default function ChatBot() {
-  const [messages, setMessages] = useState([
-    { from: "bot", text: "Hei! Jeg er DeiviBot 🤖 – spør meg om hva som helst!" },
-  ]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const sendMessage = async () => {
-    if (!input.trim()) return;
-
-    // Legg bruker-melding til historikken
-    const newMessages = [
-      ...messages,
-      { from: "user", text: input }
-    ];
-    setMessages(newMessages);
-    setInput("");
-    setLoading(true);
-
-    try {
-      // Map til role/content-format
-      const apiMsgs = newMessages.map((m) => ({
-        role: m.from === "bot" ? "assistant" : "user",
-        content: m.text,
-      }));
-
-      const res = await axios.post("/api/chat", { messages: apiMsgs });
-
-      const reply = res.data.reply?.trim() || "Beklager, jeg forstod ikke helt 🤔";
-      setMessages((prev) => [...prev, { from: "bot", text: reply }]);
-    } catch (err) {
-      console.error("Chat-error:", err);
-      setMessages((prev) => [
-        ...prev,
-        { from: "bot", text: "Oops, noe gikk galt. Prøv igjen om litt!" },
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200">
-      <div className="bg-pink-600 text-white p-3 font-semibold">
-        DeiviBot – Din digitale vert
-      </div>
-      <div className="p-4 max-h-80 overflow-y-auto space-y-2 text-sm">
-        {messages.map((m, i) => (
-          <div
-            key={i}
-            className={`p-2 rounded-lg ${
-              m.from === "bot" ? "bg-gray-100 text-left" : "bg-pink-100 text-right"
-            }`}
-          >
-            {m.text}
-          </div>
-        ))}
-        {loading && <div className="text-gray-400 italic">Skriver svar…</div>}
-      </div>
-      <div className="p-3 border-t flex gap-2">
-        <input
-          type="text"
-          placeholder="Spør meg om noe…"
-          className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+    <div className="fixed bottom-6 right-6 flex flex-col items-end space-y-2 z-50">
+      {/* Snakkeboble – vises bare hvis chat ikke er åpen */}
+      {!isOpen && (
+        <div className="bg-white text-gray-800 shadow-lg rounded-2xl px-4 py-2 max-w-[220px] text-sm relative">
+          Hei 👋 Jeg er DeiviBot. Klikk på meg for å chatte!
+          <div className="absolute -bottom-2 right-6 w-0 h-0 border-t-[10px] border-t-white border-x-[10px] border-x-transparent"></div>
+        </div>
+      )}
+
+      {/* Avatar-knapp */}
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-16 h-16 rounded-full shadow-lg cursor-pointer overflow-hidden"
+      >
+        <Image
+          src="/avatar-deivi.png"
+          alt="DeiviBot"
+          width={64}
+          height={64}
+          className="object-cover"
         />
-        <button
-          onClick={sendMessage}
-          className="bg-pink-600 text-white px-3 py-1 rounded hover:bg-pink-700 text-sm"
-        >
-          Send
-        </button>
       </div>
+
+      {/* Selve chat-vinduet */}
+      {isOpen && (
+        <div className="bg-white w-80 h-96 shadow-xl rounded-2xl p-4 flex flex-col">
+          <div className="flex-1 overflow-y-auto">
+            <p className="text-gray-600 text-sm">Hei! Hva lurer du på? 😊</p>
+          </div>
+          <input
+            type="text"
+            placeholder="Skriv en melding..."
+            className="border rounded-md p-2 text-sm mt-2"
+          />
+        </div>
+      )}
     </div>
   );
 }
