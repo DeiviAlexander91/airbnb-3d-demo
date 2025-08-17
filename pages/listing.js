@@ -4,11 +4,6 @@ import ChatBot from "../components/ChatBot";
 
 export default function Listing() {
   const [modalImage, setModalImage] = useState(null);
-  const [showChat, setShowChat] = useState(false);
-
-  const toggleChat = () => {
-    setShowChat(!showChat);
-  };
 
   const equipment = [
     { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
@@ -105,24 +100,8 @@ export default function Listing() {
         </div>
       </div>
 
-      {/* Avatar-knapp for å åpne/lukke chatboten */}
-      <div
-        className="fixed top-4 right-4 cursor-pointer z-50 hover:scale-105 transition-transform"
-        onClick={toggleChat}
-      >
-        <Image
-          src="/avatar-deivi.png?ver=2"
-          alt="Chat-hjelp"
-          width={80}
-          height={80}
-          className="rounded-full shadow-xl"
-          unoptimized
-          priority
-        />
-      </div>
-
-      {/* Chatbot vises når avataren er trykket */}
-      {showChat && <ChatBot />}
+      {/* Chatbot-widget nederst til høyre */}
+      <ChatBot />
 
       {/* Bilde-modalen */}
       {modalImage && (
@@ -145,3 +124,4 @@ export default function Listing() {
     </div>
   );
 }
+
