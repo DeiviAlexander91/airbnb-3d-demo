@@ -1,5 +1,5 @@
 // components/ChatBot.js
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function ChatBot() {
@@ -8,18 +8,33 @@ export default function ChatBot() {
   const [input, setInput] = useState("");
   const [edytaFactIndex, setEdytaFactIndex] = useState(0);
   const [inEdytaMode, setInEdytaMode] = useState(false);
+  const [inDeiviMode, setInDeiviMode] = useState(false);
+  const chatEndRef = useRef(null);
+
+  // 👇 Scroll til bunn når meldinger oppdateres
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const edytaFacts = [
-    "Fun fact om Edyta: Edyta teller ikke til 100. Hun stirrer på tallet til det gir opp.",
-    "Fun fact om Edyta: Når Edyta går inn i et rom, skrur lyset seg på av respekt.",
-    "Fun fact om Edyta: GPS’en spør henne om veien.",
-    "Fun fact om Edyta: Hun kan dele på null – uten kalkulator.",
-    "Fun fact om Edyta: Når hun lager kaffe, blir selv koffeinet våkent. ☕⚡",
-    "Fun fact om Edyta: Hun trenger ikke WiFi – nettet kobler seg på henne.",
-    "Fun fact om Edyta: Hver gang hun vanner planter, begynner de å danse. 🌱💃",
-    "Fun fact om Edyta: Hun har aldri mistet en diskusjon – hun bare pauser samtalen til motparten gir opp.",
-    "Fun fact om Edyta: Når hun tar selfie, blir kameraet smigret. 📸",
-    "Fun fact om Edyta: Hun trenger ikke nøkkel til huset – døra åpner seg selv. 🚪\n\nDet var alt dessverre… visse personer har rett og slett ikke giddå å jobba mer 🙈 Eller kanskje sjefen har kasta ham vekk fra PC-en fordi han må bruke mer tid på huset og familien 🏡😂\n\nMen hey 👀 👉 **vil du ha noen fun fact av Deivi også?**\n\nTjaaa… er ikke så morsomt å si om han, siden de fleste bare vil høre Edyta-fakta isteden 😏 Men jeg har hørt at han er en morsom og kjekk fyr! 😉\n\n*laaaang pause* … når alle er på ferie!! 😎🤫",
+    "Edyta teller ikke til 100 – tallet gir opp først 😎😂",
+    "Når Edyta går inn i et rom, skrur lyset seg på av respekt 💡🙌",
+    "GPS’en spør Edyta om veien 🗺️👉😅",
+    "Hun kan dele på null – uten kalkulator ➗🤯",
+    "Når hun lager kaffe, blir selv koffeinet våkent ☕⚡🤣",
+    "Edyta trenger ikke WiFi – nettet kobler seg på henne 📶😏",
+    "Hver gang hun vanner planter, begynner de å danse 🌱💃😆",
+    "Hun har aldri mistet en diskusjon – hun pauser den til motparten gir opp 🗣️😂",
+    "Når hun tar selfie, blir kameraet smigret 📸😍",
+    "Hun trenger ikke nøkkel til huset – døra åpner seg selv 🚪🤖😂",
+  ];
+
+  const deiviFacts = [
+    "Deivi kan skru sammen IKEA-møbler uten manual – og uten ekstra skruer igjen! 🪛🪑🤣",
+    "Når Deivi logger på WiFi, får ruteren bedre signal 📶💪😂",
+    "Han kan grille pølser med bare blikket 🌭🔥😆",
+    "Når han hopper i boblebadet, starter boblene automatisk 🛁💨🤣",
+    "Deivi trenger ikke Google – Google spør ham først 🔍😎",
   ];
 
   const handleUserMessage = async () => {
@@ -33,27 +48,34 @@ export default function ChatBot() {
 
     let botReply = "";
 
-    // 🎭 Edyta fact mode
+    // 🎭 Start Edyta facts
     if (messageText.includes("fun fact om edyta")) {
       setInEdytaMode(true);
       setEdytaFactIndex(0);
-      botReply = edytaFacts[0] + "\n\nVil du ha mer fun fact? Skriv ja.";
-    } else if (inEdytaMode && messageText === "ja") {
+      botReply = edytaFacts[0] + "\n\nVil du ha mer? Skriv ja.";
+    }
+    // 🎭 Fortsett Edyta facts
+    else if (inEdytaMode && messageText === "ja") {
       const nextIndex = edytaFactIndex + 1;
       setEdytaFactIndex(nextIndex);
 
-      if (nextIndex < edytaFacts.length - 1) {
-        botReply = edytaFacts[nextIndex] + "\n\nVil du ha mer fun fact? Skriv ja.";
-      } else if (nextIndex === edytaFacts.length - 1) {
-        // Siste fact (nr. 10)
-        botReply = edytaFacts[nextIndex];
-        setInEdytaMode(false); // avslutt etter siste
-      } else {
-        botReply = "Det var alle fun factene om Edyta 😊";
-        setInEdytaMode(false);
+      if (nextIndex < edytaFacts.length) {
+        botReply = edytaFacts[nextIndex] + "\n\nVil du ha mer? Skriv ja.";
       }
-    } 
-    // 🎭 Andre morsomme regler
+      // Slutt på Edyta facts → spør om Deivi
+      else {
+        setInEdytaMode(false);
+        setInDeiviMode(true);
+        botReply =
+          "Det var alle Edyta-fun facts! 🎉😂\n\nVil du ha noen fun fact om Deivi også? Skriv ja.";
+      }
+    }
+    // 🎭 Deivi facts starter
+    else if (inDeiviMode && messageText === "ja") {
+      const fact = deiviFacts[Math.floor(Math.random() * deiviFacts.length)];
+      botReply = fact + "\n\nVil du ha en ny? Skriv ja.";
+    }
+    // 🎭 Andre regler
     else if (messageText.includes("deivi") && messageText.includes("edyta")) {
       botReply =
         "Deivi + Edyta = Norges ultimate power-couple 💑⚡ Hun er hjernen, han er verktøykassa – sammen kan de fikse alt fra verdenskriser til grillkvelder i hagen 🔧🔥😂";
@@ -73,7 +95,6 @@ export default function ChatBot() {
       botReply =
         "Kaffe? Det er Deivi sitt drivstoff ☕⚡️ Uten kaffe starter ikke dagen, med kaffe kan han fikse hele Sandnes (og kanskje halve Stavanger også)! 😂";
     } else {
-      // 👇 Standard fallback
       botReply = "La meg tenke litt... 🤔 (API-svar kommer her)";
     }
 
@@ -121,6 +142,7 @@ export default function ChatBot() {
                 {msg.text}
               </div>
             ))}
+            <div ref={chatEndRef} />
           </div>
 
           <div className="mt-2 flex">
