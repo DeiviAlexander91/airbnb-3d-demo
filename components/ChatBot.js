@@ -6,7 +6,6 @@ export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [edytaFactIndex, setEdytaFactIndex] = useState(0);
   const [inEdytaMode, setInEdytaMode] = useState(false);
   const [inDeiviMode, setInDeiviMode] = useState(false);
   const chatEndRef = useRef(null);
@@ -16,19 +15,41 @@ export default function ChatBot() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // 🎭 30 Edyta-facts
   const edytaFacts = [
-    "Edyta teller ikke til 100 – tallet gir opp først 😎😂",
-    "Når Edyta går inn i et rom, skrur lyset seg på av respekt 💡🙌",
-    "GPS’en spør Edyta om veien 🗺️👉😅",
-    "Hun kan dele på null – uten kalkulator ➗🤯",
-    "Når hun lager kaffe, blir selv koffeinet våkent ☕⚡🤣",
-    "Edyta trenger ikke WiFi – nettet kobler seg på henne 📶😏",
-    "Hver gang hun vanner planter, begynner de å danse 🌱💃😆",
-    "Hun har aldri mistet en diskusjon – hun pauser den til motparten gir opp 🗣️😂",
-    "Når hun tar selfie, blir kameraet smigret 📸😍",
-    "Hun trenger ikke nøkkel til huset – døra åpner seg selv 🚪🤖😂",
+    "Edyta trenger ikke passord – datamaskinen logger inn av seg selv 💻😏",
+    "Når Edyta går tur, følger veien etter henne 🚶‍♀️🛣️",
+    "Edyta kan vinne i stein–saks–papir hver gang – selv mot seg selv ✊✋✌️😂",
+    "Når hun tar bilde, får kameraet bedre oppløsning 📸✨",
+    "Kaffemaskinen lager seg selv når Edyta er i nærheten ☕⚡",
+    "Når hun spiller kort, vinner hun før spillet starter 🃏🔥",
+    "Deivi prøvde en gang å skru IKEA-møbler uten henne – stolen er fortsatt ikke ferdig 🪑🤣",
+    "Netflix spør Edyta hva DU vil se 📺😆",
+    "Når hun ser på planter, vokser de av frykt 🌱👀",
+    "Hun har slått Google i quiz 💡🔍",
+    "Når hun sier 'skru på lys', blir selv sola nervøs ☀️😂",
+    "Deivi påstår han er morsom – men Edyta fikk folk til å le FØR hun sa noe 🎤🤣",
+    "Hun trenger ikke klokke – tiden følger hennes rytme ⏰😏",
+    "Når Edyta lager middag, blir Michelin-guide stressa 🍽️🌟",
+    "Hver gang hun ler, skrives det en ny vits på nettet 🤣📲",
+    "Hvis hun hopper i boblebadet, blir det tsunami i Sandnes 🛁🌊",
+    "Hun kan åpne en brus uten å lage lyd 🥤🤫",
+    "Når hun tar selfie, får hun automatisk 1000 likes 📸❤️",
+    "Hun har aldri tapt i yatzy – terningene vet bedre 🎲😅",
+    "Når hun lager kaffe, våkner til og med naboen ☕🏠😂",
+    "Hun trenger ikke lommelykt – mørket flykter 🌑💡",
+    "Når hun ser på TV, bytter kanalene av seg selv 📺👉",
+    "Hun kan kjøre bil baklengs – og fortsatt være foran 🚗💨",
+    "Deivi prøvde å lage nettside alene – Edyta var allerede ferdig med en penere 💻🔥",
+    "Hun trenger ikke kompass – jorda roterer etter henne 🌍🧭",
+    "Når Edyta smiler, mister tannlegen jobben 😁🦷",
+    "Hun kan åpne vinflaske med ren tankekraft 🍷😏",
+    "Når hun vasker klær, blir maskinen renere enn klærne 🧺✨",
+    "Logger hun på WiFi, får naboene bedre nett 📶😂",
+    "Når hun sier 'nei', er det egentlig ja… men ingen tør å spørre igjen 😅🤫",
   ];
 
+  // 🎭 Deivi-facts
   const deiviFacts = [
     "Deivi kan skru sammen IKEA-møbler uten manual – og uten ekstra skruer igjen! 🪛🪑🤣",
     "Når Deivi logger på WiFi, får ruteren bedre signal 📶💪😂",
@@ -51,28 +72,19 @@ export default function ChatBot() {
     // 🎭 Start Edyta facts
     if (messageText.includes("fun fact om edyta")) {
       setInEdytaMode(true);
-      setEdytaFactIndex(0);
-      botReply = edytaFacts[0] + "\n\nVil du ha mer? Skriv ja.";
+      setInDeiviMode(false);
+      const fact = edytaFacts[Math.floor(Math.random() * edytaFacts.length)];
+      botReply = fact + "\n\nVil du ha mer? Skriv ja.";
     }
     // 🎭 Fortsett Edyta facts
     else if (inEdytaMode && messageText === "ja") {
-      const nextIndex = edytaFactIndex + 1;
-      setEdytaFactIndex(nextIndex);
-
-      if (nextIndex < edytaFacts.length) {
-        botReply = edytaFacts[nextIndex] + "\n\nVil du ha mer? Skriv ja.";
-      }
-      // Slutt på Edyta facts → spør om Deivi
-      else {
-        setInEdytaMode(false);
-        setInDeiviMode(true);
-        botReply =
-          "Det var alle Edyta-fun facts! 🎉😂\n\nVil du ha noen fun fact om Deivi også? Skriv ja.";
-      }
+      const fact = edytaFacts[Math.floor(Math.random() * edytaFacts.length)];
+      botReply = fact + "\n\nVil du ha mer? Skriv ja.";
     }
-    // 🎭 Start Deivi facts direkte
+    // 🎭 Start Deivi facts
     else if (messageText.includes("fun fact om deivi")) {
       setInDeiviMode(true);
+      setInEdytaMode(false);
       const fact = deiviFacts[Math.floor(Math.random() * deiviFacts.length)];
       botReply = fact + "\n\nVil du ha en ny? Skriv ja.";
     }
@@ -81,22 +93,22 @@ export default function ChatBot() {
       const fact = deiviFacts[Math.floor(Math.random() * deiviFacts.length)];
       botReply = fact + "\n\nVil du ha en ny? Skriv ja.";
     }
-    // 🎭 Andre regler
+    // 🎭 Andre morsomme regler
     else if (messageText.includes("deivi") && messageText.includes("edyta")) {
       botReply =
         "Deivi + Edyta = Norges ultimate power-couple 💑⚡ Hun er hjernen, han er verktøykassa – sammen kan de fikse alt fra verdenskriser til grillkvelder i hagen 🔧🔥😂";
     } else if (messageText.includes("hvem er deivi")) {
       botReply =
-        "Deivi? Han er basically en blanding av Elon Musk, Iron Man og en barista fra Starbucks. En ekte superhelt fra Sandnes! 🚀🤖☕";
+        "Deivi? Han er en kjekk fyr fra Sandnes, men la oss være ærlige – uten Edyta hadde han fortsatt sittet fast i IKEA med en halv stol 🪑🤣";
     } else if (messageText.includes("hvor er deivi")) {
       botReply =
         "Akkurat nå? På hemmelig oppdrag… men mest sannsynlig ved nærmeste kaffemaskin ☕🕵️‍♂️";
     } else if (messageText.includes("hva kan deivi")) {
       botReply =
-        "Deivi kan fikse alt fra koding til boblebad – han er basically MacGyver med WiFi! 🔧💻🛁";
+        "Deivi kan fikse alt fra koding til boblebad – men spør Edyta, hun gjør det dobbelt så fort 🔧💻🛁😂";
     } else if (messageText.includes("hvem er edyta")) {
       botReply =
-        "Edyta? Hun er rett og slett verdens beste dame 💖 – smartere enn Google, mer tålmodig enn en mobil-lader, og hun holder Deivi i sjakk når han prøver å bygge roboter på kjøkkenet 🤖🍳😂";
+        "Edyta? Hun er legenden selv 💖 Når hun logger på Netflix, blir algoritmen nervøs 📺🔥";
     } else if (messageText.includes("kaffe") || messageText.includes("coffee")) {
       botReply =
         "Kaffe? Det er Deivi sitt drivstoff ☕⚡️ Uten kaffe starter ikke dagen, med kaffe kan han fikse hele Sandnes (og kanskje halve Stavanger også)! 😂";
