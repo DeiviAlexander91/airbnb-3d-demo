@@ -49,7 +49,7 @@ export default function Listing() {
     {
       label: "WiFi",
       icon: "📶",
-      images: ["/wifi.jpg"],
+      images: [],
     },
     {
       label: "Elbillader / EV charger",
@@ -131,9 +131,9 @@ export default function Listing() {
           {equipment.map((item, index) => (
             <div
               key={index}
-              onClick={() => setModalImages(item.images)}
+              onClick={() => item.images.length > 0 && setModalImages(item.images)}
               className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
-                item.images && item.images.length > 0
+                item.images.length > 0
                   ? "text-blue-800 hover:text-blue-600"
                   : "text-gray-500 hover:text-gray-700"
               }`}
@@ -167,4 +167,27 @@ export default function Listing() {
       {/* Chatbot-widget nederst til høyre */}
       <ChatBot />
 
-      {/* Bilde-*
+      {/* Bilde-modalen */}
+      {modalImages.length > 0 && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setModalImages([])}
+        >
+          <div className="bg-white p-4 rounded-xl max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {modalImages.map((src, idx) => (
+              <Image
+                key={idx}
+                src={src}
+                alt="Utstyrsdetalj"
+                width={600}
+                height={400}
+                className="w-full h-auto rounded-lg"
+                unoptimized
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
