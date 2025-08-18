@@ -1,181 +1,139 @@
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+import ChatBot from "../components/ChatBot";
 
 export default function Listing() {
-  // State for hvilket galleri som er åpent
-  const [selectedGallery, setSelectedGallery] = useState(null);
+  const [modalImage, setModalImage] = useState(null);
 
-  // Bilder for de forskjellige kategoriene
-  const galleries = {
-    utsikt: [
-      "/panoramautsikt.jpg",
-      "/panoramautsikt2.jpg"
-    ],
-    hage: [
-      "/hage1.jpg",
-      "/hage2.jpg"
-    ],
-    kjokken: [
-      "/kjokkenutstyr1.jpg",
-      "/vannkoker.jpg",
-      "/kaffemaskin.jpg",
-      "/innegrill.jpg"
-    ],
-    balpanne: [
-      "/balute.jpg"
-    ],
-    seng: [
-      "/soverom1.jpg",
-      "/soverom2.jpg"
-    ],
-    tv: [
-      "/tvstue1.jpg"
-    ],
-    treningsrom: [
-      "/gym1.jpg",
-      "/gym2.jpg"
-    ],
-    vaskemaskin: [
-      "/vaskemaskin.jpg"
-    ],
-    elbil: [
-      "/elbillader.jpg"
-    ],
-    wifi: [
-      "/wifi.jpg"
-    ]
-  };
+  const equipment = [
+    { label: "Utsikt / View", icon: "🌅", image: "/utsikt4.jpg" },
+    { label: "Hage / Garden", icon: "🌳", image: "/hage.jpg" },
+    { label: "Komfortable senger / Cozy beds", icon: "🛏️", image: "/soverom1.jpg" },
+    { label: "Kjøkken / Kitchen equipped", icon: "🍴", image: "/utstyr1.jpg" },
+    { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
+    { label: "Treningsrom / Gym", icon: "💪", image: "/treningsrom1.jpg" },
+    { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
+    { label: "WiFi", icon: "📶", image: "/wifi.jpg" },
+    { label: "Elbillader / EV charger", icon: "🔌", image: "/lader1.jpg" },
+    { label: "Vaskemaskin / Washing machine", icon: "🧺", image: "/vaskemaskin.jpg" },
+  ];
+
+  const galleryImages = [
+    { src: "/barnerom.jpg", alt: "Barnerom" },
+    { src: "/forsidelayout.jpg", alt: "Forsidelayout" },
+    { src: "/treningsrom1.jpg", alt: "Treningsrom" },
+  ];
 
   return (
-    <div className="bg-pink-50 min-h-screen">
-      {/* Toppseksjon */}
-      <header className="text-center py-8">
-        <h1 className="text-2xl font-bold">Velkommen til ditt drømmehjem i Sandnes</h1>
-        <p className="text-gray-700">
-          Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for familier, par og venner.
+    <div className="bg-pink-50 min-h-screen text-center text-gray-900 px-4">
+      <div className="max-w-4xl mx-auto py-10">
+        <h1 className="text-3xl md:text-4xl font-extrabold mb-2">
+          Velkommen til ditt drømmehjem i Sandnes
+        </h1>
+        <p className="text-base md:text-lg text-gray-700 mb-1">
+          Nyt utsikten, bålkos og grillkvelder i en romslig og moderne enebolig – perfekt for
+          familier, par og venner.
         </p>
-        <p className="mt-2 text-sm text-gray-500">Grill nights, firelight and views – make yourself at home</p>
-      </header>
-
-      {/* Hovedbilde */}
-      <div className="flex justify-center">
-        <Image
-          src="/hus.jpg"
-          alt="Huset"
-          width={600}
-          height={400}
-          className="rounded-xl shadow-md"
-        />
-      </div>
-
-      {/* 3D opplevelse seksjon */}
-      <div className="bg-pink-100 mx-4 md:mx-20 my-8 p-6 rounded-xl shadow">
-        <h2 className="text-center font-semibold">👀 Opplev huset i 3D / Explore the house in 3D</h2>
-        <p className="text-center text-gray-700 text-sm mb-4">
-          Ta en virtuell visning og se alle rom før du booker – akkurat som å være der selv
+        <h2 className="text-xl font-semibold mt-4">
+          Grill nights, firelight and views – make yourself at home
+        </h2>
+        <p className="italic text-sm text-gray-600 mb-6">
+          Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
         </p>
-        <div className="flex justify-center">
-          <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full">
-            Gå inn i huset nå / Enter the house now
-          </button>
+
+        <div className="rounded-xl overflow-hidden shadow-lg mb-4">
+          <Image
+            src="/forsidelayout.jpg"
+            alt="Hovedbilde"
+            width={1200}
+            height={800}
+            className="w-full h-auto"
+            priority
+          />
         </div>
-        <p className="text-center text-xs text-gray-500 mt-2">
-          95% av gjester elsker 3D-visningen før booking – ikke gå glipp av den!
-        </p>
-      </div>
 
-      {/* Ikoner med utstyr */}
-      <div className="text-center mb-6">
-        <p className="text-sm text-gray-600">
+        {/* 3D seksjon med CTA */}
+        <div className="bg-pink-100 p-6 rounded-2xl shadow-lg mb-8">
+          <h3 className="text-xl font-bold mb-2">
+            👀 Opplev huset i 3D / Explore the house in 3D
+          </h3>
+          <p className="text-gray-700 mb-4">
+            Ta en virtuell visning og se alle rom før du booker – akkurat som å være der selv!
+            <br />
+            Take a virtual tour and explore every room before booking – just like being there in person!
+          </p>
+          <a
+            href="https://my.matterport.com/show/?m=YOUR_3D_LINK"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition"
+          >
+            🚪 Gå inn i huset nå / Enter the house now
+          </a>
+          <p className="text-xs text-gray-500 mt-2 italic">
+            95% av gjester sjekker 3D-visningen før booking – ikke gå glipp av den!
+          </p>
+        </div>
+
+        <p className="text-sm italic mb-4">
           Trykk på ikonene for å se bilder av utstyret / Click on the icons to view equipment
         </p>
-      </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 px-6 text-center">
-        {/* Utsikt */}
-        <div onClick={() => setSelectedGallery("utsikt")} className="cursor-pointer">
-          <span className="text-3xl">🌅</span>
-          <p>Utsikt / View</p>
-        </div>
-
-        {/* Hage */}
-        <div onClick={() => setSelectedGallery("hage")} className="cursor-pointer">
-          <span className="text-3xl">🌳</span>
-          <p>Hage / Garden</p>
-        </div>
-
-        {/* Seng */}
-        <div onClick={() => setSelectedGallery("seng")} className="cursor-pointer">
-          <span className="text-3xl">🛏️</span>
-          <p>Komfortable senger / Cozy beds</p>
-        </div>
-
-        {/* Kjøkken */}
-        <div onClick={() => setSelectedGallery("kjokken")} className="cursor-pointer">
-          <span className="text-3xl">🍴</span>
-          <p>Kjøkken / Kitchen equipped</p>
-        </div>
-
-        {/* TV */}
-        <div onClick={() => setSelectedGallery("tv")} className="cursor-pointer">
-          <span className="text-3xl">📺</span>
-          <p>TV-stue / TV lounge</p>
-        </div>
-
-        {/* Treningsrom */}
-        <div onClick={() => setSelectedGallery("treningsrom")} className="cursor-pointer">
-          <span className="text-3xl">💪</span>
-          <p>Treningsrom / Gym</p>
-        </div>
-
-        {/* Bålpanne */}
-        <div onClick={() => setSelectedGallery("balpanne")} className="cursor-pointer">
-          <span className="text-3xl">🔥</span>
-          <p>Bålpanne / Fire pit</p>
-        </div>
-
-        {/* Wifi */}
-        <div onClick={() => setSelectedGallery("wifi")} className="cursor-pointer">
-          <span className="text-3xl">📶</span>
-          <p>WiFi</p>
-        </div>
-
-        {/* Elbil */}
-        <div onClick={() => setSelectedGallery("elbil")} className="cursor-pointer">
-          <span className="text-3xl">⚡</span>
-          <p>Elbillader / EV charger</p>
-        </div>
-
-        {/* Vaskemaskin */}
-        <div onClick={() => setSelectedGallery("vaskemaskin")} className="cursor-pointer">
-          <span className="text-3xl">🧺</span>
-          <p>Vaskemaskin / Washing machine</p>
-        </div>
-      </div>
-
-      {/* Galleri */}
-      {selectedGallery && (
-        <div className="mt-10 px-6">
-          <h3 className="text-center font-semibold mb-4">Galleri</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {galleries[selectedGallery].map((img, idx) => (
-              <Image
-                key={idx}
-                src={img}
-                alt={selectedGallery}
-                width={400}
-                height={300}
-                className="rounded-lg shadow"
-              />
-            ))}
-          </div>
-          <div className="text-center mt-4">
-            <button
-              onClick={() => setSelectedGallery(null)}
-              className="bg-gray-300 px-4 py-2 rounded-lg"
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
+          {equipment.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => item.image && setModalImage(item.image)}
+              className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
+                item.image
+                  ? "text-blue-800 hover:text-blue-600"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
             >
-              Lukk galleri
-            </button>
+              <span className="text-2xl mb-1">{item.icon}</span>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="text-lg font-semibold mb-4">Galleri</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {galleryImages.map((img, index) => (
+            <div
+              key={`gallery-${index}`}
+              className="relative aspect-[4/3] overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow bg-gray-100"
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={index < 3}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Chatbot-widget nederst til høyre */}
+      <ChatBot />
+
+      {/* Bilde-modalen */}
+      {modalImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setModalImage(null)}
+        >
+          <div className="bg-white p-4 rounded-xl max-w-xl">
+            <Image
+              src={modalImage}
+              alt="Utstyrsdetalj"
+              width={800}
+              height={600}
+              className="w-full h-auto"
+              unoptimized
+            />
           </div>
         </div>
       )}
