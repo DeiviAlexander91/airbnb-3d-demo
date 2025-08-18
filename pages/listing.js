@@ -3,24 +3,72 @@ import Image from "next/image";
 import ChatBot from "../components/ChatBot";
 
 export default function Listing() {
-  const [modalImage, setModalImage] = useState(null);
+  const [modalImages, setModalImages] = useState([]);
 
   const equipment = [
-    { label: "Utsikt / View", icon: "🌅", image: "/utsikt4.jpg" },
-    { label: "Hage / Garden", icon: "🌳", image: "/hage.jpg" },
-    { label: "Komfortable senger / Cozy beds", icon: "🛏️", image: "/soverom1.jpg" },
-    { label: "Kjøkken / Kitchen equipped", icon: "🍴", image: "/utstyr1.jpg" },
-    { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
-    { label: "Treningsrom / Gym", icon: "💪", image: "/treningsrom1.jpg" },
-    { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
-    { label: "WiFi", icon: "📶", image: "/wifi.jpg" },
-    { label: "Elbillader / EV charger", icon: "🔌", image: "/lader1.jpg" },
-    { label: "Vaskemaskin / Washing machine", icon: "🧺", image: "/vaskemaskin.jpg" },
+    {
+      label: "Utsikt / View",
+      icon: "🌅",
+      images: ["/panoramautsikt.jpg", "/panoramautsikt2.jpg"],
+    },
+    {
+      label: "Hage / Garden",
+      icon: "🌳",
+      images: ["/hage.jpg"],
+    },
+    {
+      label: "Komfortable senger / Cozy beds",
+      icon: "🛏️",
+      images: ["/soverom1.jpg"],
+    },
+    {
+      label: "Kjøkken / Kitchen equipped",
+      icon: "🍴",
+      images: [
+        "/innegrill.jpg",
+        "/kaffemaskin.jpg",
+        "/kjøkkenutstyr1.jpg",
+        "/vannkoker.jpg",
+      ],
+    },
+    {
+      label: "TV-stue / TV lounge",
+      icon: "📺",
+      images: ["/tvstue1.jpg"],
+    },
+    {
+      label: "Treningsrom / Gym",
+      icon: "💪",
+      images: ["/treningsrom1.jpg"],
+    },
+    {
+      label: "Bålpanne / Fire pit",
+      icon: "🔥",
+      images: ["/bålute.jpg"],
+    },
+    {
+      label: "WiFi",
+      icon: "📶",
+      images: ["/wifi.jpg"],
+    },
+    {
+      label: "Elbillader / EV charger",
+      icon: "🔌",
+      images: ["/lader1.jpg"],
+    },
+    {
+      label: "Vaskemaskin / Washing machine",
+      icon: "🧺",
+      images: ["/vaskemaskin.jpg"],
+    },
   ];
 
   const galleryImages = [
+    { src: "/forsidelayout.jpg", alt: "Hovedbilde" },
+    { src: "/panoramautsikt.jpg", alt: "Utsikt" },
+    { src: "/kaffemaskin.jpg", alt: "Kaffemaskin" },
+    { src: "/bålute.jpg", alt: "Bålpanne ute" },
     { src: "/barnerom.jpg", alt: "Barnerom" },
-    { src: "/forsidelayout.jpg", alt: "Forsidelayout" },
     { src: "/treningsrom1.jpg", alt: "Treningsrom" },
   ];
 
@@ -83,9 +131,9 @@ export default function Listing() {
           {equipment.map((item, index) => (
             <div
               key={index}
-              onClick={() => item.image && setModalImage(item.image)}
+              onClick={() => setModalImages(item.images)}
               className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
-                item.image
+                item.images && item.images.length > 0
                   ? "text-blue-800 hover:text-blue-600"
                   : "text-gray-500 hover:text-gray-700"
               }`}
@@ -119,24 +167,4 @@ export default function Listing() {
       {/* Chatbot-widget nederst til høyre */}
       <ChatBot />
 
-      {/* Bilde-modalen */}
-      {modalImage && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setModalImage(null)}
-        >
-          <div className="bg-white p-4 rounded-xl max-w-xl">
-            <Image
-              src={modalImage}
-              alt="Utstyrsdetalj"
-              width={800}
-              height={600}
-              className="w-full h-auto"
-              unoptimized
-            />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+      {/* Bilde-*
