@@ -5,18 +5,18 @@ import ChatBot from "../components/ChatBot";
 export default function Listing() {
   const [modalImage, setModalImage] = useState(null);
 
-const equipment = [
-  { label: "Utsikt / View", icon: "🌅", image: "/utsikt4.jpg" },
-  { label: "Hage / Garden", icon: "🌳", image: "/hage.jpg" },
-  { label: "Komfortable senger / Cozy beds", icon: "🛏️", image: "/soverom1.jpg" },
-  { label: "Kjøkken / Kitchen equipped", icon: "🍴", image: "/utstyr1.jpg" },
-  { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
-  { label: "Treningsrom / Gym", icon: "💪", image: "/treningsrom1.jpg" },
-  { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
-  { label: "WiFi", icon: "📶", image: "/wifi.jpg" },
-  { label: "Elbillader / EV charger", icon: "🔌", image: "/lader1.jpg" },
-  { label: "Vaskemaskin / Washing machine", icon: "🧺", image: "/vaskemaskin.jpg" },
-];
+  const equipment = [
+    { label: "Utsikt / View", icon: "🌅", image: "/utsikt4.jpg" },
+    { label: "Hage / Garden", icon: "🌳", image: "/hage.jpg" },
+    { label: "Komfortable senger / Cozy beds", icon: "🛏️", image: "/soverom1.jpg" },
+    { label: "Kjøkken / Kitchen equipped", icon: "🍴", image: "/utstyr1.jpg" },
+    { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
+    { label: "Treningsrom / Gym", icon: "💪", image: "/treningsrom1.jpg" },
+    { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
+    { label: "WiFi", icon: "📶", image: "/wifi.jpg" },
+    { label: "Elbillader / EV charger", icon: "🔌", image: "/lader1.jpg" },
+    { label: "Vaskemaskin / Washing machine", icon: "🧺", image: "/vaskemaskin.jpg" },
+  ];
 
   const galleryImages = [
     { src: "/barnerom.jpg", alt: "Barnerom" },
@@ -41,6 +41,7 @@ const equipment = [
           Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
         </p>
 
+        {/* Hovedbilde */}
         <div className="rounded-xl overflow-hidden shadow-lg mb-4">
           <Image
             src="/forsidelayout.jpg"
@@ -52,10 +53,27 @@ const equipment = [
           />
         </div>
 
+        {/* 3D visning seksjon */}
+        <div className="my-8 p-6 bg-gradient-to-r from-pink-100 to-pink-200 rounded-xl shadow-lg text-center">
+          <h2 className="text-2xl font-bold mb-2">👀 Opplev huset i 3D</h2>
+          <p className="text-gray-700 mb-4">
+            Ta en virtuell visning og se alle rom før du booker – akkurat som å være der selv!
+          </p>
+          <a
+            href="https://your-matterport-or-3d-link.com" // 🔗 bytt til din faktiske 3D-lenke
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition"
+          >
+            🚪 Gå inn i huset nå
+          </a>
+        </div>
+
         <p className="text-sm italic mb-4">
           Trykk på ikonene for å se bilder av utstyret / Click on the icons to view equipment
         </p>
 
+        {/* Utstyrsseksjon */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
           {equipment.map((item, index) => (
             <div
@@ -82,6 +100,7 @@ const equipment = [
           Start ferien din her
         </a>
 
+        {/* Galleri */}
         <h3 className="text-lg font-semibold mb-4">Galleri</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {galleryImages.map((img, index) => (
@@ -126,4 +145,3 @@ const equipment = [
     </div>
   );
 }
-
