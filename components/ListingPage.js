@@ -1,30 +1,74 @@
 import { useState } from "react";
 import Image from "next/image";
+import ChatBot from "../components/ChatBot";
 
-export default function ListingPage() {
-  const [modalImage, setModalImage] = useState(null);
-  const [showChat, setShowChat] = useState(false);
-  const [firstMessage, setFirstMessage] = useState(false);
-
-  const toggleChat = () => {
-    setShowChat(!showChat);
-    if (!firstMessage) setFirstMessage(true);
-  };
+export default function Listing() {
+  const [modalImages, setModalImages] = useState([]);
 
   const equipment = [
-    { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
-    { label: "Utsikt / view", icon: "🌅", image: "/utsikt4.jpg" },
-    { label: "Komfortable senger / Cozy beds", icon: "🛏️", image: "/soverom1.jpg" },
-    { label: "Kjøkken / Kitchen equipped", icon: "🍴", image: "/utstyr1.jpg" },
-    { label: "WiFi", icon: "📶", image: "/wifi.jpg" },
-    { label: "Elbillader / EV charger", icon: "🔌", image: "/lader1.jpg" },
-    { label: "Vaskemaskin / Washing machine", icon: "🧺", image: "/treningsrom1.jpg" },
-    { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
+    {
+      label: "Utsikt / View",
+      icon: "🌅",
+      images: ["/panoramautsikt.jpg", "/panoramautsikt2.jpg"],
+    },
+    {
+      label: "Hage / Garden",
+      icon: "🌳",
+      images: ["/hage.jpg"],
+    },
+    {
+      label: "Komfortable senger / Cozy beds",
+      icon: "🛏️",
+      images: ["/soverom1.jpg"],
+    },
+    {
+      label: "Kjøkken / Kitchen equipped",
+      icon: "🍴",
+      images: [
+        "/innegrill.jpg",
+        "/kaffemaskin.jpg",
+        "/kjøkkenutstyr1.jpg",
+        "/vannkoker.jpg",
+      ],
+    },
+    {
+      label: "TV-stue / TV lounge",
+      icon: "📺",
+      images: ["/tvstue1.jpg"],
+    },
+    {
+      label: "Treningsrom / Gym",
+      icon: "💪",
+      images: ["/treningsrom1.jpg"],
+    },
+    {
+      label: "Bålpanne / Fire pit",
+      icon: "🔥",
+      images: ["/bålute.jpg"],
+    },
+    {
+      label: "WiFi",
+      icon: "📶",
+      images: [],
+    },
+    {
+      label: "Elbillader / EV charger",
+      icon: "🔌",
+      images: ["/lader1.jpg"],
+    },
+    {
+      label: "Vaskemaskin / Washing machine",
+      icon: "🧺",
+      images: ["/vaskemaskin.jpg"],
+    },
   ];
 
   const galleryImages = [
+    { src: "/forsidelayout.jpg", alt: "Hovedbilde" },
+    { src: "/panoramautsikt.jpg", alt: "Utsikt" },
+    { src: "/kaffemaskin.jpg", alt: "Kaffemaskin" },
+    { src: "/bålute.jpg", alt: "Bålpanne ute" },
     { src: "/barnerom.jpg", alt: "Barnerom" },
-    { src: "/utsikt1.jpg", alt: "Utsikt 1" },
     { src: "/treningsrom1.jpg", alt: "Treningsrom" },
   ];
 
@@ -56,6 +100,29 @@ export default function ListingPage() {
           />
         </div>
 
+        {/* 3D seksjon med CTA */}
+        <div className="bg-pink-100 p-6 rounded-2xl shadow-lg mb-8">
+          <h3 className="text-xl font-bold mb-2">
+            👀 Opplev huset i 3D / Explore the house in 3D
+          </h3>
+          <p className="text-gray-700 mb-4">
+            Ta en virtuell visning og se alle rom før du booker – akkurat som å være der selv!
+            <br />
+            Take a virtual tour and explore every room before booking – just like being there in person!
+          </p>
+          <a
+            href="https://my.matterport.com/show/?m=YOUR_3D_LINK"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition"
+          >
+            🚪 Gå inn i huset nå / Enter the house now
+          </a>
+          <p className="text-xs text-gray-500 mt-2 italic">
+            95% av gjester sjekker 3D-visningen før booking – ikke gå glipp av den!
+          </p>
+        </div>
+
         <p className="text-sm italic mb-4">
           Trykk på ikonene for å se bilder av utstyret / Click on the icons to view equipment
         </p>
@@ -64,9 +131,9 @@ export default function ListingPage() {
           {equipment.map((item, index) => (
             <div
               key={index}
-              onClick={() => item.image && setModalImage(item.image)}
+              onClick={() => item.images.length > 0 && setModalImages(item.images)}
               className={`cursor-pointer text-sm hover:underline flex flex-col items-center ${
-                item.image
+                item.images.length > 0
                   ? "text-blue-800 hover:text-blue-600"
                   : "text-gray-500 hover:text-gray-700"
               }`}
@@ -76,15 +143,6 @@ export default function ListingPage() {
             </div>
           ))}
         </div>
-
-        <a
-          href="https://www.airbnb.no/rooms/1282008856141933433"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8"
-        >
-          Start ferien din her
-        </a>
 
         <h3 className="text-lg font-semibold mb-4">Galleri</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -106,69 +164,8 @@ export default function ListingPage() {
         </div>
       </div>
 
-      {/* Avatar-knapp */}
-      <div
-        className="fixed top-4 right-4 cursor-pointer z-50 hover:scale-105 transition-transform"
-        onClick={toggleChat}
-      >
-        <Image
-          src="/avatar-deivi.png?ver=2"
-          alt="Chat-hjelp"
-          width={80}
-          height={80}
-          className="rounded-full shadow-xl"
-          unoptimized
-          priority
-        />
-      </div>
+      {/* Chatbot-widget nederst til høyre */}
+      <ChatBot />
 
-      {/* Chat-popup */}
-      {showChat && (
-        <div className="fixed bottom-28 right-6 w-80 bg-white rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200">
-          <div className="bg-pink-600 text-white p-3 font-semibold flex items-center">
-            <img
-              src="/avatar-deivi.png"
-              width={40}
-              height={40}
-              className="rounded-full mr-2"
-              alt="Avatar"
-            />
-            <span>DeiviBot - Din digitale vert</span>
-          </div>
-          <div className="p-4">
-            {firstMessage && (
-              <p className="text-gray-700 mb-2 text-sm">Hei! Hva kan jeg hjelpe deg med? 😊</p>
-            )}
-            <textarea
-              className="w-full p-2 border border-gray-300 rounded resize-none text-sm"
-              rows="3"
-              placeholder="Skriv en melding..."
-            />
-            <button className="mt-2 bg-pink-600 text-white px-3 py-1 rounded text-sm hover:bg-pink-700">
-              Send
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Bild*
 
-      {/* Bilde-modalen */}
-      {modalImage && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setModalImage(null)}
-        >
-          <div className="bg-white p-4 rounded-xl max-w-xl">
-            <Image
-              src={modalImage}
-              alt="Utstyrsdetalj"
-              width={800}
-              height={600}
-              className="w-full h-auto"
-              unoptimized
-            />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
