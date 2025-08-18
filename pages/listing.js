@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ChatBot from "./ChatBot";
 
+// Bilder knyttet til ikonene
 const equipment = {
   kjøkken: [
     "/images/kjøkkenutstyr1.jpg",
@@ -116,7 +117,7 @@ export default function Listing() {
         </div>
       </div>
 
-      {/* MODAL */}
+      {/* MODAL (viser bilder når man klikker på ikonene) */}
       {selectedCategory && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-white p-4 rounded-lg max-w-2xl w-full relative">
@@ -140,7 +141,7 @@ export default function Listing() {
         </div>
       )}
 
-      {/* CHATBOT */}
+      {/* CHATBOT (roboten er tilbake) */}
       <ChatBot />
     </div>
   );
