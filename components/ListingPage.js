@@ -173,5 +173,21 @@ export default function Listing() {
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
           onClick={() => setModalImages([])}
         >
-          <div className="bg-white p-4 rounded-xl max-w-4xl grid g
-
+          <div className="bg-white p-4 rounded-xl max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {modalImages.map((src, idx) => (
+              <Image
+                key={idx}
+                src={src}
+                alt="Utstyrsdetalj"
+                width={600}
+                height={400}
+                className="w-full h-auto rounded-lg"
+                unoptimized
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
