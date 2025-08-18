@@ -89,7 +89,24 @@ export default function Listing() {
         {/* Utstyrsliste */}
         <p className="text-sm italic mb-4">
           Trykk på ikonene for å se bilder av utstyret / Click on the icons to view equipment
-        </p>
+         <a
+           href="https://www.airbnb.no/rooms/1282008856141933433"
+           target="_blank"
+           rel="noopener noreferrer"
+          className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition mb-8 animate-bounce-slow"
+         >
+           Start ferien din her
+         </a>
+        <a
+          href="https://my.matterport.com/show/?m=XXXXXXXX" // <-- bytt til din 3D-lenke
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow hover:bg-indigo-700 transition mb-12 animate-bounce-slow"
+        >
+          🔍 Utforsk huset i 3D
+        </a>
+
+          </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
           {equipment.map((item, index) => (
             <div
