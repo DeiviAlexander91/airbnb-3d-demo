@@ -5,16 +5,18 @@ import ChatBot from "../components/ChatBot";
 export default function Listing() {
   const [modalImage, setModalImage] = useState(null);
 
-  const equipment = [
-    { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
-    { label: "Utsikt / view", icon: "🌅", image: "/utsikt4.jpg" },
-    { label: "Komfortable senger / Cozy beds", icon: "🛏️", image: "/soverom1.jpg" },
-    { label: "Kjøkken / Kitchen equipped", icon: "🍴", image: "/utstyr1.jpg" },
-    { label: "WiFi", icon: "📶", image: "/wifi.jpg" },
-    { label: "Elbillader / EV charger", icon: "🔌", image: "/lader1.jpg" },
-    { label: "Vaskemaskin / Washing machine", icon: "🧺", image: "/treningsrom1.jpg" },
-    { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
-  ];
+const equipment = [
+  { label: "TV-stue / TV lounge", icon: "📺", image: "/tvstue1.jpg" },
+  { label: "Utsikt / view", icon: "🌅", image: "/utsikt4.jpg" },
+  { label: "Komfortable senger / Cozy beds", icon: "🛏️", image: "/soverom1.jpg" },
+  { label: "Kjøkken / Kitchen equipped", icon: "🍴", image: "/utstyr1.jpg" },
+  { label: "Treningsrom / Gym", icon: "💪", image: "/treningsrom1.jpg" },
+  { label: "Hage / Garden", icon: "🌳", image: "/hage.jpg" },
+  { label: "WiFi", icon: "📶", image: "/wifi.jpg" },
+  { label: "Elbillader / EV charger", icon: "🔌", image: "/lader1.jpg" },
+  { label: "Vaskemaskin / Washing machine", icon: "🧺", image: "/vaskemaskin.jpg" },
+  { label: "Bålpanne / Fire pit", icon: "🔥", image: "/balplass.jpg" },
+];
 
   const galleryImages = [
     { src: "/barnerom.jpg", alt: "Barnerom" },
