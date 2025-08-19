@@ -1,22 +1,89 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import ChatBot from "../components/ChatBot";
 
 export default function Listing() {
   const [modalImages, setModalImages] = useState([]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const script = document.createElement("script");
+      script.src = "https://www.marzipano.net/demos/vendor/marzipano.js";
+      script.onload = () => {
+        initMarzipano();
+      };
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  const initMarzipano = () => {
+    const viewer = new window.Marzipano.Viewer(
+      document.getElementById("pano-container")
+    );
+
+    const scenes = [
+      { id: "pano_1", title: "Kontor", image: "/pano_1.jpg", target: "pano_2" },
+      { id: "pano_2", title: "Stue", image: "/pano_2.jpg", target: ["pano_1", "pano_3"] },
+      { id: "pano_3", title: "Kjøkken", image: "/pano_3.jpg", target: "pano_2" },
+    ];
+
+    const sceneObjects = {};
+
+    scenes.forEach((data) => {
+      const source = window.Marzipano.ImageUrlSource.fromString(data.image);
+      const geometry = new window.Marzipano.EquirectGeometry([{ width: 4000 }]);
+      const view = new window.Marzipano.RectilinearView();
+
+      const scene = viewer.createScene({
+        source,
+        geometry,
+        view,
+        pinFirstLevel: true,
+      });
+
+      sceneObjects[data.id] = { scene, data };
+    });
+
+    function switchScene(id) {
+      sceneObjects[id].scene.switchTo();
+      addHotspots(id);
+    }
+
+    function addHotspots(id) {
+      const data = sceneObjects[id].data;
+      let container = document.querySelector("#pano-container .hotspots");
+      if (container) container.remove();
+
+      container = document.createElement("div");
+      container.classList.add("hotspots");
+      document.getElementById("pano-container").appendChild(container);
+
+      const targets = Array.isArray(data.target) ? data.target : [data.target];
+      targets.forEach((targetId, i) => {
+        const button = document.createElement("button");
+        button.innerText = "Gå til " + sceneObjects[targetId].data.title;
+        button.style.position = "absolute";
+        button.style.top = "20px";
+        button.style.left = 20 + 120 * i + "px";
+        button.style.zIndex = 9999;
+        button.onclick = () => switchScene(targetId);
+        container.appendChild(button);
+      });
+    }
+
+    switchScene("pano_1");
+  };
+
   const equipment = [
     {
-  label: "Huset / The house",
-  icon: "🏠",
-  images: ["/Kontor1.jpg", "/kontor2.jpg", "/barnerom.jpg"],
-},
+      label: "Huset / The house",
+      icon: "🏠",
+      images: ["/Kontor1.jpg", "/kontor2.jpg", "/barnerom.jpg"],
+    },
     {
       label: "Utsikt / View",
       icon: "🌅",
-      images: [
-      "/panaromautsikt.jpg", "/panoromautsikt2.jpg",
-      ],
+      images: ["/panaromautsikt.jpg", "/panoromautsikt2.jpg"],
     },
     {
       label: "Hage / Garden",
@@ -104,27 +171,18 @@ export default function Listing() {
           />
         </div>
 
-        {/* 3D seksjon med CTA */}
+        {/* 3D-seksjon */}
         <div className="bg-pink-100 p-6 rounded-2xl shadow-lg mb-8">
           <h3 className="text-xl font-bold mb-2">
             👀 Opplev huset i 3D / Explore the house in 3D
           </h3>
           <p className="text-gray-700 mb-4">
-            Ta en virtuell visning og se alle rom før du booker – akkurat som å være der selv!
-            <br />
-            Take a virtual tour and explore every room before booking – just like being there in person!
+            Virtuell visning – gå fra kontor → stue → kjøkken
           </p>
-          <a
-            href="https://my.matterport.com/show/?m=YOUR_3D_LINK"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow hover:bg-pink-700 transition"
-          >
-            🚪 Gå inn i huset nå / Enter the house now
-          </a>
-          <p className="text-xs text-gray-500 mt-2 italic">
-            95% av gjester sjekker 3D-visningen før booking – ikke gå glipp av den!
-          </p>
+          <div
+            id="pano-container"
+            style={{ width: "100%", height: "500px", background: "black" }}
+          ></div>
         </div>
 
         <p className="text-sm italic mb-4">
@@ -168,10 +226,8 @@ export default function Listing() {
         </div>
       </div>
 
-      {/* Chatbot-widget nederst til høyre */}
       <ChatBot />
 
-      {/* Bilde-modalen */}
       {modalImages.length > 0 && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
