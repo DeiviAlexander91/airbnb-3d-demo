@@ -3,8 +3,9 @@ import { useEffect } from "react";
 export default function MarzipanoViewer() {
   useEffect(() => {
     const loadMarzipano = async () => {
-      if (typeof window === "undefined") return;
+      if (typeof window === "undefined") return; // Hindre SSR-crash i Next.js
 
+      // Last Marzipano kun hvis det ikke finnes fra før
       if (!window.Marzipano) {
         const script = document.createElement("script");
         script.src =
@@ -20,8 +21,10 @@ export default function MarzipanoViewer() {
         const container = document.getElementById("pano-container");
         if (!container) return;
 
+        // Opprett Marzipano-viewer
         const viewer = new window.Marzipano.Viewer(container);
 
+        // Panorama-scener
         const scenes = [
           { id: "pano_1", title: "Kontor", image: "/pano_1.jpg" },
           { id: "pano_2", title: "Stue", image: "/pano_2.jpg" },
@@ -31,13 +34,17 @@ export default function MarzipanoViewer() {
         const sceneObjects = {};
 
         scenes.forEach((scene) => {
-          // Bruk Equirect-kilde for panorama JPG
+          // Viktig: Bruk SingleAssetSource for enkle equirect-bilder
           const source = new window.Marzipano.SingleAssetSource({
             url: scene.image,
           });
 
-          const geometry = new window.Marzipano.EquirectGeometry([{ width: 4000 }]);
+          // Geometri basert på equirect-bilder
+          const geometry = new window.Marzipano.EquirectGeometry([
+            { width: 4000 },
+          ]);
 
+          // Begrensninger på view
           const limiter = window.Marzipano.util.compose(
             window.Marzipano.RectilinearView.limit.traditional(
               1024,
@@ -49,15 +56,19 @@ export default function MarzipanoViewer() {
             )
           );
 
+          // Opprett view
           const view = new window.Marzipano.RectilinearView(null, limiter);
+
+          // Lag scene
           const sceneObj = viewer.createScene({ source, geometry, view });
+
           sceneObjects[scene.id] = sceneObj;
         });
 
-        // Start i kontor
+        // Sett første scene (Kontor)
         sceneObjects["pano_1"].switchTo();
 
-        // Navigation-knapper
+        // Lag knappene for navigering
         const nav = document.createElement("div");
         nav.style.position = "absolute";
         nav.style.top = "10px";
@@ -77,7 +88,9 @@ export default function MarzipanoViewer() {
           btn.style.borderRadius = "4px";
           btn.style.cursor = "pointer";
           btn.style.background = "#fff";
+
           btn.onclick = () => sceneObjects[scene.id].switchTo();
+
           nav.appendChild(btn);
         });
 
@@ -97,6 +110,7 @@ export default function MarzipanoViewer() {
         background: "#000",
         borderRadius: "12px",
         overflow: "hidden",
+        position: "relative",
       }}
     ></div>
   );
