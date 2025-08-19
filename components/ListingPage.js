@@ -9,7 +9,9 @@ export default function Listing() {
     {
       label: "Utsikt / View",
       icon: "🌅",
-      images: ["/panaromautsikt.jpg", "/panoromautsikt2.jpg"],
+      images: [
+      "/panaromautsikt.jpg", "/panoromautsikt2.jpg",
+      ],
     },
     {
       label: "Hage / Garden",
