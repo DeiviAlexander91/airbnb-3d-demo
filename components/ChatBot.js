@@ -77,24 +77,24 @@ export default function ChatBot() {
       setInEdytaMode(true);
       setInDeiviMode(false);
       const fact = edytaFacts[Math.floor(Math.random() * edytaFacts.length)];
-      botReply = fact + "\n\nVil du ha mer? Skriv ja.";
+      botReply = fact + "\n\nVil du ha mer?.";
     }
     // 🎭 Fortsett Edyta facts
     else if (inEdytaMode && messageText === "ja") {
       const fact = edytaFacts[Math.floor(Math.random() * edytaFacts.length)];
-      botReply = fact + "\n\nVil du ha mer? Skriv ja.";
+      botReply = fact + "\n\nVil du ha mer?.";
     }
     // 🎭 Start Deivi facts
     else if (messageText.includes("fun fact om deivi")) {
       setInDeiviMode(true);
       setInEdytaMode(false);
       const fact = deiviFacts[Math.floor(Math.random() * deiviFacts.length)];
-      botReply = fact + "\n\nVil du ha en ny? Skriv ja.";
+      botReply = fact + "\n\nVil du ha en ny?.";
     }
     // 🎭 Fortsett Deivi facts
     else if (inDeiviMode && messageText === "ja") {
       const fact = deiviFacts[Math.floor(Math.random() * deiviFacts.length)];
-      botReply = fact + "\n\nVil du ha en ny? Skriv ja.";
+      botReply = fact + "\n\nVil du ha en ny?.";
     }
     // 🎭 Andre morsomme regler
     else if (messageText.includes("deivi") && messageText.includes("edyta")) {
