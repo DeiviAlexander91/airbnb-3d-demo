@@ -3,7 +3,7 @@ import Image from "next/image";
 import ChatBot from "../components/ChatBot";
 import dynamic from "next/dynamic";
 
-// Importer MarzipanoViewer dynamisk for å unngå SSR-feil
+// Importer MarzipanoViewer dynamisk (unngår SSR-feil på Vercel)
 const MarzipanoViewer = dynamic(() => import("../components/MarzipanoViewer"), {
   ssr: false,
 });
@@ -11,6 +11,7 @@ const MarzipanoViewer = dynamic(() => import("../components/MarzipanoViewer"), {
 export default function Listing() {
   const [modalImages, setModalImages] = useState([]);
 
+  // Utstyr med ikoner og bilder
   const equipment = [
     {
       label: "Huset / The house",
@@ -74,6 +75,7 @@ export default function Listing() {
     },
   ];
 
+  // Galleri på forsiden
   const galleryImages = [
     { src: "/forsidelayout.jpg", alt: "Hovedbilde" },
     { src: "/barnerom.jpg", alt: "Barnerom" },
@@ -83,6 +85,7 @@ export default function Listing() {
   return (
     <div className="bg-pink-50 min-h-screen text-center text-gray-900 px-4">
       <div className="max-w-4xl mx-auto py-10">
+        {/* Header */}
         <h1 className="text-3xl md:text-4xl font-extrabold mb-2">
           Velkommen til ditt drømmehjem i Sandnes
         </h1>
@@ -97,6 +100,7 @@ export default function Listing() {
           Cozy fire nights, scenic views and room to relax – everything you need for a memorable stay.
         </p>
 
+        {/* Hovedbilde */}
         <div className="rounded-xl overflow-hidden shadow-lg mb-4">
           <Image
             src="/forsidelayout.jpg"
@@ -108,20 +112,20 @@ export default function Listing() {
           />
         </div>
 
-        {/* 3D seksjon med Marzipano */}
+        {/* 3D seksjon */}
         <div className="bg-pink-100 p-6 rounded-2xl shadow-lg mb-8">
           <h3 className="text-xl font-bold mb-4">
             👀 Opplev huset i 3D / Explore the house in 3D
           </h3>
-          <div className="w-full h-[500px] rounded-xl overflow-hidden shadow">
+          <div className="w-full h-[500px] rounded-xl overflow-hidden shadow relative">
             <MarzipanoViewer />
           </div>
         </div>
 
+        {/* Utstyr */}
         <p className="text-sm italic mb-4">
           Trykk på ikonene for å se bilder av utstyret / Click on the icons to view equipment
         </p>
-
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
           {equipment.map((item, index) => (
             <div
@@ -139,6 +143,7 @@ export default function Listing() {
           ))}
         </div>
 
+        {/* Galleri */}
         <h3 className="text-lg font-semibold mb-4">Galleri</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {galleryImages.map((img, index) => (
@@ -159,10 +164,10 @@ export default function Listing() {
         </div>
       </div>
 
-      {/* Chatbot-widget nederst til høyre */}
+      {/* Chatbot-widget */}
       <ChatBot />
 
-      {/* Bilde-modalen */}
+      {/* Modal for utstyrs-bilder */}
       {modalImages.length > 0 && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
