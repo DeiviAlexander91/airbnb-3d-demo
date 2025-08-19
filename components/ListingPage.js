@@ -9,7 +9,7 @@ export default function Listing() {
    {
   label: "Huset / The house",
   icon: "🏠",
-  images: ["/kontor1.jpg", "/kontor2.jpg", "/barnerom.jpg"],
+  images: ["/Kontor1.jpg", "/kontor2.jpg", "/barnerom.jpg"],
 },
     {
       label: "Utsikt / View",
