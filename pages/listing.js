@@ -1,77 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import ChatBot from "../components/ChatBot";
+import MarzipanoViewer from "../components/MarzipanoViewer";
 
 export default function Listing() {
   const [modalImages, setModalImages] = useState([]);
-
-  useEffect(() => {
-    const loadMarzipano = async () => {
-      if (typeof window === "undefined") return;
-
-      if (!window.Marzipano) {
-        const script = document.createElement("script");
-        script.src =
-          "https://cdn.jsdelivr.net/npm/marzipano@0.10.2/build/marzipano.js";
-        script.async = true;
-        script.onload = () => initMarzipano();
-        document.body.appendChild(script);
-      } else {
-        initMarzipano();
-      }
-
-      function initMarzipano() {
-        const viewer = new window.Marzipano.Viewer(
-          document.getElementById("pano-container")
-        );
-
-        const scenes = [
-          { id: "pano_1", title: "Kontor", image: "/pano_1.jpg" },
-          { id: "pano_2", title: "Stue", image: "/pano_2.jpg" },
-          { id: "pano_3", title: "Kjøkken", image: "/pano_3.jpg" },
-        ];
-
-        const sceneObjects = {};
-
-        scenes.forEach((scene) => {
-          const source = window.Marzipano.ImageUrlSource.fromString(scene.image);
-          const geometry = new window.Marzipano.EquirectGeometry([{ width: 4000 }]);
-          const limiter = window.Marzipano.util.compose(
-            window.Marzipano.RectilinearView.limit.traditional(1024, 100 * Math.PI / 180),
-            window.Marzipano.RectilinearView.limit.vfov(30 * Math.PI / 180, 100 * Math.PI / 180)
-          );
-          const view = new window.Marzipano.RectilinearView(null, limiter);
-          const sceneObj = viewer.createScene({ source, geometry, view });
-          sceneObjects[scene.id] = sceneObj;
-        });
-
-        // Start med kontor
-        sceneObjects["pano_1"].switchTo();
-
-        // Legg til navigasjonsknapper
-        const nav = document.createElement("div");
-        nav.style.position = "absolute";
-        nav.style.top = "10px";
-        nav.style.left = "10px";
-        nav.style.zIndex = "999";
-        nav.style.background = "rgba(255,255,255,0.7)";
-        nav.style.padding = "5px";
-        nav.style.borderRadius = "8px";
-
-        scenes.forEach((scene) => {
-          const btn = document.createElement("button");
-          btn.innerText = scene.title;
-          btn.style.margin = "0 5px";
-          btn.onclick = () => sceneObjects[scene.id].switchTo();
-          nav.appendChild(btn);
-        });
-
-        document.getElementById("pano-container").appendChild(nav);
-      }
-    };
-
-    loadMarzipano();
-  }, []);
 
   const equipment = [
     {
@@ -170,18 +103,21 @@ export default function Listing() {
           />
         </div>
 
-        {/* 3D seksjon med Marzipano */}
+        {/* 3D seksjon med CTA */}
         <div className="bg-pink-100 p-6 rounded-2xl shadow-lg mb-8">
           <h3 className="text-xl font-bold mb-2">
             👀 Opplev huset i 3D / Explore the house in 3D
           </h3>
           <p className="text-gray-700 mb-4">
             Virtuell visning – gå fra kontor → stue → kjøkken
+            <br />
+            Virtual tour – walk through the office → living room → kitchen
           </p>
-          <div
-            id="pano-container"
-            style={{ width: "100%", height: "500px", background: "#000" }}
-          ></div>
+
+          {/* Her legger vi inn Marzipano */}
+          <div className="w-full h-[500px] rounded-xl overflow-hidden shadow">
+            <MarzipanoViewer />
+          </div>
         </div>
 
         <p className="text-sm italic mb-4">
@@ -225,8 +161,10 @@ export default function Listing() {
         </div>
       </div>
 
+      {/* Chatbot-widget nederst til høyre */}
       <ChatBot />
 
+      {/* Bilde-modalen */}
       {modalImages.length > 0 && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
@@ -250,5 +188,6 @@ export default function Listing() {
     </div>
   );
 }
+
 
 }
