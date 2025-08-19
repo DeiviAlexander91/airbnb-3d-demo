@@ -9,7 +9,9 @@ export default function Listing() {
     {
       label: "Utsikt / View",
       icon: "🌅",
-      images: ["/panoramautsikt.jpg", "/panoramautsikt2.jpg"],
+      images: [
+      "/panaromautsikt.jpg", "/panoromautsikt2.jpg",
+      ],
     },
     {
       label: "Hage / Garden",
@@ -65,9 +67,6 @@ export default function Listing() {
 
   const galleryImages = [
     { src: "/forsidelayout.jpg", alt: "Hovedbilde" },
-    { src: "/panoramautsikt.jpg", alt: "Utsikt" },
-    { src: "/kaffemaskin.jpg", alt: "Kaffemaskin" },
-    { src: "/bålute.jpg", alt: "Bålpanne ute" },
     { src: "/barnerom.jpg", alt: "Barnerom" },
     { src: "/treningsrom1.jpg", alt: "Treningsrom" },
   ];
