@@ -6,73 +6,72 @@ export default function Listing() {
   const [modalImages, setModalImages] = useState([]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const script = document.createElement("script");
-      script.src = "https://www.marzipano.net/demos/vendor/marzipano.js";
-      script.onload = () => {
+    const loadMarzipano = async () => {
+      if (typeof window === "undefined") return;
+
+      if (!window.Marzipano) {
+        const script = document.createElement("script");
+        script.src =
+          "https://cdn.jsdelivr.net/npm/marzipano@0.10.2/build/marzipano.js";
+        script.async = true;
+        script.onload = () => initMarzipano();
+        document.body.appendChild(script);
+      } else {
         initMarzipano();
-      };
-      document.body.appendChild(script);
-    }
+      }
+
+      function initMarzipano() {
+        const viewer = new window.Marzipano.Viewer(
+          document.getElementById("pano-container")
+        );
+
+        const scenes = [
+          { id: "pano_1", title: "Kontor", image: "/pano_1.jpg" },
+          { id: "pano_2", title: "Stue", image: "/pano_2.jpg" },
+          { id: "pano_3", title: "Kjøkken", image: "/pano_3.jpg" },
+        ];
+
+        const sceneObjects = {};
+
+        scenes.forEach((scene) => {
+          const source = window.Marzipano.ImageUrlSource.fromString(scene.image);
+          const geometry = new window.Marzipano.EquirectGeometry([{ width: 4000 }]);
+          const limiter = window.Marzipano.util.compose(
+            window.Marzipano.RectilinearView.limit.traditional(1024, 100 * Math.PI / 180),
+            window.Marzipano.RectilinearView.limit.vfov(30 * Math.PI / 180, 100 * Math.PI / 180)
+          );
+          const view = new window.Marzipano.RectilinearView(null, limiter);
+          const sceneObj = viewer.createScene({ source, geometry, view });
+          sceneObjects[scene.id] = sceneObj;
+        });
+
+        // Start med kontor
+        sceneObjects["pano_1"].switchTo();
+
+        // Legg til navigasjonsknapper
+        const nav = document.createElement("div");
+        nav.style.position = "absolute";
+        nav.style.top = "10px";
+        nav.style.left = "10px";
+        nav.style.zIndex = "999";
+        nav.style.background = "rgba(255,255,255,0.7)";
+        nav.style.padding = "5px";
+        nav.style.borderRadius = "8px";
+
+        scenes.forEach((scene) => {
+          const btn = document.createElement("button");
+          btn.innerText = scene.title;
+          btn.style.margin = "0 5px";
+          btn.onclick = () => sceneObjects[scene.id].switchTo();
+          nav.appendChild(btn);
+        });
+
+        document.getElementById("pano-container").appendChild(nav);
+      }
+    };
+
+    loadMarzipano();
   }, []);
-
-  const initMarzipano = () => {
-    const viewer = new window.Marzipano.Viewer(
-      document.getElementById("pano-container")
-    );
-
-    const scenes = [
-      { id: "pano_1", title: "Kontor", image: "/pano_1.jpg", target: "pano_2" },
-      { id: "pano_2", title: "Stue", image: "/pano_2.jpg", target: ["pano_1", "pano_3"] },
-      { id: "pano_3", title: "Kjøkken", image: "/pano_3.jpg", target: "pano_2" },
-    ];
-
-    const sceneObjects = {};
-
-    scenes.forEach((data) => {
-      const source = window.Marzipano.ImageUrlSource.fromString(data.image);
-      const geometry = new window.Marzipano.EquirectGeometry([{ width: 4000 }]);
-      const view = new window.Marzipano.RectilinearView();
-
-      const scene = viewer.createScene({
-        source,
-        geometry,
-        view,
-        pinFirstLevel: true,
-      });
-
-      sceneObjects[data.id] = { scene, data };
-    });
-
-    function switchScene(id) {
-      sceneObjects[id].scene.switchTo();
-      addHotspots(id);
-    }
-
-    function addHotspots(id) {
-      const data = sceneObjects[id].data;
-      let container = document.querySelector("#pano-container .hotspots");
-      if (container) container.remove();
-
-      container = document.createElement("div");
-      container.classList.add("hotspots");
-      document.getElementById("pano-container").appendChild(container);
-
-      const targets = Array.isArray(data.target) ? data.target : [data.target];
-      targets.forEach((targetId, i) => {
-        const button = document.createElement("button");
-        button.innerText = "Gå til " + sceneObjects[targetId].data.title;
-        button.style.position = "absolute";
-        button.style.top = "20px";
-        button.style.left = 20 + 120 * i + "px";
-        button.style.zIndex = 9999;
-        button.onclick = () => switchScene(targetId);
-        container.appendChild(button);
-      });
-    }
-
-    switchScene("pano_1");
-  };
 
   const equipment = [
     {
@@ -171,7 +170,7 @@ export default function Listing() {
           />
         </div>
 
-        {/* 3D-seksjon */}
+        {/* 3D seksjon med Marzipano */}
         <div className="bg-pink-100 p-6 rounded-2xl shadow-lg mb-8">
           <h3 className="text-xl font-bold mb-2">
             👀 Opplev huset i 3D / Explore the house in 3D
@@ -181,7 +180,7 @@ export default function Listing() {
           </p>
           <div
             id="pano-container"
-            style={{ width: "100%", height: "500px", background: "black" }}
+            style={{ width: "100%", height: "500px", background: "#000" }}
           ></div>
         </div>
 
@@ -250,4 +249,6 @@ export default function Listing() {
       )}
     </div>
   );
+}
+
 }
