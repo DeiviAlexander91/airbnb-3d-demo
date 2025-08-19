@@ -47,6 +47,11 @@ export default function Listing() {
       images: ["/bålute.jpg"],
     },
     {
+      label: "Generelt i huset / The house",
+      icon: "🏠",
+      images: ["/kontor1.jpg", "/kontor2.jpg", "/barnerom.jpg"],
+    },
+    {
       label: "WiFi",
       icon: "📶",
       images: [],
@@ -63,13 +68,11 @@ export default function Listing() {
     },
   ];
 
+  // Galleri nederst – kun noen showcase-bilder
   const galleryImages = [
     { src: "/forsidelayout.jpg", alt: "Hovedbilde" },
     { src: "/panoramautsikt.jpg", alt: "Utsikt" },
-    { src: "/kaffemaskin.jpg", alt: "Kaffemaskin" },
-    { src: "/bålute.jpg", alt: "Bålpanne ute" },
-    { src: "/barnerom.jpg", alt: "Barnerom" },
-    { src: "/treningsrom1.jpg", alt: "Treningsrom" },
+    { src: "/soverom1.jpg", alt: "Soverom" },
   ];
 
   return (
