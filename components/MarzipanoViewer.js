@@ -2,60 +2,50 @@ import { useEffect } from "react";
 
 export default function MarzipanoViewer() {
   useEffect(() => {
-    const loadMarzipano = async () => {
-      if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
-      if (!window.Marzipano) {
-        console.log("🔄 Laster Marzipano-script...");
-        const script = document.createElement("script");
-        script.src =
-          "https://cdn.jsdelivr.net/npm/marzipano@0.10.2/build/marzipano.js";
-        script.async = true;
-        script.onload = () => {
-          console.log("✅ Marzipano lastet inn!");
-          initMarzipano();
-        };
-        script.onerror = () => {
-          console.error("❌ Klarte ikke laste Marzipano-scriptet!");
-        };
-        document.body.appendChild(script);
-      } else {
-        console.log("ℹ️ Marzipano var allerede lastet inn.");
-        initMarzipano();
+    // Last inn Marzipano hvis den ikke finnes
+    if (!window.Marzipano) {
+      const script = document.createElement("script");
+      script.src =
+        "https://cdn.jsdelivr.net/npm/marzipano@0.10.2/build/marzipano.js";
+      script.async = true;
+      script.onload = () => initMarzipano();
+      document.body.appendChild(script);
+    } else {
+      initMarzipano();
+    }
+
+    function initMarzipano() {
+      const container = document.getElementById("pano-container");
+      if (!container) {
+        console.error("Fant ikke #pano-container!");
+        return;
       }
 
-      function initMarzipano() {
-        const container = document.getElementById("pano-container");
-        if (!container) {
-          console.error("❌ Fant ikke #pano-container i DOM.");
-          return;
-        }
+      console.log("✅ Lager viewer...");
+      const viewer = new window.Marzipano.Viewer(container);
 
-        console.log("✅ Fant container, lager viewer...");
-        const viewer = new window.Marzipano.Viewer(container);
+      // 👉 TEST først med ditt eget bilde
+      const imageUrl = "/pano_1.jpg";
 
-        // Bruk DEMO-bilde først
-        const demoImage =
-          "https://www.marzipano.net/demos/sample-1/tiles/0/0/0.jpg";
+      console.log("📷 Laster bilde:", imageUrl);
 
-        console.log("📷 Laster inn testbilde:", demoImage);
+      // Bruk equirectangular (full 360 panorama)
+      const source = window.Marzipano.ImageUrlSource.fromString(imageUrl);
+      const geometry = new window.Marzipano.EquirectGeometry([{ width: 4000 }]);
+      const limiter = window.Marzipano.RectilinearView.limit.traditional(1024, Math.PI/2);
+      const view = new window.Marzipano.RectilinearView(null, limiter);
 
-        try {
-          const source = window.Marzipano.ImageUrlSource.fromString(demoImage);
-          const geometry = new window.Marzipano.EquirectGeometry([{ width: 4000 }]);
-          const view = new window.Marzipano.RectilinearView();
+      const scene = viewer.createScene({
+        source,
+        geometry,
+        view,
+      });
 
-          const scene = viewer.createScene({ source, geometry, view });
-          console.log("✅ Scene opprettet:", scene);
-          scene.switchTo();
-          console.log("🎉 Byttet til scene!");
-        } catch (err) {
-          console.error("💥 FEIL under initMarzipano:", err);
-        }
-      }
-    };
-
-    loadMarzipano();
+      scene.switchTo();
+      console.log("🎉 Scene aktivert!");
+    }
   }, []);
 
   return (
@@ -64,14 +54,10 @@ export default function MarzipanoViewer() {
       style={{
         width: "100%",
         height: "500px",
-        background: "#000",
+        background: "#222",
         borderRadius: "12px",
         overflow: "hidden",
       }}
-    >
-      <p style={{ color: "#fff", textAlign: "center", paddingTop: "200px" }}>
-        Laster panorama...
-      </p>
-    </div>
+    ></div>
   );
 }
