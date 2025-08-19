@@ -5,10 +5,9 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to /listing when component mounts
+    // Redirect til listing
     router.push("/listing");
   }, [router]);
 
-  // Return nothing (optional: could add loading spinner here)
-  return null;
+  return null; // evt. legg inn en spinner
 }
