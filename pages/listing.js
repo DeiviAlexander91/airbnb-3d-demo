@@ -1,7 +1,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import ChatBot from "../components/ChatBot";
-import MarzipanoViewer from "../components/MarzipanoViewer";
+import dynamic from "next/dynamic";
+
+// Importer MarzipanoViewer dynamisk for å unngå SSR-feil
+const MarzipanoViewer = dynamic(() => import("../components/MarzipanoViewer"), {
+  ssr: false,
+});
 
 export default function Listing() {
   const [modalImages, setModalImages] = useState([]);
@@ -15,7 +20,7 @@ export default function Listing() {
     {
       label: "Utsikt / View",
       icon: "🌅",
-      images: ["/panaromautsikt.jpg", "/panoromautsikt2.jpg"],
+      images: ["/panoromautsikt.jpg", "/panoromautsikt2.jpg"],
     },
     {
       label: "Hage / Garden",
@@ -103,18 +108,11 @@ export default function Listing() {
           />
         </div>
 
-        {/* 3D seksjon med CTA */}
+        {/* 3D seksjon med Marzipano */}
         <div className="bg-pink-100 p-6 rounded-2xl shadow-lg mb-8">
-          <h3 className="text-xl font-bold mb-2">
+          <h3 className="text-xl font-bold mb-4">
             👀 Opplev huset i 3D / Explore the house in 3D
           </h3>
-          <p className="text-gray-700 mb-4">
-            Virtuell visning – gå fra kontor → stue → kjøkken
-            <br />
-            Virtual tour – walk through the office → living room → kitchen
-          </p>
-
-          {/* Her legger vi inn Marzipano */}
           <div className="w-full h-[500px] rounded-xl overflow-hidden shadow">
             <MarzipanoViewer />
           </div>
