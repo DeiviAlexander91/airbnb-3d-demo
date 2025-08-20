@@ -1,63 +1,55 @@
+"use client";
 import { useEffect } from "react";
+import Marzipano from "marzipano";
 
 export default function MarzipanoViewer() {
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    const viewerElement = document.getElementById("pano");
 
-    // Last inn Marzipano hvis den ikke finnes
-    if (!window.Marzipano) {
-      const script = document.createElement("script");
-      script.src =
-        "https://cdn.jsdelivr.net/npm/marzipano@0.10.2/build/marzipano.js";
-      script.async = true;
-      script.onload = () => initMarzipano();
-      document.body.appendChild(script);
-    } else {
-      initMarzipano();
-    }
+    if (!viewerElement) return;
 
-    function initMarzipano() {
-      const container = document.getElementById("pano-container");
-      if (!container) {
-        console.error("Fant ikke #pano-container!");
-        return;
-      }
+    // Opprett viewer
+    const viewer = new Marzipano.Viewer(viewerElement);
 
-      console.log("✅ Lager viewer...");
-      const viewer = new window.Marzipano.Viewer(container);
+    // Sett opp kilde (panorama-bildet ligger i /public/)
+    const source = Marzipano.ImageUrlSource.fromString("/pano_1.jpg");
 
-      // 👉 TEST først med ditt eget bilde
-      const imageUrl = "/pano_1.jpg";
+    // Geometri (equirectangular panorama)
+    const geometry = new Marzipano.EquirectGeometry([{ width: 4000 }]);
 
-      console.log("📷 Laster bilde:", imageUrl);
+    // Begrensninger på view
+    const limiter = Marzipano.RectilinearView.limit.traditional(
+      1024,
+      (100 * Math.PI) / 180
+    );
 
-      // Bruk equirectangular (full 360 panorama)
-      const source = window.Marzipano.ImageUrlSource.fromString(imageUrl);
-      const geometry = new window.Marzipano.EquirectGeometry([{ width: 4000 }]);
-      const limiter = window.Marzipano.RectilinearView.limit.traditional(1024, Math.PI/2);
-      const view = new window.Marzipano.RectilinearView(null, limiter);
+    // Start-posisjon
+    const view = new Marzipano.RectilinearView({ yaw: Math.PI }, limiter);
 
-      const scene = viewer.createScene({
-        source,
-        geometry,
-        view,
-      });
+    // Lag scene
+    const scene = viewer.createScene({
+      source: source,
+      geometry: geometry,
+      view: view,
+    });
 
-      scene.switchTo();
-      console.log("🎉 Scene aktivert!");
-    }
+    // Vis panorama
+    scene.switchTo();
   }, []);
 
   return (
-    <div
-      id="pano-container"
-      style={{
-        width: "100%",
-        height: "500px",
-        background: "#222",
-        borderRadius: "12px",
-        overflow: "hidden",
-      }}
-    ></div>
+    <div style={{ width: "100%", height: "100%" }}>
+      <h2 style={{ textAlign: "center", marginBottom: "10px" }}>
+        🚀 Test: Marzipano 3D Viewer
+      </h2>
+      <div
+        id="pano"
+        style={{
+          width: "100%",
+          height: "500px",
+          background: "#000",
+        }}
+      />
+    </div>
   );
 }
